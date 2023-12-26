@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "RlISf1soFtEPylsqzpGxzfe8SjC0G+UzJ9YA5ZJHhVhfKjOhotYWU4bbPmYpqv1c5L8B3pU05uKbXTzaf0P83w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\izaga\\source\\repos\\Lider-V\\Lider-V-Backend\\Lider-V-APIService\\Lider-V-APIService.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\izaga\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\izaga\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\izaga\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\izaga\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\izaga\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\izaga\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
