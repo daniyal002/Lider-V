@@ -21,15 +21,13 @@ const ProductCard = () => {
         maxWidth: 345,
         '@media (max-width: 768px)': {
           maxWidth: 300,
-
         },
         '@media (max-width: 661px)': {
           maxWidth: 250,
-
         },
         borderRadius: '10px',
         background: '#7373D9',
-        border: "2px solid #FFDC73"
+        border: '2px solid #FFDC73',
       }}
     >
       <CardActionArea>
@@ -52,15 +50,18 @@ const ProductCard = () => {
             component="div"
             color="primary"
             sx={{
-                display: 'flex',
-                alignItems: "center",
+              display: 'flex',
+              alignItems: 'center',
               fontSize: '14px',
-              color: 'white'
+              color: 'white',
             }}
           >
-            Есть в наличии <CheckIcon  sx={{
-                color: '#35e847'
-}}/>
+            Есть в наличии{' '}
+            <CheckIcon
+              sx={{
+                color: '#35e847',
+              }}
+            />
           </Typography>
           <Typography variant="h5" component="div" color="#FFDC73">
             Product Title
@@ -81,13 +82,16 @@ const ProductCard = () => {
           padding: 2,
         }}
       >
-        <Button variant="contained" color="primary" sx={{
-          fontSize:'16px',
-          '@media (max-width: 660px)': {
-            fontSize: '12px'
-  
-          },
-        }}>
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{
+            fontSize: '16px',
+            '@media (max-width: 660px)': {
+              fontSize: '12px',
+            },
+          }}
+        >
           Добавить в корзину
         </Button>
         <IconButton
@@ -95,11 +99,19 @@ const ProductCard = () => {
           aria-label="add to favorites"
           onClick={() => setFavorite(!favorite)}
         >
-          {favorite ? <FavoriteIcon sx={{
-            color: 'red'
-          }} /> : <FavoriteBorderIcon sx={{
-            color: 'red'
-          }} />}
+          {favorite ? (
+            <FavoriteIcon
+              sx={{
+                color: 'red',
+              }}
+            />
+          ) : (
+            <FavoriteBorderIcon
+              sx={{
+                color: 'red',
+              }}
+            />
+          )}
         </IconButton>
       </CardActionArea>
     </Card>

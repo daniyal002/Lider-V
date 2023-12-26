@@ -2,8 +2,8 @@ import React from 'react';
 import HomeSlaider from './components/HomeSlaider/HomeSlaider';
 import { Box, Grid, Typography } from '@mui/material';
 import ProductCategories from '../../components/ProductCategories/ProductCategories';
-import ProductSliderWrapper from './components/ProductSliderWrapper/ProductSliderWrapper';
 import ProductCard from '../../components/ProductCard/ProductCard';
+import HomeAboutCompany from './components/HomeAboutCompany/HomeAboutCompany';
 
 const HomeScreen = () => {
   return (
@@ -13,6 +13,8 @@ const HomeScreen = () => {
           display: 'flex',
           flexDirection: 'column',
           rowGap: '30px',
+          maxWidth: '1440px',
+          margin: '0 auto',
         }}
       >
         <HomeSlaider />
@@ -35,7 +37,7 @@ const HomeScreen = () => {
                 display: 'flex',
                 flexDirection: 'row',
                 flexWrap: 'wrap',
-                justifyContent:'center',
+                justifyContent: 'center',
                 rowGap: '20px',
                 columnGap: '20px',
               }}
@@ -58,7 +60,7 @@ const HomeScreen = () => {
                 display: 'flex',
                 flexDirection: 'row',
                 flexWrap: 'wrap',
-                justifyContent:'center',
+                justifyContent: 'center',
                 rowGap: '20px',
                 columnGap: '20px',
               }}
@@ -71,6 +73,7 @@ const HomeScreen = () => {
             </Grid>
           </Grid>
         </Grid>
+        <HomeAboutCompany />
       </Box>
     </div>
   );
