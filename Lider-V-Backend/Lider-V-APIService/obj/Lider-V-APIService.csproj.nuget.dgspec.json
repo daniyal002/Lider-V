@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\izaga\\source\\repos\\Lider-V\\Lider-V-Backend\\Lider-V-APIService\\Lider-V-APIService.csproj": {}
+    "C:\\Users\\izaga\\Source\\Repos\\Lider-V\\Lider-V-Backend\\Lider-V-APIService\\Lider-V-APIService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\izaga\\source\\repos\\Lider-V\\Lider-V-Backend\\Lider-V-APIService\\Lider-V-APIService.csproj": {
+    "C:\\Users\\izaga\\Source\\Repos\\Lider-V\\Lider-V-Backend\\Lider-V-APIService\\Lider-V-APIService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\izaga\\source\\repos\\Lider-V\\Lider-V-Backend\\Lider-V-APIService\\Lider-V-APIService.csproj",
+        "projectUniqueName": "C:\\Users\\izaga\\Source\\Repos\\Lider-V\\Lider-V-Backend\\Lider-V-APIService\\Lider-V-APIService.csproj",
         "projectName": "Lider-V-APIService",
-        "projectPath": "C:\\Users\\izaga\\source\\repos\\Lider-V\\Lider-V-Backend\\Lider-V-APIService\\Lider-V-APIService.csproj",
+        "projectPath": "C:\\Users\\izaga\\Source\\Repos\\Lider-V\\Lider-V-Backend\\Lider-V-APIService\\Lider-V-APIService.csproj",
         "packagesPath": "C:\\Users\\izaga\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\izaga\\source\\repos\\Lider-V\\Lider-V-Backend\\Lider-V-APIService\\obj\\",
+        "outputPath": "C:\\Users\\izaga\\Source\\Repos\\Lider-V\\Lider-V-Backend\\Lider-V-APIService\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\izaga\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.19.5, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
