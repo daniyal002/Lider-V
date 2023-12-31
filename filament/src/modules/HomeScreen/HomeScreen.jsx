@@ -4,6 +4,8 @@ import { Box, Grid, Typography } from '@mui/material';
 import ProductCategories from '../../components/ProductCategories/ProductCategories';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import HomeAboutCompany from './components/HomeAboutCompany/HomeAboutCompany';
+import BlockContactCompany from '../../components/BlockContactCompany/BlockContactCompany';
+import HomeRetail from './components/HomeRetail/HomeRetail';
 
 const HomeScreen = () => {
   return (
@@ -13,7 +15,6 @@ const HomeScreen = () => {
           display: 'flex',
           flexDirection: 'column',
           rowGap: '30px',
-          maxWidth: '1440px',
           margin: '0 auto',
         }}
       >
@@ -74,6 +75,8 @@ const HomeScreen = () => {
           </Grid>
         </Grid>
         <HomeAboutCompany />
+        <BlockContactCompany />
+        <HomeRetail />
       </Box>
     </div>
   );
