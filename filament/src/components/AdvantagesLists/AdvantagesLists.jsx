@@ -2,7 +2,7 @@ import { Grid, Typography } from '@mui/material';
 import React from 'react';
 import styled from '@emotion/styled';
 
-const AdvantagesLists = () => {
+const AdvantagesLists = ({gradient}) => {
   const GridAboutCompany = styled.div`
     display: flex;
     align-items: flex-start;
@@ -63,7 +63,7 @@ const AdvantagesLists = () => {
   return (
     <Grid
       sx={{
-        background: 'linear-gradient(180deg, #7373D9 0%, #313186 100%)',
+        background: gradient ?  'linear-gradient(180deg, #7373D9 0%, #313186 100%)' : '#313186' ,
         display: 'flex',
         flexDirection: 'column',
         alignContent: 'center',

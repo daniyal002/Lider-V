@@ -1,8 +1,8 @@
 import { Button, Grid } from '@mui/material';
 import React from 'react';
-import StepByStep from './StepByStep/StepByStep';
+import StepByStep from '../../../../components/StepByStep/StepByStep';
 import HomeNameCompany from './HomeNameCompany/HomeNameCompany';
-import AdvantagesLists from './AdvantagesLists/AdvantagesLists';
+import AdvantagesLists from '../../../../components/AdvantagesLists/AdvantagesLists';
 
 const HomeAboutCompany = () => {
   return (
@@ -15,8 +15,8 @@ const HomeAboutCompany = () => {
       }}
     >
       <HomeNameCompany />
-      <AdvantagesLists />
-      <StepByStep />
+      <AdvantagesLists gradient />
+      <StepByStep widthBlock={'1000'} />
     </Grid>
   );
 };

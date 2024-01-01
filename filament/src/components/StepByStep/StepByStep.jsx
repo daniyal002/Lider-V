@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from '@mui/material';
 import StepByStepItems from './StepByStepItems/StepByStepItems';
-const StepByStep = () => {
+const StepByStep = ({ widthBlock }) => {
   const listAdvantages = [
     {
       header: 'Совершенствование технологического процесса',
@@ -41,7 +41,7 @@ const StepByStep = () => {
         margin: '100px auto',
         padding: '0 20px',
         position: 'relative',
-        '@media(min-width:1000px)': {
+        [`@media(min-width:${widthBlock}px)`]: {
           '&:before': {
             content: '""',
             //   border: '0.1px solid white',
@@ -61,6 +61,7 @@ const StepByStep = () => {
           text={item.text}
           imgSrc={item.imgSrc}
           reverse={item.reverse}
+          widthBlock={widthBlock}
         />
       ))}
     </Grid>

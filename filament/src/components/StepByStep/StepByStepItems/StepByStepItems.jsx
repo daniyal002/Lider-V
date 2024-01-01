@@ -3,27 +3,29 @@ import React from 'react';
 import styled from '@emotion/styled';
 import AdvantageCard from './AdvantageCard/AdvantageCard';
 
-const StepByStepItems = ({ header, text, imgSrc, reverse }) => {
+const StepByStepItems = ({ header, text, imgSrc, reverse, widthBlock }) => {
   const EmptyGrid = styled.div`
     width: 450px;
     max-height: 200px;
-    @media (max-width: 1000px) {
+    @media (max-width: ${widthBlock}px) {
       display: none;
     }
   `;
+
+  const StepByStepItemsDiv = styled.div`
+    display: flex;
+    justify-content: space-between;
+    flex-direction: ${reverse ? 'row-reverse' : 'row'};
+    column-gap: 15px;
+    align-items: flex-start;
+    @media (max-width: ${widthBlock}px) {
+      flexdirection: column;
+    }
+  `;
+
+    
   return (
-    <Grid
-      sx={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        flexDirection: reverse ? 'row-reverse' : 'row',
-        columnGap: '15px',
-        alignItems: 'flex-start',
-        '@media(max-width:1000px)': {
-          flexDirection: 'column',
-        },
-      }}
-    >
+    <StepByStepItemsDiv>
       <EmptyGrid></EmptyGrid>
 
       <CardMedia
@@ -33,14 +35,15 @@ const StepByStepItems = ({ header, text, imgSrc, reverse }) => {
         alt="EllipseIcon"
         sx={{
           width: '18px',
-          '@media(max-width:1000px)': {
-            display: 'none',
-          },
+
+    ['@media(max-width:'+ widthBlock +'px)']: {
+      display: 'none',
+    },
         }}
       />
 
       <AdvantageCard imgSrc={imgSrc} header={header} text={text} />
-    </Grid>
+    </StepByStepItemsDiv>
   );
 };
 

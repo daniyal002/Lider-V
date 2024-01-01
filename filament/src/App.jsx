@@ -1,3 +1,4 @@
+import AboutCompany from './modules/AboutCompany/AboutCompany';
 import HomeScreen from './modules/HomeScreen/HomeScreen';
 import { createTheme, ThemeProvider } from '@mui/material';
 
@@ -9,7 +10,8 @@ const App = () => {
   });
   return (
     <ThemeProvider theme={theme}>
-      <HomeScreen />
+      {/* <HomeScreen /> */}
+      <AboutCompany/>
     </ThemeProvider>
   );
 };
