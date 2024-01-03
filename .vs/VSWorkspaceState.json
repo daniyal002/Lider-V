@@ -1,9 +1,13 @@
 {
   "ExpandedNodes": [
+    "",
     "\\filament",
     "\\filament\\src",
     "\\filament\\src\\components",
-    "\\filament\\src\\components\\ProductCard"
+    "\\filament\\src\\components\\ProductCard",
+    "\\Lider-V-Backend",
+    "\\Lider-V-Backend\\Lider-V-APIService"
   ],
+  "SelectedNode": "\\Lider-V-Backend\\Lider-V-APIService\\appsettings.Development.json",
   "PreviewInSolutionExplorer": false
 }
