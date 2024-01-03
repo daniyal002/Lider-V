@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Lider-V-APIService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+32d6d0f0dd250029006d1050b4fe5873b7a55fa3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Lider-V-APIService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Lider-V-APIService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

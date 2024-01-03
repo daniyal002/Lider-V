@@ -5,9 +5,7 @@ VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{1B041FA6-7D69-49EF-9584-6360EEE9C553}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lider-V-APIService", "Lider-V-APIService\Lider-V-APIService.csproj", "{7DF7ECBC-4011-426D-99A1-692955B3293E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lider-V-DatabaseService", "Lider-V-DatabaseService\Lider-V-DatabaseService.csproj", "{ECF795F9-03B6-40AC-808C-1CFCF3517AC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lider-V-APIService", "Lider-V-APIService\Lider-V-APIService.csproj", "{7DF7ECBC-4011-426D-99A1-692955B3293E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,17 +17,12 @@ Global
 		{7DF7ECBC-4011-426D-99A1-692955B3293E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DF7ECBC-4011-426D-99A1-692955B3293E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DF7ECBC-4011-426D-99A1-692955B3293E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ECF795F9-03B6-40AC-808C-1CFCF3517AC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ECF795F9-03B6-40AC-808C-1CFCF3517AC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ECF795F9-03B6-40AC-808C-1CFCF3517AC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ECF795F9-03B6-40AC-808C-1CFCF3517AC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7DF7ECBC-4011-426D-99A1-692955B3293E} = {1B041FA6-7D69-49EF-9584-6360EEE9C553}
-		{ECF795F9-03B6-40AC-808C-1CFCF3517AC9} = {1B041FA6-7D69-49EF-9584-6360EEE9C553}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {85C4E820-DFFA-4288-8E8B-8DD3262442F4}
