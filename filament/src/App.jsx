@@ -10,8 +10,8 @@ const App = () => {
   });
   return (
     <ThemeProvider theme={theme}>
-      {/* <HomeScreen /> */}
-      <AboutCompany/>
+      <HomeScreen />
+      {/* <AboutCompany/> */}
     </ThemeProvider>
   );
 };
