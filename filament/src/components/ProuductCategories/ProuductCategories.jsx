@@ -58,7 +58,7 @@ const ProuductCategories = () => {
           },
         }}
       >
-        Get Started
+        Перейти
       </Link>
     </Grid>
   );
