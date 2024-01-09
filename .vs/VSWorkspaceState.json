@@ -6,8 +6,9 @@
     "\\filament\\src\\components",
     "\\filament\\src\\components\\ProductCard",
     "\\Lider-V-Backend",
-    "\\Lider-V-Backend\\Lider-V-APIService"
+    "\\Lider-V-Backend\\Lider-V-APIService",
+    "\\Lider-V-Backend\\Lider-V-APIService\\Controllers"
   ],
-  "SelectedNode": "\\Lider-V-Backend\\Lider-V-APIService\\appsettings.Development.json",
+  "SelectedNode": "\\Lider-V-Backend\\Lider-V-APIService\\Controllers\\ProductAPIController.cs",
   "PreviewInSolutionExplorer": false
 }
