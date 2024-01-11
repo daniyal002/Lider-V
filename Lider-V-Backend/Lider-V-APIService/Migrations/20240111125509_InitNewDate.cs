@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Lider_V_APIService.Migrations
 {
-    public partial class InitDate : Migration
+    public partial class InitNewDate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

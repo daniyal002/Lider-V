@@ -1,11 +1,12 @@
 ﻿using Lider_V_APIService.Models.Dto;
 using Lider_V_APIService.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lider_V_APIService.Controllers
 {
     [ApiController]
-    [Route("api/products")]
+    [Route("api/[controller]")]
     public class ProductAPIController : Controller
     {
         protected ResponseDto _response;

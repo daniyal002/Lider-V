@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Lider_V_APIService.Controllers
 {
     [ApiController]
-    [Route("api/cart")]
+    [Route("api/[controller]")]
     public class CartAPIController : Controller
     {
         private ICartRepository _cartRepository;

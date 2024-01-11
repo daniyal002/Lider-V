@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Lider_V_APIService.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240110130124_InitDate")]
-    partial class InitDate
+    [Migration("20240111125509_InitNewDate")]
+    partial class InitNewDate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
