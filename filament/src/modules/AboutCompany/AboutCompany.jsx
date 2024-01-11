@@ -6,8 +6,8 @@ import Certificate from "./components/Certificate/Certificate";
 const AboutCompany = () => {
   return (
     <Box>
-      {/* <Promotio /> */}
-      <Certificate />
+      <Promotio />
+      {/* <Certificate /> */}
     </Box>
   );
 };

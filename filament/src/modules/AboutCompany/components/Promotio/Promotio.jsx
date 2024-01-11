@@ -4,6 +4,7 @@ import FirstPromotioItem from "./FirstPromotioItem/FirstPromotioItem";
 import SecondPromotioItem from "./SecondPromotioItem/SecondPromotioItem";
 import ThirdPromotioItem from "./ThirdPromotioItem/ThirdPromotioItem";
 import FourthPromotioItem from "./FourthPromotioItem/FourthPromotioItem";
+import RequisitesPromotio from "./RequisitesPromotio/RequisitesPromotio";
 
 const Promotio = () => {
   return (
@@ -64,6 +65,7 @@ const Promotio = () => {
         </Grid>
 
         <FourthPromotioItem />
+        <RequisitesPromotio />
       </Grid>
     </Grid>
   );
