@@ -5,43 +5,25 @@ using Microsoft.AspNetCore.Mvc;
 namespace Lider_V_APIService.Controllers
 {
     [ApiController]
-    [Route("api/products")]
-    public class ProductAPIController : Controller
+    [Route("api/cart")]
+    public class CartAPIController : Controller
     {
+        private ICartRepository _cartRepository;
         protected ResponseDto _response;
-        private IProductRepository _productRepository;
 
-        public ProductAPIController(IProductRepository productRepository)
+        public CartAPIController(ICartRepository cartRepository)
         {
+            _cartRepository = cartRepository;
             this._response = new ResponseDto();
-            _productRepository = productRepository;
         }
 
-        [HttpGet]
-        public async Task<object> Get()
+        [HttpGet("GetCart/{userId}")]
+        public async Task<object> GetCart(string userId)
         {
             try
             {
-                IEnumerable<ProductDto> productDtos = await _productRepository.GetProductsAsync();
-                _response.Result = productDtos;
-            }
-            catch (Exception ex) 
-            {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { ex.ToString() };
-            }
-
-            return _response;
-        }
-
-        [HttpGet]
-        [Route("{id}")]
-        public async Task<object> Get(int id)
-        {
-            try
-            {
-                ProductDto productDto = await _productRepository.GetProductByIdAsync(id);
-                _response.Result = productDto;
+                CartDto cartDto = await _cartRepository.GetCartByUserId(userId);
+                _response.Result = cartDto;
             }
             catch (Exception ex)
             {
@@ -52,13 +34,13 @@ namespace Lider_V_APIService.Controllers
             return _response;
         }
 
-        [HttpPost]
-        public async Task<object> Post([FromBody] ProductDto productDto)
+        [HttpPost("AddCart")]
+        public async Task<object> GetCart(CartDto cartDto)
         {
             try
             {
-                ProductDto model = await _productRepository.CreateUptateProductAsync(productDto);
-                _response.Result = model;
+                CartDto cartDt = await _cartRepository.CreateUpdateCart(cartDto);
+                _response.Result = cartDt;
             }
             catch (Exception ex)
             {
@@ -69,13 +51,13 @@ namespace Lider_V_APIService.Controllers
             return _response;
         }
 
-        [HttpPut]
-        public async Task<object> Put([FromBody] ProductDto productDto)
+        [HttpPost("UpdateCart")]
+        public async Task<object> UpdateCart(CartDto cartDto)
         {
             try
             {
-                ProductDto model = await _productRepository.CreateUptateProductAsync(productDto);
-                _response.Result = model;
+                CartDto cartDt = await _cartRepository.CreateUpdateCart(cartDto);
+                _response.Result = cartDt;
             }
             catch (Exception ex)
             {
@@ -86,12 +68,29 @@ namespace Lider_V_APIService.Controllers
             return _response;
         }
 
-        [HttpDelete]
-        public async Task<object> Delete(int id)
+        [HttpPost("RemoveCart")]
+        public async Task<object> RemoveCart([FromBody]int cartId)
         {
             try
             {
-                bool isSuccess = await _productRepository.DeleteProduct(id);
+                bool isSuccess = await _cartRepository.RemoveFromCart(cartId);
+                _response.Result = isSuccess;
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.ErrorMessages = new List<string> { ex.ToString() };
+            }
+
+            return _response;
+        }
+
+        [HttpPost("ClearCart")]
+        public async Task<object> ClearCart([FromBody] string userId)
+        {
+            try
+            {
+                bool isSuccess = await _cartRepository.ClearCart(userId);
                 _response.Result = isSuccess;
             }
             catch (Exception ex)
