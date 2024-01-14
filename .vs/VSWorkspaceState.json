@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "\\filament",
+    "\\filament\\src",
+    "\\filament\\src\\components",
+    "\\filament\\src\\components\\ProductCard"
   ],
-  "SelectedNode": "\\Lider-V-Backend.sln",
   "PreviewInSolutionExplorer": false
 }

@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\izaga\\Source\\Repos\\Lider-V\\Lider-V-Backend\\Lider-V-DatabaseService\\Lider-V-DatabaseService.csproj": {}
+    "C:\\Users\\izaga\\source\\repos\\Lider-V\\Lider-V-Backend\\Lider-V-DatabaseService\\Lider-V-DatabaseService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\izaga\\Source\\Repos\\Lider-V\\Lider-V-Backend\\Lider-V-DatabaseService\\Lider-V-DatabaseService.csproj": {
+    "C:\\Users\\izaga\\source\\repos\\Lider-V\\Lider-V-Backend\\Lider-V-DatabaseService\\Lider-V-DatabaseService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\izaga\\Source\\Repos\\Lider-V\\Lider-V-Backend\\Lider-V-DatabaseService\\Lider-V-DatabaseService.csproj",
+        "projectUniqueName": "C:\\Users\\izaga\\source\\repos\\Lider-V\\Lider-V-Backend\\Lider-V-DatabaseService\\Lider-V-DatabaseService.csproj",
         "projectName": "Lider-V-DatabaseService",
-        "projectPath": "C:\\Users\\izaga\\Source\\Repos\\Lider-V\\Lider-V-Backend\\Lider-V-DatabaseService\\Lider-V-DatabaseService.csproj",
+        "projectPath": "C:\\Users\\izaga\\source\\repos\\Lider-V\\Lider-V-Backend\\Lider-V-DatabaseService\\Lider-V-DatabaseService.csproj",
         "packagesPath": "C:\\Users\\izaga\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\izaga\\Source\\Repos\\Lider-V\\Lider-V-Backend\\Lider-V-DatabaseService\\obj\\",
         "projectStyle": "PackageReference",
