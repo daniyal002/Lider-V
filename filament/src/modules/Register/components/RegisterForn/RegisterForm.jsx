@@ -1,10 +1,31 @@
-import { Button, Checkbox, Grid, Input, Link, Typography } from "@mui/material";
-import React from "react";
+import { Alert, Button, Grid, Input } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useRegister } from "../../hook/useRegister";
 
 const RegisterForm = () => {
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const { mutate, error } = useRegister();
+  const { register, handleSubmit } = useForm();
+
+  useEffect(() => {
+    if (password !== confirmPassword) {
+      setPasswordError("Пароли не совпадают");
+    } else {
+      setPasswordError();
+    }
+  }, [confirmPassword]);
+
+  const reg = (body) => {
+    mutate(body);
+  };
+
   return (
     <Grid>
       <form
+        onSubmit={handleSubmit(reg)}
         style={{
           display: "flex",
           flexDirection: "column",
@@ -28,9 +49,9 @@ const RegisterForm = () => {
         >
           <Input
             type="text"
-            name="name"
             required
-            placeholder="Ваше имя"
+            placeholder="Придумайте логин"
+            {...register("registerLogin")}
             sx={{
               height: "50px",
               padding: "34px 15px",
@@ -52,9 +73,58 @@ const RegisterForm = () => {
           />
           <Input
             type="email"
-            name="email"
             required
             placeholder="Ваш E-mail"
+            {...register("registerEmail")}
+            sx={{
+              height: "50px",
+              padding: "34px 15px",
+              color: "#fff",
+              border: "2px solid rgba(83, 84, 136, 0.4)",
+              outline: "none",
+              fontSize: "20px",
+              width: "100%",
+              borderRadius: "10px",
+              background: "rgba(134, 155, 223, 0.14)",
+              outlineStyle: "none",
+              "&::after": {
+                content: "none",
+              },
+              "&::before": {
+                content: "none",
+              },
+            }}
+          />
+
+          <Input
+            type="text"
+            required
+            placeholder="Ваше имя"
+            {...register("registerFirstName")}
+            sx={{
+              height: "50px",
+              padding: "34px 15px",
+              color: "#fff",
+              border: "2px solid rgba(83, 84, 136, 0.4)",
+              outline: "none",
+              fontSize: "20px",
+              width: "100%",
+              borderRadius: "10px",
+              background: "rgba(134, 155, 223, 0.14)",
+              outlineStyle: "none",
+              "&::after": {
+                content: "none",
+              },
+              "&::before": {
+                content: "none",
+              },
+            }}
+          />
+          <Input
+            type="text"
+            required
+            placeholder="Ваша фамилия"
+            {...register("registerLastName")}
             sx={{
               height: "50px",
               padding: "34px 15px",
@@ -77,8 +147,10 @@ const RegisterForm = () => {
 
           <Input
             type="password"
-            id="new-password"
             placeholder="Ваш пароль"
+            required
+            {...register("registerPassword")}
+            onChange={(e) => setPassword(e.target.value)}
             sx={{
               height: "50px",
               padding: "34px 15px",
@@ -101,8 +173,9 @@ const RegisterForm = () => {
 
           <Input
             type="password"
-            name="passwordConfirm"
             placeholder="Потвердите пароль"
+            required
+            onChange={(e) => setConfirmPassword(e.target.value)}
             sx={{
               height: "50px",
               padding: "34px 15px",
@@ -127,6 +200,7 @@ const RegisterForm = () => {
         <Grid>
           <Button
             type="submit"
+            disabled={passwordError ? true : false}
             sx={{
               background: "linear-gradient( #6847F5, #A95BF3)",
               color: "#f2f2f2",
@@ -149,6 +223,30 @@ const RegisterForm = () => {
             Зарегистрироваться
           </Button>
         </Grid>
+        {passwordError && (
+          <Alert
+            severity="error"
+            sx={{
+              backgroundColor: "rgba(134, 155, 223, 0.14)",
+              color: "#ff2400",
+              border: "1px solid #ff2400",
+            }}
+          >
+            {passwordError}
+          </Alert>
+        )}
+        {error && (
+          <Alert
+            severity="error"
+            sx={{
+              backgroundColor: "rgba(134, 155, 223, 0.14)",
+              color: "#ff2400",
+              border: "1px solid #ff2400",
+            }}
+          >
+            {error.response.data.result}
+          </Alert>
+        )}
       </form>
     </Grid>
   );
