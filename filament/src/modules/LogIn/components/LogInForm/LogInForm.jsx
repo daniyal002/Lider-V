@@ -1,10 +1,41 @@
-import { Button, Checkbox, Grid, Input, Link, Typography } from "@mui/material";
+import {
+  Alert,
+  Button,
+  Checkbox,
+  Grid,
+  Input,
+  Link,
+  Typography,
+} from "@mui/material";
 import React from "react";
+import { useForm } from "react-hook-form";
+import { useLogin } from "../../hook/useLogin";
 
 const LogInForm = () => {
+  const { mutate, error } = useLogin();
+  const { register, handleSubmit } = useForm();
+
+  const auth = (body) => {
+    let newBody;
+    if (body.loginNameEmail.includes("@")) {
+      newBody = {
+        loginEmail: body.loginNameEmail,
+        loginPassword: body.loginPassword,
+        loginName: "",
+      };
+    } else {
+      newBody = {
+        loginName: body.loginNameEmail,
+        loginPassword: body.loginPassword,
+        loginEmail: "",
+      };
+    }
+    mutate(newBody);
+  };
   return (
     <Grid>
       <form
+        onSubmit={handleSubmit(auth)}
         style={{
           display: "flex",
           flexDirection: "column",
@@ -27,9 +58,10 @@ const LogInForm = () => {
           }}
         >
           <Input
-            type="email"
+            type="text"
             required
-            placeholder="Ваш E-mail"
+            placeholder="Ваш логин/Email"
+            {...register("loginNameEmail")}
             sx={{
               height: "50px",
               padding: "34px 15px",
@@ -52,6 +84,7 @@ const LogInForm = () => {
           <Input
             type="password"
             placeholder="Ваш пароль"
+            {...register("loginPassword")}
             sx={{
               height: "50px",
               padding: "34px 15px",
@@ -82,7 +115,6 @@ const LogInForm = () => {
         >
           <Grid sx={{ display: "flex", alignItems: "center" }}>
             <Checkbox
-              required
               sx={{
                 color: "#A95BF3",
               }}
@@ -144,6 +176,18 @@ const LogInForm = () => {
             Войти
           </Button>
         </Grid>
+        {error && (
+          <Alert
+            severity="error"
+            sx={{
+              backgroundColor: "rgba(134, 155, 223, 0.14)",
+              color:"#ff2400",
+              border:"1px solid #ff2400"
+            }}
+          >
+            {error.response.data.displayMessage}
+          </Alert>
+        )}
       </form>
     </Grid>
   );
