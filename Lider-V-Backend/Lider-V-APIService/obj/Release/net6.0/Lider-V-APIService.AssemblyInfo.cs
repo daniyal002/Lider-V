@@ -11,7 +11,6 @@
 using System;
 using System.Reflection;
 
-[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("00cd7d70-ee55-40dd-b5a9-cea434a5656c")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("Lider-V-APIService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]

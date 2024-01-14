@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\Lider-V-APIService.props" />
-</Project>

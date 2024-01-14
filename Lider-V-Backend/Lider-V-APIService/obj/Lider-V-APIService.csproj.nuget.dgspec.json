@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\IzagakhmaevRA.DAGBTI\\Source\\Repos\\Lider-V\\Lider-V-Backend\\Lider-V-APIService\\Lider-V-APIService.csproj": {}
+    "C:\\Users\\izaga\\source\\repos\\Lider-V\\Lider-V-Backend\\Lider-V-APIService\\Lider-V-APIService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\IzagakhmaevRA.DAGBTI\\Source\\Repos\\Lider-V\\Lider-V-Backend\\Lider-V-APIService\\Lider-V-APIService.csproj": {
+    "C:\\Users\\izaga\\source\\repos\\Lider-V\\Lider-V-Backend\\Lider-V-APIService\\Lider-V-APIService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\IzagakhmaevRA.DAGBTI\\Source\\Repos\\Lider-V\\Lider-V-Backend\\Lider-V-APIService\\Lider-V-APIService.csproj",
+        "projectUniqueName": "C:\\Users\\izaga\\source\\repos\\Lider-V\\Lider-V-Backend\\Lider-V-APIService\\Lider-V-APIService.csproj",
         "projectName": "Lider-V-APIService",
-        "projectPath": "C:\\Users\\IzagakhmaevRA.DAGBTI\\Source\\Repos\\Lider-V\\Lider-V-Backend\\Lider-V-APIService\\Lider-V-APIService.csproj",
-        "packagesPath": "C:\\Users\\IzagakhmaevRA.DAGBTI\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\IzagakhmaevRA.DAGBTI\\Source\\Repos\\Lider-V\\Lider-V-Backend\\Lider-V-APIService\\obj\\",
+        "projectPath": "C:\\Users\\izaga\\source\\repos\\Lider-V\\Lider-V-Backend\\Lider-V-APIService\\Lider-V-APIService.csproj",
+        "packagesPath": "C:\\Users\\izaga\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\izaga\\source\\repos\\Lider-V\\Lider-V-Backend\\Lider-V-APIService\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\IzagakhmaevRA.DAGBTI\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\izaga\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -44,50 +40,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "AutoMapper": {
-              "target": "Package",
-              "version": "[12.0.1, )"
-            },
-            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
-              "target": "Package",
-              "version": "[12.0.1, )"
-            },
-            "Microsoft.AspNetCore.Authentication.JwtBearer": {
-              "target": "Package",
-              "version": "[6.0.25, )"
-            },
-            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[6.0.25, )"
-            },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[6.0.25, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[6.0.25, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[6.0.25, )"
-            },
-            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
-              "target": "Package",
-              "version": "[1.19.5, )"
-            },
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[13.0.3, )"
-            },
-            "Npgsql.EntityFrameworkCore.PostgreSQL": {
-              "target": "Package",
-              "version": "[6.0.22, )"
-            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
@@ -99,7 +51,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -111,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
