@@ -1,108 +1,126 @@
-import React, { useState } from 'react';
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Typography,
-  Button,
-  IconButton,
-} from '@mui/material';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import CheckIcon from '@mui/icons-material/Check';
+import { Grid, Link, Typography } from "@mui/material";
+import React from "react";
 
 const ProductCard = () => {
-  const [favorite, setFavorite] = useState(false);
-
   return (
-    <Card
+    <Grid
       sx={{
-        maxWidth: 345,
-        '@media (max-width: 768px)': {
-          maxWidth: 300,
-
-        },
-        '@media (max-width: 661px)': {
-          maxWidth: 250,
-
-        },
-        borderRadius: '10px',
-        background: '#7373D9',
-        border: "2px solid #FFDC73"
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        maxWidth: "406px",
+        width: "100%",
       }}
     >
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          image="/img/filaments1.png"
-          alt="Product Image"
+      <img
+        src="./img/collection-item2.jpg"
+        alt=""
+        width="406"
+        style={{
+          borderRadius: "10px",
+          maxWidth: "406px",
+          width: "100%",
+        }}
+      />
+      <Grid
+        sx={{
+          backgroundColor: "#fff",
+          width: "90%",
+          maxWidth: "370px",
+          padding: "20px",
+          borderRadius: "20px",
+          display: "flex",
+          flexDirection: "column",
+          rowGap: "20px",
+          transform: "translateY(-50%)",
+          transition: "0.5s",
+          "&:hover": {
+            transform: "translateY(-60%)",
+          },
+        }}
+      >
+        <Grid
           sx={{
-            borderBottom: '1px solid white',
-          }}
-        />
-        <CardContent
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            rowGap: '8px',
+            display: "flex",
+            justifyContent: "space-between",
+            columnGap: "20px",
+            "@media (max-width:400px)": {
+              flexWrap: "wrap",
+              rowGap: "20px",
+            },
           }}
         >
           <Typography
-            component="div"
-            color="primary"
             sx={{
-                display: 'flex',
-                alignItems: "center",
-              fontSize: '14px',
-              color: 'white'
+              color: "#000",
+              fontSize: "22px",
+              fontWeight: "700",
             }}
           >
-            Есть в наличии <CheckIcon  sx={{
-                color: '#35e847'
-}}/>
+            Lighting Axe
           </Typography>
-          <Typography variant="h5" component="div" color="#FFDC73">
-            Product Title
+          <Typography
+            sx={{
+              color: "#000",
+              fontSize: "22px",
+              fontWeight: "700",
+            }}
+          >
+            0.36 ETH
           </Typography>
-          <Typography variant="body2" color="white">
-            Category
-          </Typography>
-          <Typography variant="h6" component="div" color="white" mt={1}>
-            $19.99
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActionArea
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: 2,
-        }}
-      >
-        <Button variant="contained" color="primary" sx={{
-          fontSize:'16px',
-          '@media (max-width: 660px)': {
-            fontSize: '12px'
-  
-          },
-        }}>
-          Добавить в корзину
-        </Button>
-        <IconButton
-          color="primary"
-          aria-label="add to favorites"
-          onClick={() => setFavorite(!favorite)}
+        </Grid>
+
+        <Grid
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            rowGap: "10px",
+          }}
         >
-          {favorite ? <FavoriteIcon sx={{
-            color: 'red'
-          }} /> : <FavoriteBorderIcon sx={{
-            color: 'red'
-          }} />}
-        </IconButton>
-      </CardActionArea>
-    </Card>
+          <Link
+            href="#"
+            sx={{
+              background: "linear-gradient( #6847F5, #A95BF3)",
+              color: "#f2f2f2",
+              border: "none",
+              padding: "10px 30px",
+              fontSize: "19px",
+              fontWeight: "500",
+              transition: "0.5s",
+              borderRadius: "5px",
+              textDecoration: "none",
+              "&:hover": {
+                transition: "0.5s",
+                background: "linear-gradient(#A95BF3,#6847F5)",
+              },
+            }}
+          >
+            В корзину
+          </Link>
+
+          <Link
+            href="#"
+            sx={{
+              background: "linear-gradient( #6847F5, #A95BF3)",
+              color: "#f2f2f2",
+              border: "none",
+              padding: "10px 30px",
+              fontSize: "19px",
+              fontWeight: "500",
+              transition: "0.5s",
+              borderRadius: "5px",
+              textDecoration: "none",
+              "&:hover": {
+                transition: "0.5s",
+                background: "linear-gradient(#A95BF3,#6847F5)",
+              },
+            }}
+          >
+            В избранное
+          </Link>
+        </Grid>
+      </Grid>
+    </Grid>
   );
 };
 
