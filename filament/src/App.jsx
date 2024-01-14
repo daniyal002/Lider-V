@@ -4,6 +4,9 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import Shares from "./modules/Shares/Shares";
 import Сooperation from "./modules/Сooperation/Сooperation";
 import Contact from "./modules/Contact/Contact";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LogIn from "./modules/LogIn/LogIn";
+import Register from "./modules/Register/Register";
 
 const App = () => {
   const theme = createTheme({
@@ -13,11 +16,17 @@ const App = () => {
   });
   return (
     <ThemeProvider theme={theme}>
-      {/* <HomeScreen /> */}
-      {/* <AboutCompany /> */}
-      {/* <Shares /> */}
-      {/* <Сooperation /> */}
-      <Contact />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomeScreen />} />
+          <Route path="/aboutcompany" element={<AboutCompany />} />
+          <Route path="/shares" element={<Shares />} />
+          <Route path="/cooperation" element={<Сooperation />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </BrowserRouter>
     </ThemeProvider>
   );
 };
