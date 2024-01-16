@@ -1,20 +1,43 @@
 import {
+  Alert,
   Button,
-  FilledInput,
   FormControl,
   Grid,
   Input,
-  InputAdornment,
   InputLabel,
   MenuItem,
   Select,
   Typography,
 } from "@mui/material";
-import React from "react";
+import { useForm } from "react-hook-form";
+import { useGetCategories } from "../../../../components/ProuductCategories/hook/useGetCategories";
+import { useAddProduct } from "../../hook/useAddProduct";
+import { useState } from "react";
 
 const AddProduct = () => {
+  const { register, handleSubmit } = useForm();
+  const { data } = useGetCategories();
+  const { mutate, error } = useAddProduct();
+
+  const [uploadedFile, setUploadedFile] = useState(null);
+  const [uploadedFileName, setUploadedFileName] = useState(null);
+
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      // Здесь вы можете выполнить необходимые действия с выбранным файлом, например, сохранить его в состоянии
+      setUploadedFile(selectedFile);
+      setUploadedFileName(selectedFile.name);
+      console.log(uploadedFileName);
+    }
+  };
+
+  const handleAddProduct = (body) => {
+    console.log(uploadedFile);
+    mutate({ ...body, isFavorite: false, productImage: uploadedFile });
+  };
   return (
-    <form>
+    <form onSubmit={handleSubmit(handleAddProduct)}>
       <Grid
         sx={{
           display: "flex",
@@ -48,8 +71,19 @@ const AddProduct = () => {
           </Typography>
           <Button variant="contained" component="label">
             Загрузить фото
-            <input type="file" hidden />
+            <input type="file" hidden onChange={handleFileChange} />
           </Button>
+          {uploadedFileName && (
+            <Typography
+              sx={{
+                color: "#fff",
+                fontSize: "16px",
+                maxWidth: "250px",
+              }}
+            >
+              Выбрана фотография: {uploadedFileName}
+            </Typography>
+          )}
         </Grid>
         <Grid
           sx={{
@@ -93,6 +127,7 @@ const AddProduct = () => {
                 type="text"
                 required
                 placeholder="Наименование товара"
+                {...register("ProductName")}
                 sx={{
                   height: "50px",
                   padding: "34px 15px",
@@ -115,6 +150,7 @@ const AddProduct = () => {
                 type="text"
                 required
                 placeholder="Размер товара"
+                {...register("ProductWeight")}
                 sx={{
                   height: "50px",
                   padding: "34px 15px",
@@ -145,7 +181,9 @@ const AddProduct = () => {
               }}
             >
               <Input
+                required
                 placeholder="Цена товара"
+                {...register("ProductPrice")}
                 sx={{
                   height: "50px",
                   padding: "34px 15px",
@@ -169,6 +207,7 @@ const AddProduct = () => {
                 type="text"
                 required
                 placeholder="Остаток товара"
+                {...register("ProductQuantity")}
                 sx={{
                   height: "50px",
                   padding: "34px 15px",
@@ -209,6 +248,7 @@ const AddProduct = () => {
                   labelId="demo-simple-select-standard-label"
                   id="demo-simple-select-standard"
                   label="Категории"
+                  {...register("categoryId")}
                   sx={{
                     height: "50px",
                     padding: "34px 15px",
@@ -221,14 +261,17 @@ const AddProduct = () => {
                     background: "rgba(134, 155, 223, 0.14)",
                   }}
                 >
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
+                  {data?.map((category) => (
+                    <MenuItem key={category.id} value={category.id}>
+                      {category.categoryName}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
 
               <textarea
                 placeholder="Описание товара"
+                {...register("ProductDescription")}
                 style={{
                   width: "95%",
                   outline: "none",
@@ -266,6 +309,18 @@ const AddProduct = () => {
             </Button>
           </Grid>
         </Grid>
+        {error && (
+          <Alert
+            severity="error"
+            sx={{
+              backgroundColor: "rgba(134, 155, 223, 0.14)",
+              color: "#ff2400",
+              border: "1px solid #ff2400",
+            }}
+          >
+            {error.response.data.displayMessage}
+          </Alert>
+        )}
       </Grid>
     </form>
   );

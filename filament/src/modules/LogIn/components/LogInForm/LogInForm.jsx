@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 import { useLogin } from "../../hook/useLogin";
 
 const LogInForm = () => {
-  const { mutate, error } = useLogin();
+  const { mutate } = useLogin();
   const { register, handleSubmit } = useForm();
 
   const auth = (body) => {
@@ -176,7 +176,7 @@ const LogInForm = () => {
             Войти
           </Button>
         </Grid>
-        {error && (
+        {/* {error && (
           <Alert
             severity="error"
             sx={{
@@ -187,7 +187,7 @@ const LogInForm = () => {
           >
             {error.response.data.displayMessage}
           </Alert>
-        )}
+        )} */}
       </form>
     </Grid>
   );
