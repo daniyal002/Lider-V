@@ -1,7 +1,22 @@
 import { Grid, Link, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
+import { useProductFavoriteToggle } from "./hook/useGetProduct copy";
 
-const ProductCard = () => {
+const ProductCard = ({
+  id,
+  productName,
+  productPrice,
+  productSize,
+  productImage,
+}) => {
+  const [favorite, setFavorite] = useState(false);
+  const { mutate, error } = useProductFavoriteToggle();
+
+  const FavoriteToggle = (id, favorite) => {
+    setFavorite(favorite);
+    
+    mutate(id);
+  };
   return (
     <Grid
       sx={{
@@ -12,16 +27,43 @@ const ProductCard = () => {
         width: "100%",
       }}
     >
-      <img
-        src="./img/collection-item2.jpg"
-        alt=""
-        width="406"
-        style={{
-          borderRadius: "10px",
-          maxWidth: "406px",
-          width: "100%",
-        }}
-      />
+      <Grid sx={{ position: "relative" }}>
+        <img
+          src="./img/collection-item2.jpg"
+          alt=""
+          width="406"
+          style={{
+            borderRadius: "10px",
+            maxWidth: "406px",
+            width: "100%",
+          }}
+        />
+
+        {favorite ? (
+          <Grid sx={{ position: "absolute", top: "10px", right: "10px" }}>
+            <img
+              src="./icon/favorite_black_24dp.svg"
+              width="50"
+              style={{
+                cursor: "pointer",
+              }}
+              onClick={() => FavoriteToggle(id, false)}
+            />
+          </Grid>
+        ) : (
+          <Grid sx={{ position: "absolute", top: "10px", right: "10px" }}>
+            <img
+              src="./icon/favorite_border_black_24dp.svg"
+              width="50"
+              style={{
+                cursor: "pointer",
+              }}
+              onClick={() => FavoriteToggle(id, true)}
+            />
+          </Grid>
+        )}
+      </Grid>
+
       <Grid
         sx={{
           backgroundColor: "#fff",
@@ -36,6 +78,9 @@ const ProductCard = () => {
           transition: "0.5s",
           "&:hover": {
             transform: "translateY(-60%)",
+          },
+          "@media(max-width:432px)": {
+            transform: "translateY(-30%)",
           },
         }}
       >
@@ -55,21 +100,38 @@ const ProductCard = () => {
               color: "#000",
               fontSize: "22px",
               fontWeight: "700",
+              "@media(max-width:387px)": {
+                fontSize: "18px",
+              },
             }}
           >
-            Lighting Axe
+            {productName}
           </Typography>
           <Typography
             sx={{
               color: "#000",
               fontSize: "22px",
               fontWeight: "700",
+              "@media(max-width:387px)": {
+                fontSize: "18px",
+              },
             }}
           >
-            0.36 ETH
+            {productPrice} ₽
           </Typography>
         </Grid>
-
+        <Typography
+          sx={{
+            color: "#000",
+            fontSize: "22px",
+            fontWeight: "700",
+            "@media(max-width:387px)": {
+              fontSize: "18px",
+            },
+          }}
+        >
+          {productSize}
+        </Typography>
         <Grid
           sx={{
             display: "flex",

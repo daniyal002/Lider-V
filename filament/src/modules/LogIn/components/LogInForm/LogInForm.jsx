@@ -12,9 +12,8 @@ import { useForm } from "react-hook-form";
 import { useLogin } from "../../hook/useLogin";
 
 const LogInForm = () => {
-  const { mutate } = useLogin();
+  const { mutate, error } = useLogin();
   const { register, handleSubmit } = useForm();
-
   const auth = (body) => {
     let newBody;
     if (body.loginNameEmail.includes("@")) {
@@ -176,18 +175,18 @@ const LogInForm = () => {
             Войти
           </Button>
         </Grid>
-        {/* {error && (
+        {error && (
           <Alert
             severity="error"
             sx={{
               backgroundColor: "rgba(134, 155, 223, 0.14)",
-              color:"#ff2400",
-              border:"1px solid #ff2400"
+              color: "#ff2400",
+              border: "1px solid #ff2400",
             }}
           >
-            {error.response.data.displayMessage}
+            {error.response.data.result}
           </Alert>
-        )} */}
+        )}
       </form>
     </Grid>
   );

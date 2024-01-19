@@ -3,8 +3,11 @@ import React from "react";
 import ProductSearch from "./components/ProductSearch/ProductSearch";
 import ProductCategories from "./components/ProductCategories/ProductCategories";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import { useGetProduct } from "../../components/ProductCard/hook/useGetProduct";
 
 const Products = () => {
+  const { data, error } = useGetProduct();
+  console.log(data);
   return (
     <Grid
       sx={{
@@ -44,11 +47,9 @@ const Products = () => {
           justifyContent: "center",
         }}
       >
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {data?.map((product) => (
+          <ProductCard {...product} key={product.id} />
+        ))}
       </Grid>
     </Grid>
   );

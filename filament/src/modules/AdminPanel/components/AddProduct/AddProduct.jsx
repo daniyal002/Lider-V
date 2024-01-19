@@ -34,7 +34,7 @@ const AddProduct = () => {
 
   const handleAddProduct = (body) => {
     console.log(uploadedFile);
-    mutate({ ...body, isFavorite: false, productImage: uploadedFile });
+    mutate({ ...body, productImage: uploadedFile });
   };
   return (
     <form onSubmit={handleSubmit(handleAddProduct)}>
@@ -150,7 +150,7 @@ const AddProduct = () => {
                 type="text"
                 required
                 placeholder="Размер товара"
-                {...register("ProductWeight")}
+                {...register("ProductSize")}
                 sx={{
                   height: "50px",
                   padding: "34px 15px",
@@ -308,19 +308,19 @@ const AddProduct = () => {
               Создать товар
             </Button>
           </Grid>
+          {error && (
+            <Alert
+              severity="error"
+              sx={{
+                backgroundColor: "rgba(134, 155, 223, 0.14)",
+                color: "#ff2400",
+                border: "1px solid #ff2400",
+              }}
+            >
+              {error.response.data.result}
+            </Alert>
+          )}
         </Grid>
-        {error && (
-          <Alert
-            severity="error"
-            sx={{
-              backgroundColor: "rgba(134, 155, 223, 0.14)",
-              color: "#ff2400",
-              border: "1px solid #ff2400",
-            }}
-          >
-            {error.response.data.displayMessage}
-          </Alert>
-        )}
       </Grid>
     </form>
   );

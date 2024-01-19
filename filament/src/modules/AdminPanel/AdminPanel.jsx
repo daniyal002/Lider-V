@@ -7,7 +7,7 @@ const AdminPanel = () => {
   return (
     <Grid sx={{ maxWidth: "1320px", margin: "0 auto", padding: "133px 20px" }}>
       <AddProduct />
-      {/* <AddCategories /> */}
+      <AddCategories />
     </Grid>
   );
 };
