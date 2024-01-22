@@ -1,6 +1,6 @@
 import { Grid, Link, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { useProductFavoriteToggle } from "./hook/useGetProduct copy";
+import { useProductFavoriteToggle } from "./hook/useProductFavoriteToggle";
 
 const ProductCard = ({
   id,
@@ -8,13 +8,14 @@ const ProductCard = ({
   productPrice,
   productSize,
   productImage,
+  admin,
 }) => {
   const [favorite, setFavorite] = useState(false);
   const { mutate, error } = useProductFavoriteToggle();
 
   const FavoriteToggle = (id, favorite) => {
     setFavorite(favorite);
-    
+
     mutate(id);
   };
   return (
@@ -139,47 +140,94 @@ const ProductCard = ({
             rowGap: "10px",
           }}
         >
-          <Link
-            href="#"
-            sx={{
-              background: "linear-gradient( #6847F5, #A95BF3)",
-              color: "#f2f2f2",
-              border: "none",
-              padding: "10px 30px",
-              fontSize: "19px",
-              fontWeight: "500",
-              transition: "0.5s",
-              borderRadius: "5px",
-              textDecoration: "none",
-              "&:hover": {
-                transition: "0.5s",
-                background: "linear-gradient(#A95BF3,#6847F5)",
-              },
-            }}
-          >
-            В корзину
-          </Link>
-
-          <Link
-            href="#"
-            sx={{
-              background: "linear-gradient( #6847F5, #A95BF3)",
-              color: "#f2f2f2",
-              border: "none",
-              padding: "10px 30px",
-              fontSize: "19px",
-              fontWeight: "500",
-              transition: "0.5s",
-              borderRadius: "5px",
-              textDecoration: "none",
-              "&:hover": {
-                transition: "0.5s",
-                background: "linear-gradient(#A95BF3,#6847F5)",
-              },
-            }}
-          >
-            В избранное
-          </Link>
+          {admin ? (
+            <>
+              <Link
+                href="#"
+                sx={{
+                  background: "linear-gradient( #6847F5, #A95BF3)",
+                  color: "#f2f2f2",
+                  border: "none",
+                  padding: "10px 30px",
+                  fontSize: "19px",
+                  fontWeight: "500",
+                  transition: "0.5s",
+                  borderRadius: "5px",
+                  textDecoration: "none",
+                  "&:hover": {
+                    transition: "0.5s",
+                    background: "linear-gradient(#A95BF3,#6847F5)",
+                  },
+                }}
+              >
+                Изменить
+              </Link>
+              <Link
+                href="#"
+                sx={{
+                  background: "linear-gradient( #6847F5, #A95BF3)",
+                  color: "#f2f2f2",
+                  border: "none",
+                  padding: "10px 30px",
+                  fontSize: "19px",
+                  fontWeight: "500",
+                  transition: "0.5s",
+                  borderRadius: "5px",
+                  textDecoration: "none",
+                  "&:hover": {
+                    transition: "0.5s",
+                    background: "linear-gradient(#A95BF3,#6847F5)",
+                  },
+                }}
+              >
+                Удалить
+              </Link>
+            </>
+          ) : (
+            <>
+              {" "}
+              <Link
+                href="#"
+                sx={{
+                  background: "linear-gradient( #6847F5, #A95BF3)",
+                  color: "#f2f2f2",
+                  border: "none",
+                  padding: "10px 30px",
+                  fontSize: "19px",
+                  fontWeight: "500",
+                  transition: "0.5s",
+                  borderRadius: "5px",
+                  textDecoration: "none",
+                  "&:hover": {
+                    transition: "0.5s",
+                    background: "linear-gradient(#A95BF3,#6847F5)",
+                  },
+                }}
+              >
+                В корзину
+              </Link>
+              <Link
+                href="#"
+                sx={{
+                  background: "linear-gradient( #6847F5, #A95BF3)",
+                  color: "#f2f2f2",
+                  border: "none",
+                  padding: "10px 30px",
+                  fontSize: "19px",
+                  fontWeight: "500",
+                  transition: "0.5s",
+                  borderRadius: "5px",
+                  textDecoration: "none",
+                  "&:hover": {
+                    transition: "0.5s",
+                    background: "linear-gradient(#A95BF3,#6847F5)",
+                  },
+                }}
+              >
+                В избранное
+              </Link>
+            </>
+          )}
         </Grid>
       </Grid>
     </Grid>

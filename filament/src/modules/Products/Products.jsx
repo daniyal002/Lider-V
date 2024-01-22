@@ -7,7 +7,6 @@ import { useGetProduct } from "../../components/ProductCard/hook/useGetProduct";
 
 const Products = () => {
   const { data, error } = useGetProduct();
-  console.log(data);
   return (
     <Grid
       sx={{

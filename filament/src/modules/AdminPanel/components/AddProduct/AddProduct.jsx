@@ -19,6 +19,8 @@ const AddProduct = () => {
   const { data } = useGetCategories();
   const { mutate, error } = useAddProduct();
 
+  const imageUpload = () => {};
+
   const [uploadedFile, setUploadedFile] = useState(null);
   const [uploadedFileName, setUploadedFileName] = useState(null);
 
@@ -33,8 +35,17 @@ const AddProduct = () => {
   };
 
   const handleAddProduct = (body) => {
-    console.log(uploadedFile);
-    mutate({ ...body, productImage: uploadedFile });
+    let base64String = "";
+    let reader = new FileReader();
+
+    reader.onload = function () {
+      base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+      mutate({ ...body, productImage: base64String });
+    };
+
+    if (uploadedFile) {
+      reader.readAsDataURL(uploadedFile);
+    }
   };
   return (
     <form onSubmit={handleSubmit(handleAddProduct)}>
