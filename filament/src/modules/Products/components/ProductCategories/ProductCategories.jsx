@@ -1,15 +1,10 @@
 import { Button, Grid } from "@mui/material";
 import React from "react";
+import { useGetCategories } from "../../../../components/ProuductCategories/hook/useGetCategories";
 
 const ProductCategories = () => {
-  const categoryList = [
-    "category1",
-    "category2",
-    "category3",
-    "category4",
-    "category5",
-    "category6",
-  ];
+  const { data } = useGetCategories();
+
   return (
     <Grid
       sx={{
@@ -19,11 +14,12 @@ const ProductCategories = () => {
         justifyContent: "center",
       }}
     >
-      {categoryList.map((item) => (
+      {data?.map((category) => (
         <Button
+          key={category.id}
           sx={{ fontSize: "19px", color: "#f0f0f0", textTransform: "none" }}
         >
-          {item}
+          {category.categoryName}
         </Button>
       ))}
     </Grid>

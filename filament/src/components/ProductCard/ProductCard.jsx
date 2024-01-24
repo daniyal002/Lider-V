@@ -1,6 +1,7 @@
-import { Grid, Link, Typography } from "@mui/material";
+import { Button, Grid, Link, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useProductFavoriteToggle } from "./hook/useProductFavoriteToggle";
+import ModalChangeProductCard from "./components/ModalChangeProductCard/ModalChangeProductCard";
 
 const ProductCard = ({
   id,
@@ -8,8 +9,12 @@ const ProductCard = ({
   productPrice,
   productSize,
   productImage,
+  productQuantity,
   admin,
 }) => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const [favorite, setFavorite] = useState(false);
   const { mutate, error } = useProductFavoriteToggle();
 
@@ -28,6 +33,7 @@ const ProductCard = ({
         width: "100%",
       }}
     >
+      <ModalChangeProductCard open={open} handleClose={handleClose} id={id} />
       <Grid sx={{ position: "relative" }}>
         <img
           src="./img/collection-item2.jpg"
@@ -39,8 +45,7 @@ const ProductCard = ({
             width: "100%",
           }}
         />
-
-        {favorite ? (
+        {!admin && favorite ? (
           <Grid sx={{ position: "absolute", top: "10px", right: "10px" }}>
             <img
               src="./icon/favorite_black_24dp.svg"
@@ -133,6 +138,21 @@ const ProductCard = ({
         >
           {productSize}
         </Typography>
+        {admin && (
+          <Typography
+            sx={{
+              color: "#000",
+              fontSize: "22px",
+              fontWeight: "700",
+              "@media(max-width:387px)": {
+                fontSize: "18px",
+              },
+            }}
+          >
+            Остаток: {productQuantity}
+          </Typography>
+        )}
+
         <Grid
           sx={{
             display: "flex",
@@ -142,8 +162,7 @@ const ProductCard = ({
         >
           {admin ? (
             <>
-              <Link
-                href="#"
+              <Button
                 sx={{
                   background: "linear-gradient( #6847F5, #A95BF3)",
                   color: "#f2f2f2",
@@ -159,10 +178,11 @@ const ProductCard = ({
                     background: "linear-gradient(#A95BF3,#6847F5)",
                   },
                 }}
+                onClick={handleOpen}
               >
                 Изменить
-              </Link>
-              <Link
+              </Button>
+              <Button
                 href="#"
                 sx={{
                   background: "linear-gradient( #6847F5, #A95BF3)",
@@ -181,11 +201,10 @@ const ProductCard = ({
                 }}
               >
                 Удалить
-              </Link>
+              </Button>
             </>
           ) : (
             <>
-              {" "}
               <Link
                 href="#"
                 sx={{
@@ -205,26 +224,6 @@ const ProductCard = ({
                 }}
               >
                 В корзину
-              </Link>
-              <Link
-                href="#"
-                sx={{
-                  background: "linear-gradient( #6847F5, #A95BF3)",
-                  color: "#f2f2f2",
-                  border: "none",
-                  padding: "10px 30px",
-                  fontSize: "19px",
-                  fontWeight: "500",
-                  transition: "0.5s",
-                  borderRadius: "5px",
-                  textDecoration: "none",
-                  "&:hover": {
-                    transition: "0.5s",
-                    background: "linear-gradient(#A95BF3,#6847F5)",
-                  },
-                }}
-              >
-                В избранное
               </Link>
             </>
           )}

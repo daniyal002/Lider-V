@@ -19,7 +19,6 @@ const AddProduct = () => {
   const { data } = useGetCategories();
   const { mutate, error } = useAddProduct();
 
-  const imageUpload = () => {};
 
   const [uploadedFile, setUploadedFile] = useState(null);
   const [uploadedFileName, setUploadedFileName] = useState(null);
@@ -52,12 +51,9 @@ const AddProduct = () => {
       <Grid
         sx={{
           display: "flex",
+          flexDirection: "column",
           gap: "30px",
           alignItems: "center",
-          "@media(max-width:469px)": {
-            flexDirection: "column",
-            alignItems: "center",
-          },
         }}
       >
         <Grid
@@ -73,9 +69,6 @@ const AddProduct = () => {
               color: "#fff",
               fontSize: "22px",
               textAlign: "center",
-              "@media(min-width:469px)": {
-                display: "none",
-              },
             }}
           >
             Информация о товаре
@@ -104,18 +97,6 @@ const AddProduct = () => {
             width: "80%",
           }}
         >
-          <Typography
-            sx={{
-              color: "#fff",
-              fontSize: "22px",
-              textAlign: "center",
-              "@media(max-width:469px)": {
-                display: "none",
-              },
-            }}
-          >
-            Информация о товаре
-          </Typography>
           <Grid
             sx={{
               display: "flex",
