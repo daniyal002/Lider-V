@@ -2,6 +2,7 @@ import { Button, Grid, Link, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useProductFavoriteToggle } from "./hook/useProductFavoriteToggle";
 import ModalChangeProductCard from "./components/ModalChangeProductCard/ModalChangeProductCard";
+import ModalProductCardMore from "./components/ModalProductCardMore/ModalProductCardMore";
 
 const ProductCard = ({
   id,
@@ -10,11 +11,19 @@ const ProductCard = ({
   productSize,
   productImage,
   productQuantity,
+  productDescription,
   admin,
 }) => {
+  // Modal change
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  // Modal More
+  const [openMore, setOpenMore] = React.useState(false);
+  const handleOpenMore = () => setOpenMore(true);
+  const handleCloseMore = () => setOpenMore(false);
+
   const [favorite, setFavorite] = useState(false);
   const { mutate, error } = useProductFavoriteToggle();
 
@@ -34,7 +43,16 @@ const ProductCard = ({
       }}
     >
       <ModalChangeProductCard open={open} handleClose={handleClose} id={id} />
-      <Grid sx={{ position: "relative" }}>
+      <ModalProductCardMore
+        open={openMore}
+        handleClose={handleCloseMore}
+        productDescription={productDescription}
+      />
+      <Grid
+        sx={{
+          position: "relative",
+        }}
+      >
         <img
           src="./img/collection-item2.jpg"
           alt=""
@@ -45,8 +63,14 @@ const ProductCard = ({
             width: "100%",
           }}
         />
-        {!admin && favorite ? (
-          <Grid sx={{ position: "absolute", top: "10px", right: "10px" }}>
+        {favorite ? (
+          <Grid
+            sx={{
+              position: "absolute",
+              top: "10px",
+              right: "10px",
+            }}
+          >
             <img
               src="./icon/favorite_black_24dp.svg"
               width="50"
@@ -57,7 +81,13 @@ const ProductCard = ({
             />
           </Grid>
         ) : (
-          <Grid sx={{ position: "absolute", top: "10px", right: "10px" }}>
+          <Grid
+            sx={{
+              position: "absolute",
+              top: "10px",
+              right: "10px",
+            }}
+          >
             <img
               src="./icon/favorite_border_black_24dp.svg"
               width="50"
@@ -202,6 +232,26 @@ const ProductCard = ({
               >
                 Удалить
               </Button>
+              <Button
+                onClick={handleOpenMore}
+                sx={{
+                  background: "linear-gradient( #6847F5, #A95BF3)",
+                  color: "#f2f2f2",
+                  border: "none",
+                  padding: "10px 30px",
+                  fontSize: "19px",
+                  fontWeight: "500",
+                  transition: "0.5s",
+                  borderRadius: "5px",
+                  textDecoration: "none",
+                  "&:hover": {
+                    transition: "0.5s",
+                    background: "linear-gradient(#A95BF3,#6847F5)",
+                  },
+                }}
+              >
+                Подробнее
+              </Button>
             </>
           ) : (
             <>
@@ -225,6 +275,26 @@ const ProductCard = ({
               >
                 В корзину
               </Link>
+              <Button
+                onClick={handleOpenMore}
+                sx={{
+                  background: "linear-gradient( #6847F5, #A95BF3)",
+                  color: "#f2f2f2",
+                  border: "none",
+                  padding: "10px 30px",
+                  fontSize: "19px",
+                  fontWeight: "500",
+                  transition: "0.5s",
+                  borderRadius: "5px",
+                  textDecoration: "none",
+                  "&:hover": {
+                    transition: "0.5s",
+                    background: "linear-gradient(#A95BF3,#6847F5)",
+                  },
+                }}
+              >
+                Подробнее
+              </Button>
             </>
           )}
         </Grid>
