@@ -9,6 +9,9 @@ import LogIn from "./modules/LogIn/LogIn";
 import Register from "./modules/Register/Register";
 import Products from "./modules/Products/Products";
 import AdminPanel from "./modules/AdminPanel/AdminPanel";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import Favourites from "./modules/Favourites/Favourites";
 
 const App = () => {
   const theme = createTheme({
@@ -19,6 +22,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/products" element={<Products />} />
@@ -29,7 +33,9 @@ const App = () => {
           <Route path="/login" element={<LogIn />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<AdminPanel />} />
+          <Route path="/favorites" element={<Favourites />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </ThemeProvider>
   );

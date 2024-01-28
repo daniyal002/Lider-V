@@ -1,8 +1,9 @@
 import { Button, Grid, Link, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useProductFavoriteToggle } from "./hook/useProductFavoriteToggle";
 import ModalChangeProductCard from "./components/ModalChangeProductCard/ModalChangeProductCard";
 import ModalProductCardMore from "./components/ModalProductCardMore/ModalProductCardMore";
+import { useGetProductFavorite } from "../../hook/useGetProductFavorite";
 
 const ProductCard = ({
   id,
@@ -24,14 +25,26 @@ const ProductCard = ({
   const handleOpenMore = () => setOpenMore(true);
   const handleCloseMore = () => setOpenMore(false);
 
-  const [favorite, setFavorite] = useState(false);
-  const { mutate, error } = useProductFavoriteToggle();
+  const { data } = useGetProductFavorite();
+  console.log(data);
+  const [favorite, setFavorite] = useState(null);
+  const { mutate: ProductFavoriteToggle, error } = useProductFavoriteToggle();
+
+  useEffect(() => {
+    console.log(id);
+    const hasId = data?.some((obj) => obj.id === id);
+    if (hasId) {
+      setFavorite(true);
+    } else {
+      setFavorite(false); // Обработка случая, когда id не найден в data
+    }
+  }, [data, id]);
 
   const FavoriteToggle = (id, favorite) => {
     setFavorite(favorite);
-
-    mutate(id);
+    ProductFavoriteToggle(id);
   };
+
   return (
     <Grid
       sx={{
