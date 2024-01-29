@@ -19,7 +19,6 @@ const AddProduct = () => {
   const { data } = useGetCategories();
   const { mutate, error } = useAddProduct();
 
-
   const [uploadedFile, setUploadedFile] = useState(null);
   const [uploadedFileName, setUploadedFileName] = useState(null);
 
@@ -29,22 +28,27 @@ const AddProduct = () => {
       // Здесь вы можете выполнить необходимые действия с выбранным файлом, например, сохранить его в состоянии
       setUploadedFile(selectedFile);
       setUploadedFileName(selectedFile.name);
-      console.log(uploadedFileName);
     }
   };
 
   const handleAddProduct = (body) => {
-    let base64String = "";
-    let reader = new FileReader();
-
-    reader.onload = function () {
-      base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
-      mutate({ ...body, productImage: base64String });
-    };
-
-    if (uploadedFile) {
-      reader.readAsDataURL(uploadedFile);
-    }
+    console.log(uploadedFile);
+    mutate({
+      categoryId: body.categoryId,
+      productDescription: body.productDescription,
+      productName: body.productName,
+      productPrice: Number(body.productPrice),
+      productQuantity: Number(body.productQuantity),
+      productSize: body.productSize,
+      productImage: {
+        lastModified: uploadedFile.lastModified,
+        lastModifiedDate: uploadedFile.lastModifiedDate,
+        name: uploadedFile.name,
+        size: uploadedFile.size,
+        type: uploadedFile.type,
+        webkitRelativePath: uploadedFile.webkitRelativePath,
+      },
+    });
   };
   return (
     <form onSubmit={handleSubmit(handleAddProduct)}>
@@ -119,7 +123,7 @@ const AddProduct = () => {
                 type="text"
                 required
                 placeholder="Наименование товара"
-                {...register("ProductName")}
+                {...register("productName")}
                 sx={{
                   height: "50px",
                   padding: "34px 15px",
@@ -142,7 +146,7 @@ const AddProduct = () => {
                 type="text"
                 required
                 placeholder="Размер товара"
-                {...register("ProductSize")}
+                {...register("productSize")}
                 sx={{
                   height: "50px",
                   padding: "34px 15px",
@@ -175,7 +179,7 @@ const AddProduct = () => {
               <Input
                 required
                 placeholder="Цена товара"
-                {...register("ProductPrice")}
+                {...register("productPrice")}
                 sx={{
                   height: "50px",
                   padding: "34px 15px",
@@ -199,7 +203,7 @@ const AddProduct = () => {
                 type="text"
                 required
                 placeholder="Остаток товара"
-                {...register("ProductQuantity")}
+                {...register("productQuantity")}
                 sx={{
                   height: "50px",
                   padding: "34px 15px",
@@ -263,7 +267,7 @@ const AddProduct = () => {
 
               <textarea
                 placeholder="Описание товара"
-                {...register("ProductDescription")}
+                {...register("productDescription")}
                 style={{
                   width: "95%",
                   outline: "none",

@@ -12,6 +12,7 @@ import AdminPanel from "./modules/AdminPanel/AdminPanel";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Favourites from "./modules/Favourites/Favourites";
+import Cart from "./modules/Cart/Cart";
 
 const App = () => {
   const theme = createTheme({
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/favorites" element={<Favourites />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
         <Footer />
       </BrowserRouter>

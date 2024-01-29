@@ -210,7 +210,7 @@ const Header = () => {
                 textTransform: "none",
               }}
             >
-              {location.pathname == "/favorites" ? (
+              {location.pathname == "/cart" ? (
                 <img
                   src="./icon/shopping_cart_white_24dp.svg"
                   alt="favorite"

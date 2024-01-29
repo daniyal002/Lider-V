@@ -7,15 +7,20 @@ export const useAddProduct = () => {
   const api = baseApi();
   const { mutate, error } = useMutation({
     mutationFn: async (body) => {
-      formData.append("ProductName", body.ProductName);
-      formData.append("ProductPrice", Number(body.ProductPrice));
-      formData.append("ProductDescription", body.ProductDescription);
-      formData.append("ProductSize", body.ProductSize);
-      formData.append("ProductQuantity", Number(body.ProductQuantity));
-      formData.append("categoryId", body.categoryId);
-
-      formData.append("ProductImage", body.productImage);
-      return api.post("ProductAPI", formData).then((response) => response.data);
+      // formData.append("productName", body.productName);
+      // formData.append("productPrice", Number(body.productPrice));
+      // formData.append("productDescription", body.productDescription);
+      // formData.append("productSize", body.productSize);
+      // formData.append("productQuantity", Number(body.productQuantity));
+      // formData.append("categoryId", body.categoryId);
+      // formData.append("productImage", body.productImage);
+      return api
+        .post("ProductAPI", body, {
+          // headers: {
+          //   "Content-Type": "multipart/form-data",
+          // },
+        })
+        .then((response) => response.data);
     },
   });
   return { mutate, error };
