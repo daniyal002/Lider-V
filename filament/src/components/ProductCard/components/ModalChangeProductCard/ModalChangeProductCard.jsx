@@ -13,10 +13,16 @@ import {
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useGetCategories } from "../../../ProuductCategories/hook/useGetCategories";
+import { useChangeProduct } from "../../../../modules/AdminPanel/hook/useChangeProduct";
+import { useGetProductId } from "../../hook/useGetProductId";
 
 const ModalChangeProductCard = ({ open, handleClose, id }) => {
   const { register, handleSubmit } = useForm();
-  const { data } = useGetCategories();
+  const { data: categoryes } = useGetCategories();
+
+  const { data: product } = useGetProductId(id);
+  console.log(product);
+  const { mutate } = useChangeProduct();
 
   const [uploadedFile, setUploadedFile] = useState(null);
   const [uploadedFileName, setUploadedFileName] = useState(null);
@@ -27,22 +33,19 @@ const ModalChangeProductCard = ({ open, handleClose, id }) => {
       // Здесь вы можете выполнить необходимые действия с выбранным файлом, например, сохранить его в состоянии
       setUploadedFile(selectedFile);
       setUploadedFileName(selectedFile.name);
-      console.log(uploadedFileName);
     }
   };
 
   const handleAddProduct = (body) => {
-    let base64String = "";
-    let reader = new FileReader();
-
-    reader.onload = function () {
-      base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
-      //   mutate({ ...body, productImage: base64String });
-    };
-
-    if (uploadedFile) {
-      reader.readAsDataURL(uploadedFile);
-    }
+    mutate({
+      id: id,
+      categoryId: Number(body.categoryId),
+      productDescription: body.productDescription,
+      productName: body.productName,
+      productPrice: Number(body.productPrice),
+      productQuantity: Number(body.productQuantity),
+      productSize: body.productSize,
+    });
   };
   return (
     <Modal
@@ -130,7 +133,8 @@ const ModalChangeProductCard = ({ open, handleClose, id }) => {
                   type="text"
                   required
                   placeholder="Наименование товара"
-                  {...register("ProductName")}
+                  {...register("productName")}
+                  defaultValue={product?.productName}
                   sx={{
                     height: "50px",
                     padding: "34px 15px",
@@ -153,7 +157,8 @@ const ModalChangeProductCard = ({ open, handleClose, id }) => {
                   type="text"
                   required
                   placeholder="Размер товара"
-                  {...register("ProductSize")}
+                  {...register("productSize")}
+                  defaultValue={product?.productSize}
                   sx={{
                     height: "50px",
                     padding: "34px 15px",
@@ -186,7 +191,8 @@ const ModalChangeProductCard = ({ open, handleClose, id }) => {
                 <Input
                   required
                   placeholder="Цена товара"
-                  {...register("ProductPrice")}
+                  {...register("productPrice")}
+                  defaultValue={product?.productPrice}
                   sx={{
                     height: "50px",
                     padding: "34px 15px",
@@ -210,7 +216,8 @@ const ModalChangeProductCard = ({ open, handleClose, id }) => {
                   type="text"
                   required
                   placeholder="Остаток товара"
-                  {...register("ProductQuantity")}
+                  {...register("productQuantity")}
+                  defaultValue={product?.productQuantity}
                   sx={{
                     height: "50px",
                     padding: "34px 15px",
@@ -252,6 +259,7 @@ const ModalChangeProductCard = ({ open, handleClose, id }) => {
                     id="demo-simple-select-standard"
                     label="Категории"
                     {...register("categoryId")}
+                    defaultValue={product?.categoryId}
                     sx={{
                       height: "50px",
                       padding: "34px 15px",
@@ -264,7 +272,7 @@ const ModalChangeProductCard = ({ open, handleClose, id }) => {
                       background: "rgba(134, 155, 223, 0.14)",
                     }}
                   >
-                    {data?.map((category) => (
+                    {categoryes?.map((category) => (
                       <MenuItem key={category.id} value={category.id}>
                         {category.categoryName}
                       </MenuItem>
@@ -274,7 +282,8 @@ const ModalChangeProductCard = ({ open, handleClose, id }) => {
 
                 <textarea
                   placeholder="Описание товара"
-                  {...register("ProductDescription")}
+                  {...register("productDescription")}
+                  defaultValue={product?.ProductDescription}
                   style={{
                     width: "95%",
                     outline: "none",

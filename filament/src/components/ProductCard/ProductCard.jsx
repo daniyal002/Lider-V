@@ -1,9 +1,10 @@
-import { Button, Grid, Link, Typography } from "@mui/material";
+import { Button, Grid, Link, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useProductFavoriteToggle } from "./hook/useProductFavoriteToggle";
 import ModalChangeProductCard from "./components/ModalChangeProductCard/ModalChangeProductCard";
 import ModalProductCardMore from "./components/ModalProductCardMore/ModalProductCardMore";
 import { useGetProductFavorite } from "../../hook/useGetProductFavorite";
+import { useAddProductCart } from "./hook/useAddProductCart";
 
 const ProductCard = ({
   id,
@@ -26,7 +27,6 @@ const ProductCard = ({
   const handleCloseMore = () => setOpenMore(false);
 
   const { data } = useGetProductFavorite();
-  console.log(data);
   const [favorite, setFavorite] = useState(null);
   const { mutate: ProductFavoriteToggle, error } = useProductFavoriteToggle();
 
@@ -43,6 +43,34 @@ const ProductCard = ({
   const FavoriteToggle = (id, favorite) => {
     setFavorite(favorite);
     ProductFavoriteToggle(id);
+  };
+
+  const [countProduct, setCountProduct] = useState(1);
+  const { mutate: AddProductCart } = useAddProductCart();
+
+  const handleCountProduct = (e) => {
+    if (Number(e.target.value) < 10000) {
+      setCountProduct(Number(e.target.value));
+    }
+  };
+
+  const handleDecrement = () => {
+    if (countProduct > 1) {
+      setCountProduct((prev) => prev - 1);
+    }
+  };
+
+  const handleIncrement = () => {
+    if (countProduct < 10000) {
+      setCountProduct((prev) => prev + 1);
+    }
+  };
+
+  const AddCart = () => {
+    AddProductCart({
+      productId: id,
+      quantity: countProduct,
+    });
   };
 
   return (
@@ -268,26 +296,77 @@ const ProductCard = ({
             </>
           ) : (
             <>
-              <Link
-                href="#"
+              <Grid
                 sx={{
-                  background: "linear-gradient( #6847F5, #A95BF3)",
-                  color: "#f2f2f2",
-                  border: "none",
-                  padding: "10px 30px",
-                  fontSize: "19px",
-                  fontWeight: "500",
-                  transition: "0.5s",
-                  borderRadius: "5px",
-                  textDecoration: "none",
-                  "&:hover": {
-                    transition: "0.5s",
-                    background: "linear-gradient(#A95BF3,#6847F5)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  "@media(max-width:442px)": {
+                    flexDirection: "column-reverse",
+                    alignItems: "stretch",
+                    rowGap: "10px",
                   },
                 }}
               >
-                В корзину
-              </Link>
+                <Button
+                  onClick={AddCart}
+                  sx={{
+                    background: "linear-gradient( #6847F5, #A95BF3)",
+                    color: "#f2f2f2",
+                    border: "none",
+                    padding: "10px 15px",
+                    fontSize: "17px",
+                    fontWeight: "500",
+                    transition: "0.5s",
+                    borderRadius: "5px",
+                    textDecoration: "none",
+                    "&:hover": {
+                      transition: "0.5s",
+                      background: "linear-gradient(#A95BF3,#6847F5)",
+                    },
+                  }}
+                >
+                  В корзину
+                </Button>
+                <Grid
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Button onClick={handleIncrement}>
+                    <img
+                      src="./icon/add_circle_black_36dp.svg"
+                      alt=""
+                      width="50"
+                    />
+                  </Button>
+                  <input
+                    id="outlined-number"
+                    type="number"
+                    max="9999"
+                    min="1"
+                    onChange={handleCountProduct}
+                    value={countProduct}
+                    style={{
+                      width: "40px",
+                      padding: "20px 5px",
+                      fontSize: "16px",
+                      border: "1px solid #A95BF3",
+                      borderRadius: "10px",
+                    }}
+                  />
+
+                  <Button onClick={handleDecrement}>
+                    <img
+                      src="./icon/remove_circle_black_36dp.svg"
+                      alt=""
+                      width="50"
+                    />
+                  </Button>
+                </Grid>
+              </Grid>
               <Button
                 onClick={handleOpenMore}
                 sx={{

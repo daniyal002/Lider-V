@@ -32,7 +32,6 @@ const AddProduct = () => {
   };
 
   const handleAddProduct = (body) => {
-    console.log(uploadedFile);
     mutate({
       categoryId: body.categoryId,
       productDescription: body.productDescription,
@@ -40,14 +39,7 @@ const AddProduct = () => {
       productPrice: Number(body.productPrice),
       productQuantity: Number(body.productQuantity),
       productSize: body.productSize,
-      productImage: {
-        lastModified: uploadedFile.lastModified,
-        lastModifiedDate: uploadedFile.lastModifiedDate,
-        name: uploadedFile.name,
-        size: uploadedFile.size,
-        type: uploadedFile.type,
-        webkitRelativePath: uploadedFile.webkitRelativePath,
-      },
+      productImage: uploadedFile,
     });
   };
   return (

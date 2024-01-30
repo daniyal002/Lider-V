@@ -6,7 +6,7 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import { useGetProduct } from "../../components/ProductCard/hook/useGetProduct";
 
 const Products = () => {
-  const { data, error } = useGetProduct();
+  const { data, error, isLoading } = useGetProduct();
   return (
     <Grid
       sx={{
@@ -46,9 +46,25 @@ const Products = () => {
           justifyContent: "center",
         }}
       >
-        {data?.map((product) => (
-          <ProductCard {...product} key={product.id} />
-        ))}
+        {isLoading ? (
+          <Grid
+            sx={{
+              animation: "spin 2s linear infinite",
+              "@keyframes spin": {
+                "0%": {
+                  transform: "rotate(360deg)",
+                },
+                "100%": {
+                  transform: "rotate(0deg)",
+                },
+              },
+            }}
+          >
+            <img src="./icon/loop_black_48dp.svg" alt="" />
+          </Grid>
+        ) : (
+          data?.map((product) => <ProductCard {...product} key={product.id} />)
+        )}
       </Grid>
     </Grid>
   );

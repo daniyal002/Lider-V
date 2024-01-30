@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { baseApi } from "../../../helper/baseApi";
 
-export const useGetProduct = () => {
+export const useGetProductCart = () => {
   const api = baseApi();
-  const { data, error,isLoading } = useQuery({
-    queryKey: ["GetProduct"],
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["GetProductCart"],
     queryFn: async () =>
-      api.get("ProductAPI").then((response) => response.data.result.$values),
+      api.get("CartAPI").then((response) => response.data.result.$values),
   });
   return { data, error, isLoading };
 };

@@ -71,8 +71,8 @@ const Header = () => {
               listStyle: "none",
             }}
           >
-            {pages.map((page) => (
-              <li>
+            {pages.map((page, index) => (
+              <li key={index}>
                 <Link
                   to={page.link}
                   style={{
