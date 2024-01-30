@@ -5,6 +5,7 @@ import ModalChangeProductCard from "./components/ModalChangeProductCard/ModalCha
 import ModalProductCardMore from "./components/ModalProductCardMore/ModalProductCardMore";
 import { useGetProductFavorite } from "../../hook/useGetProductFavorite";
 import { useAddProductCart } from "./hook/useAddProductCart";
+import { useDeleteProduct } from "../../modules/AdminPanel/hook/useDeleteProduct";
 
 const ProductCard = ({
   id,
@@ -73,6 +74,7 @@ const ProductCard = ({
     });
   };
 
+  const { mutate: DeleteProduct } = useDeleteProduct();
   return (
     <Grid
       sx={{
@@ -254,7 +256,6 @@ const ProductCard = ({
                 Изменить
               </Button>
               <Button
-                href="#"
                 sx={{
                   background: "linear-gradient( #6847F5, #A95BF3)",
                   color: "#f2f2f2",
@@ -270,6 +271,7 @@ const ProductCard = ({
                     background: "linear-gradient(#A95BF3,#6847F5)",
                   },
                 }}
+                onClick={()=>DeleteProduct(id)}
               >
                 Удалить
               </Button>

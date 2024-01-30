@@ -1,11 +1,14 @@
 import { Button, Grid, Link, Typography } from "@mui/material";
 import React, { useState } from "react";
 import ModalChangeProuductCategories from "./components/ModalChangeProuductCategories/ModalChangeProuductCategories";
+import { useDeleteCategory } from "../../modules/AdminPanel/hook/useDeleteCategory";
 
 const ProuductCategories = ({ text, admin, id }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const { mutate: DeleteCategory } = useDeleteCategory();
   return (
     <Grid
       sx={{
@@ -50,26 +53,48 @@ const ProuductCategories = ({ text, admin, id }) => {
         </Typography>
       </Grid>
       {admin ? (
-        <Button
-          onClick={handleOpen}
-          sx={{
-            background: "linear-gradient( #6847F5, #A95BF3)",
-            color: "#f2f2f2",
-            border: "none",
-            padding: "17px 50px",
-            fontSize: "19px",
-            fontWeight: "500",
-            transition: "0.5s",
-            textDecoration: "none",
-            transform: "translateY(-50%)",
-            "&:hover": {
-              transform: "translateY(-60%)",
-              background: "linear-gradient(#A95BF3,#6847F5)",
-            },
-          }}
-        >
-          Изменить
-        </Button>
+        <>
+          <Button
+            onClick={handleOpen}
+            sx={{
+              background: "linear-gradient( #6847F5, #A95BF3)",
+              color: "#f2f2f2",
+              border: "none",
+              padding: "17px 50px",
+              fontSize: "19px",
+              fontWeight: "500",
+              transition: "0.5s",
+              textDecoration: "none",
+              transform: "translateY(-50%)",
+              "&:hover": {
+                transform: "translateY(-60%)",
+                background: "linear-gradient(#A95BF3,#6847F5)",
+              },
+            }}
+          >
+            Изменить
+          </Button>
+          <Button
+            onClick={() => DeleteCategory(id)}
+            sx={{
+              background: "linear-gradient( #6847F5, #A95BF3)",
+              color: "#f2f2f2",
+              border: "none",
+              padding: "17px 50px",
+              fontSize: "19px",
+              fontWeight: "500",
+              transition: "0.5s",
+              textDecoration: "none",
+              transform: "translateY(-50%)",
+              "&:hover": {
+                transform: "translateY(-60%)",
+                background: "linear-gradient(#A95BF3,#6847F5)",
+              },
+            }}
+          >
+            Удалить
+          </Button>
+        </>
       ) : (
         <Link
           href="#"
