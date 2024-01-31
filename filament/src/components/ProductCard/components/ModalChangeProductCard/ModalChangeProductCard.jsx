@@ -27,12 +27,21 @@ const ModalChangeProductCard = ({ open, handleClose, id }) => {
   const [uploadedFile, setUploadedFile] = useState(null);
   const [uploadedFileName, setUploadedFileName] = useState(null);
 
-  const handleFileChange = (event) => {
+  const handleFileChange = async (event) => {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
       // Здесь вы можете выполнить необходимые действия с выбранным файлом, например, сохранить его в состоянии
-      setUploadedFile(selectedFile);
       setUploadedFileName(selectedFile.name);
+      try {
+        const base64String = await fileToBase64(selectedFile);
+        const cleanBase64String = base64String.replace(
+          /^data:image\/\w+;base64,/,
+          ""
+        );
+        setUploadedFile(cleanBase64String);
+      } catch (error) {
+        alert("Ошибка при чтении файла:", error);
+      }
     }
   };
 
@@ -45,6 +54,7 @@ const ModalChangeProductCard = ({ open, handleClose, id }) => {
       productPrice: Number(body.productPrice),
       productQuantity: Number(body.productQuantity),
       productSize: body.productSize,
+      productImage: uploadedFile,
     });
   };
   return (

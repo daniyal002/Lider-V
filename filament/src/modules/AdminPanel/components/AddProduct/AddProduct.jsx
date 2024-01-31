@@ -13,21 +13,31 @@ import { useForm } from "react-hook-form";
 import { useGetCategories } from "../../../../components/ProuductCategories/hook/useGetCategories";
 import { useAddProduct } from "../../hook/useAddProduct";
 import { useState } from "react";
+import { fileToBase64 } from "../../../../helper/fileToBase64";
 
 const AddProduct = () => {
   const { register, handleSubmit } = useForm();
   const { data } = useGetCategories();
   const { mutate, error } = useAddProduct();
 
-  const [uploadedFile, setUploadedFile] = useState(null);
+  const [uploadedFile, setUploadedFile] = useState("");
   const [uploadedFileName, setUploadedFileName] = useState(null);
 
-  const handleFileChange = (event) => {
+  const handleFileChange = async (event) => {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
       // Здесь вы можете выполнить необходимые действия с выбранным файлом, например, сохранить его в состоянии
-      setUploadedFile(selectedFile);
       setUploadedFileName(selectedFile.name);
+      try {
+        const base64String = await fileToBase64(selectedFile);
+        const cleanBase64String = base64String.replace(
+          /^data:image\/\w+;base64,/,
+          ""
+        );
+        setUploadedFile(cleanBase64String);
+      } catch (error) {
+        alert("Ошибка при чтении файла:", error);
+      }
     }
   };
 

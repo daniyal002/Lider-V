@@ -97,7 +97,10 @@ const ProductCard = ({
         }}
       >
         <img
-          src="./img/collection-item2.jpg"
+          src={
+            // import.meta.env.VITE_BASE_URL2 + productImage ??
+            "./img/collection-item2.jpg"
+          }
           alt=""
           width="406"
           style={{
@@ -271,7 +274,7 @@ const ProductCard = ({
                     background: "linear-gradient(#A95BF3,#6847F5)",
                   },
                 }}
-                onClick={()=>DeleteProduct(id)}
+                onClick={() => DeleteProduct(id)}
               >
                 Удалить
               </Button>
