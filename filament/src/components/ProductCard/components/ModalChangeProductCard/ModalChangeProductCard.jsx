@@ -34,11 +34,12 @@ const ModalChangeProductCard = ({ open, handleClose, id }) => {
       setUploadedFileName(selectedFile.name);
       try {
         const base64String = await fileToBase64(selectedFile);
+        setUploadedFile(base64String);
         const cleanBase64String = base64String.replace(
           /^data:image\/\w+;base64,/,
           ""
         );
-        setUploadedFile(cleanBase64String);
+        // setUploadedFile(cleanBase64String);
       } catch (error) {
         alert("Ошибка при чтении файла:", error);
       }
