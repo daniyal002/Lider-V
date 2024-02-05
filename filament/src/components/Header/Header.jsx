@@ -25,7 +25,7 @@ const Header = () => {
     <Grid
       sx={{
         display: "flex",
-        alignItems: "center",
+        alignItems: "flex-start",
         justifyContent: "space-between",
         columnGap: "20px",
         padding: "38px 24px",
