@@ -1,7 +1,8 @@
-import { Button, Grid, Link, Typography } from "@mui/material";
-import React, { useState } from "react";
-import ModalChangeProuductCategories from "./components/ModalChangeProuductCategories/ModalChangeProuductCategories";
-import { useDeleteCategory } from "../../modules/AdminPanel/hook/useDeleteCategory";
+import { Button, Grid,  Typography } from '@mui/material';
+import React, { useState } from 'react';
+import ModalChangeProuductCategories from './components/ModalChangeProuductCategories/ModalChangeProuductCategories';
+import { useDeleteCategory } from '../../modules/AdminPanel/hook/useDeleteCategory';
+import { Link } from 'react-router-dom';
 
 const ProuductCategories = ({ text, admin, id }) => {
   const [open, setOpen] = useState(false);
@@ -12,10 +13,10 @@ const ProuductCategories = ({ text, admin, id }) => {
   return (
     <Grid
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "0 12px",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: '0 12px',
       }}
     >
       <ModalChangeProuductCategories
@@ -25,14 +26,14 @@ const ProuductCategories = ({ text, admin, id }) => {
       />
       <Grid
         sx={{
-          background: "rgba(134, 155, 223, 0.14)",
-          display: "flex",
-          flexDirection: "column",
-          width: "306px",
-          padding: "50px 0",
-          border: "2px solid rgba(83, 84, 136, 0.4)",
-          borderRadius: "14px",
-          alignItems: "center",
+          background: 'rgba(134, 155, 223, 0.14)',
+          display: 'flex',
+          flexDirection: 'column',
+          width: '306px',
+          padding: '50px 0',
+          border: '2px solid rgba(83, 84, 136, 0.4)',
+          borderRadius: '14px',
+          alignItems: 'center',
         }}
       >
         <img
@@ -40,13 +41,13 @@ const ProuductCategories = ({ text, admin, id }) => {
           alt=""
           width="140"
           style={{
-            borderRadius: "50%",
+            borderRadius: '50%',
           }}
         />
         <Typography
           sx={{
-            fontSize: "22px",
-            color: "#fff",
+            fontSize: '22px',
+            color: '#fff',
           }}
         >
           {text}
@@ -57,18 +58,18 @@ const ProuductCategories = ({ text, admin, id }) => {
           <Button
             onClick={handleOpen}
             sx={{
-              background: "linear-gradient( #6847F5, #A95BF3)",
-              color: "#f2f2f2",
-              border: "none",
-              padding: "17px 50px",
-              fontSize: "19px",
-              fontWeight: "500",
-              transition: "0.5s",
-              textDecoration: "none",
-              transform: "translateY(-50%)",
-              "&:hover": {
-                transform: "translateY(-60%)",
-                background: "linear-gradient(#A95BF3,#6847F5)",
+              background: 'linear-gradient( #6847F5, #A95BF3)',
+              color: '#f2f2f2',
+              border: 'none',
+              padding: '17px 50px',
+              fontSize: '19px',
+              fontWeight: '500',
+              transition: '0.5s',
+              textDecoration: 'none',
+              transform: 'translateY(-50%)',
+              '&:hover': {
+                transform: 'translateY(-60%)',
+                background: 'linear-gradient(#A95BF3,#6847F5)',
               },
             }}
           >
@@ -77,18 +78,18 @@ const ProuductCategories = ({ text, admin, id }) => {
           <Button
             onClick={() => DeleteCategory(id)}
             sx={{
-              background: "linear-gradient( #6847F5, #A95BF3)",
-              color: "#f2f2f2",
-              border: "none",
-              padding: "17px 50px",
-              fontSize: "19px",
-              fontWeight: "500",
-              transition: "0.5s",
-              textDecoration: "none",
-              transform: "translateY(-50%)",
-              "&:hover": {
-                transform: "translateY(-60%)",
-                background: "linear-gradient(#A95BF3,#6847F5)",
+              background: 'linear-gradient( #6847F5, #A95BF3)',
+              color: '#f2f2f2',
+              border: 'none',
+              padding: '17px 50px',
+              fontSize: '19px',
+              fontWeight: '500',
+              transition: '0.5s',
+              textDecoration: 'none',
+              transform: 'translateY(-50%)',
+              '&:hover': {
+                transform: 'translateY(-60%)',
+                background: 'linear-gradient(#A95BF3,#6847F5)',
               },
             }}
           >
@@ -97,20 +98,20 @@ const ProuductCategories = ({ text, admin, id }) => {
         </>
       ) : (
         <Link
-          href="#"
+          to={`/products?category=${id}`}
           sx={{
-            background: "linear-gradient( #6847F5, #A95BF3)",
-            color: "#f2f2f2",
-            border: "none",
-            padding: "17px 50px",
-            fontSize: "19px",
-            fontWeight: "500",
-            transition: "0.5s",
-            textDecoration: "none",
-            transform: "translateY(-50%)",
-            "&:hover": {
-              transform: "translateY(-60%)",
-              background: "linear-gradient(#A95BF3,#6847F5)",
+            background: 'linear-gradient( #6847F5, #A95BF3)',
+            color: '#f2f2f2',
+            border: 'none',
+            padding: '17px 50px',
+            fontSize: '19px',
+            fontWeight: '500',
+            transition: '0.5s',
+            textDecoration: 'none',
+            transform: 'translateY(-50%)',
+            '&:hover': {
+              transform: 'translateY(-60%)',
+              background: 'linear-gradient(#A95BF3,#6847F5)',
             },
           }}
         >

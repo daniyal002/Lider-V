@@ -21,7 +21,6 @@ const ModalChangeProductCard = ({ open, handleClose, id }) => {
   const { data: categoryes } = useGetCategories();
 
   const { data: product } = useGetProductId(id);
-  console.log(product);
   const { mutate } = useChangeProduct();
 
   const [uploadedFile, setUploadedFile] = useState(null);

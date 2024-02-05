@@ -1,18 +1,25 @@
 import { Grid, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductSearch from './components/ProductSearch/ProductSearch';
 import ProductCategories from './components/ProductCategories/ProductCategories';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import { useGetProduct } from '../../components/ProductCard/hook/useGetProduct';
+import { useLocation } from 'react-router-dom';
 
 const Products = () => {
   const { data, error, isLoading } = useGetProduct();
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
 
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  useEffect(() => {
+    setSelectedCategory(Number(queryParams.get('category')));
+  }, []);
+
   // Фильтрация по категории
   const filteredByCategory = selectedCategory
-    ? data.filter((product) => product.categoryId === selectedCategory)
+    ? data?.filter((product) => product.categoryId === selectedCategory)
     : data;
 
   // Фильтрация по поисковому запросу

@@ -11,6 +11,7 @@ const ProductCategories = ({ setSelectedCategory, selectedCategory }) => {
     } else {
       setSelectedCategory(categoryId); // Устанавливаем выбранную категорию
     }
+    console.log(selectedCategory);
   };
 
   return (
@@ -33,7 +34,7 @@ const ProductCategories = ({ setSelectedCategory, selectedCategory }) => {
               selectedCategory === category.id ? '#A95BF3' : 'transparent',
             '&:hover': {
               backgroundColor: '#fff',
-              color:'#A95BF3'
+              color: '#A95BF3',
             },
           }}
           onClick={() => handleCategoryClick(category.id)}
