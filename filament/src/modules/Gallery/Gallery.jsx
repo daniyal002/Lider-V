@@ -57,13 +57,32 @@ const Gallery = () => {
         boxSizing: "border-box",
       }}
     >
-      <Grid container spacing={3} justifyContent="center" alignItems="center">
+      <Grid
+        container
+        justifyContent="center"
+        alignItems="center"
+        sx={{
+          display: "flex",
+          gap: "30px",
+          justifyContent: "center",
+          flexWrap: "wrap",
+        }}
+      >
         {images.map((image, index) => (
-          <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
+          <Grid
+            item
+            key={index}
+            sx={{
+              maxWidth: "600px",
+            }}
+          >
             <Card>
               <CardActionArea onClick={() => handleOpen(index)}>
                 <CardMedia
                   component="img"
+                  sx={{
+                    borderRadius: "14px",
+                  }}
                   alt={image.description}
                   image={image.src}
                 />
@@ -85,6 +104,9 @@ const Gallery = () => {
         open={open}
         onClose={handleClose}
         closeAfterTransition
+        sx={{
+          overflowY: "scroll",
+        }}
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
@@ -93,74 +115,52 @@ const Gallery = () => {
         <Fade in={open}>
           <div
             style={{
-              backgroundColor: "#fff",
-              boxShadow: "0px 0px 10px rgba(0,0,0,0.5)",
-              padding: "20px",
-              maxWidth: "80%",
-              margin: "auto",
-              marginTop: "50px",
               position: "relative",
-              borderRadius: "10px",
+              margin: "50px auto",
+              maxWidth: "750px",
+              width: "50%",
+              padding: "50px",
+              backgroundColor: "#fff",
+              borderRadius: "14px",
             }}
           >
-            {selectedImageIndex !== null && (
-              <>
-                <SwipeableViews
-                  index={selectedImageIndex}
-                  onChangeIndex={(index) => setSelectedImageIndex(index)}
-                  enableMouseEvents
-                  style={{
-                    overflow: "hidden",
-                  }}
-                >
-                  {images.map((image, index) => (
-                    <div
-                      key={index}
-                      style={{ textAlign: "center", height: "80vh" }}
-                    >
-                      <img
-                        src={image.src}
-                        alt={image.description}
-                        style={{
-                          maxWidth: "100%",
-                          height: "50%",
-                          borderRadius: "10px",
-                        }}
-                      />
-                      <Typography variant="h6" style={{ marginTop: "10px" }}>
-                        {image.description}
-                      </Typography>
-                    </div>
-                  ))}
-                </SwipeableViews>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    marginTop: "10px",
-                  }}
-                >
-                  <Button
-                    onClick={handleBack}
-                    style={{ position: "absolute", top: "50%", left: "10px" }}
-                  >
-                    <img
-                      src="./icon/navigate_before_black_48dp.svg"
-                      alt="navigate_before"
-                    />
-                  </Button>
-                  <Button
-                    onClick={handleNext}
-                    style={{ position: "absolute", top: "50%", right: "10px" }}
-                  >
-                    <img
-                      src="./icon/navigate_next_black_48dp.svg"
-                      alt="navigate_next"
-                    />
-                  </Button>
+            <SwipeableViews
+              index={selectedImageIndex}
+              onChangeIndex={(index) => setSelectedImageIndex(index)}
+              enableMouseEvents
+              style={{ overflow: "hidden" }}
+            >
+              {images.map((image, index) => (
+                <div key={index} style={{ textAlign: "center" }}>
+                  <img
+                    src={image.src}
+                    alt={image.description}
+                    style={{ maxWidth: "100%", maxHeight: "80vh" }}
+                  />
+                  <Typography variant="h6" style={{ marginTop: "10px" }}>
+                    {image.description}
+                  </Typography>
                 </div>
-              </>
-            )}
+              ))}
+            </SwipeableViews>
+            <Button
+              onClick={handleBack}
+              style={{ position: "absolute", top: "50%", left: "10px" }}
+            >
+              <img
+                src="./icon/navigate_before_black_48dp.svg"
+                alt="navigate_before"
+              />
+            </Button>
+            <Button
+              onClick={handleNext}
+              style={{ position: "absolute", top: "50%", right: "10px" }}
+            >
+              <img
+                src="./icon/navigate_next_black_48dp.svg"
+                alt="navigate_next"
+              />
+            </Button>
           </div>
         </Fade>
       </Modal>
