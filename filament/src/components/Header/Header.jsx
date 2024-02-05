@@ -1,14 +1,7 @@
 import {
-  AppBar,
   Button,
   Grid,
-  IconButton,
-  Menu,
-  MenuItem,
-  Toolbar,
-  Typography,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
 import { Link, useLocation } from "react-router-dom";
 import ModalMenu from "./ModalMenu/ModalMenu";
 import { useState } from "react";
@@ -22,6 +15,7 @@ const Header = () => {
     { link: "/shares", text: "Акции" },
     { link: "/aboutcompany", text: "О компании" },
     { link: "/contact", text: "Сотрудничество" },
+    { link: "/gallery", text: "Фотогаллерея" },
   ];
 
   const [open, setOpen] = useState(false);

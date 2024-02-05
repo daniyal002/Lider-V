@@ -13,6 +13,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Favourites from "./modules/Favourites/Favourites";
 import Cart from "./modules/Cart/Cart";
+import Gallery from "./modules/Gallery/Gallery";
 
 const App = () => {
   const theme = createTheme({
@@ -36,6 +37,7 @@ const App = () => {
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/favorites" element={<Favourites />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/gallery" element={<Gallery />} />
         </Routes>
         <Footer />
       </BrowserRouter>
