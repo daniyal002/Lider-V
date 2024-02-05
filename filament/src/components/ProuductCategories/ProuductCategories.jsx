@@ -1,4 +1,4 @@
-import { Button, Grid,  Typography } from '@mui/material';
+import { Button, Grid, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import ModalChangeProuductCategories from './components/ModalChangeProuductCategories/ModalChangeProuductCategories';
 import { useDeleteCategory } from '../../modules/AdminPanel/hook/useDeleteCategory';
@@ -99,20 +99,15 @@ const ProuductCategories = ({ text, admin, id }) => {
       ) : (
         <Link
           to={`/products?category=${id}`}
-          sx={{
+          style={{
             background: 'linear-gradient( #6847F5, #A95BF3)',
             color: '#f2f2f2',
             border: 'none',
             padding: '17px 50px',
             fontSize: '19px',
             fontWeight: '500',
-            transition: '0.5s',
             textDecoration: 'none',
             transform: 'translateY(-50%)',
-            '&:hover': {
-              transform: 'translateY(-60%)',
-              background: 'linear-gradient(#A95BF3,#6847F5)',
-            },
           }}
         >
           Перейти
