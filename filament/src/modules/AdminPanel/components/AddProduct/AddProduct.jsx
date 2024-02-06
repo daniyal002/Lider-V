@@ -49,7 +49,7 @@ const AddProduct = () => {
       productPrice: Number(body.productPrice),
       productQuantity: Number(body.productQuantity),
       productSize: body.productSize,
-      productImage: uploadedFile,
+      Base64Image: uploadedFile,
     });
   };
   return (

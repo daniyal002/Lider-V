@@ -6,7 +6,9 @@ export const useGetProductCart = () => {
   const { data, error, isLoading } = useQuery({
     queryKey: ["GetProductCart"],
     queryFn: async () =>
-      api.get("CartAPI").then((response) => response.data.result.$values),
+      api
+        .get("CartAPI")
+        .then((response) => response.data.result.cartItems.$values),
   });
   return { data, error, isLoading };
 };
