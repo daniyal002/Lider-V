@@ -28,16 +28,18 @@ const AddProduct = () => {
     if (selectedFile) {
       // Здесь вы можете выполнить необходимые действия с выбранным файлом, например, сохранить его в состоянии
       setUploadedFileName(selectedFile.name);
-      try {
-        const base64String = await fileToBase64(selectedFile);
-        const cleanBase64String = base64String.replace(
-          /^data:image\/\w+;base64,/,
-          ""
-        );
-        setUploadedFile(cleanBase64String);
-      } catch (error) {
-        alert("Ошибка при чтении файла:", error);
-      }
+      setUploadedFile(selectedFile);
+
+      // try {
+      //   const base64String = await fileToBase64(selectedFile);
+      //   const cleanBase64String = base64String.replace(
+      //     /^data:image\/\w+;base64,/,
+      //     ""
+      //   );
+      //   setUploadedFile(cleanBase64String);
+      // } catch (error) {
+      //   alert("Ошибка при чтении файла:", error);
+      // }
     }
   };
 
