@@ -18,7 +18,7 @@ const ProductCard = ({
   admin,
   cart,
   quantity,
-  updateCart
+  updateCart,
 }) => {
   // Modal change
   const [open, setOpen] = React.useState(false);
@@ -101,15 +101,16 @@ const ProductCard = ({
       >
         <img
           src={
-            // import.meta.env.VITE_BASE_URL2 + productImage ??
+            import.meta.env.VITE_BASE_URL_FROM_IMAGE + productImage ??
             "./img/collection-item2.jpg"
           }
           alt=""
-          width="406"
           style={{
             borderRadius: "10px",
-            maxWidth: "406px",
+            maxWidth: "560px",
+            maxHeight: "700px",
             width: "100%",
+            height: "100%",
           }}
         />
         {favorite ? (
@@ -159,13 +160,16 @@ const ProductCard = ({
           display: "flex",
           flexDirection: "column",
           rowGap: "20px",
-          transform: "translateY(-50%)",
+          opacity:'40%',
+          transform: "translateY(-40%)",
           transition: "0.5s",
           "&:hover": {
-            transform: "translateY(-60%)",
+            transform: "translateY(-50%)",
+          opacity:'100%',
+
           },
           "@media(max-width:432px)": {
-            transform: "translateY(-30%)",
+            transform: "translateY(-10%)",
           },
         }}
       >
