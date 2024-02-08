@@ -6,6 +6,7 @@ import ModalProductCardMore from "./components/ModalProductCardMore/ModalProduct
 import { useGetProductFavorite } from "../../hook/useGetProductFavorite";
 import { useAddProductCart } from "./hook/useAddProductCart";
 import { useDeleteProduct } from "../../modules/AdminPanel/hook/useDeleteProduct";
+import { useDeleteProductCart } from "./hook/useDeleteProductCart";
 
 const ProductCard = ({
   id,
@@ -54,7 +55,6 @@ const ProductCard = ({
   const handleCountProduct = (e) => {
     if (Number(e.target.value) < 10000) {
       setCountProduct(Number(e.target.value));
-      updateCart(id, Number(e.target.value));
     }
   };
 
@@ -76,8 +76,14 @@ const ProductCard = ({
       quantity: countProduct,
     });
   };
+  if (cart) {
+    useEffect(() => {
+      updateCart(id, countProduct);
+    }, [countProduct]);
+  }
 
   const { mutate: DeleteProduct } = useDeleteProduct();
+  const {mutate: DeleteProductCart} = useDeleteProductCart()
   return (
     <Grid
       sx={{
@@ -160,13 +166,12 @@ const ProductCard = ({
           display: "flex",
           flexDirection: "column",
           rowGap: "20px",
-          opacity:'40%',
+          opacity: "40%",
           transform: "translateY(-40%)",
           transition: "0.5s",
           "&:hover": {
             transform: "translateY(-50%)",
-          opacity:'100%',
-
+            opacity: "100%",
           },
           "@media(max-width:432px)": {
             transform: "translateY(-10%)",
@@ -382,26 +387,49 @@ const ProductCard = ({
                   </Button>
                 </Grid>
               </Grid>
-              <Button
-                onClick={handleOpenMore}
-                sx={{
-                  background: "linear-gradient( #6847F5, #A95BF3)",
-                  color: "#f2f2f2",
-                  border: "none",
-                  padding: "10px 30px",
-                  fontSize: "19px",
-                  fontWeight: "500",
-                  transition: "0.5s",
-                  borderRadius: "5px",
-                  textDecoration: "none",
-                  "&:hover": {
+              {cart ? (
+                <Button
+                  onClick={()=>DeleteProductCart(id)}
+                  sx={{
+                    background: "linear-gradient( #6847F5, #A95BF3)",
+                    color: "#f2f2f2",
+                    border: "none",
+                    padding: "10px 30px",
+                    fontSize: "19px",
+                    fontWeight: "500",
                     transition: "0.5s",
-                    background: "linear-gradient(#A95BF3,#6847F5)",
-                  },
-                }}
-              >
-                Подробнее
-              </Button>
+                    borderRadius: "5px",
+                    textDecoration: "none",
+                    "&:hover": {
+                      transition: "0.5s",
+                      background: "linear-gradient(#A95BF3,#6847F5)",
+                    },
+                  }}
+                >
+                  Удалить из корзины
+                </Button>
+              ) : (
+                <Button
+                  onClick={handleOpenMore}
+                  sx={{
+                    background: "linear-gradient( #6847F5, #A95BF3)",
+                    color: "#f2f2f2",
+                    border: "none",
+                    padding: "10px 30px",
+                    fontSize: "19px",
+                    fontWeight: "500",
+                    transition: "0.5s",
+                    borderRadius: "5px",
+                    textDecoration: "none",
+                    "&:hover": {
+                      transition: "0.5s",
+                      background: "linear-gradient(#A95BF3,#6847F5)",
+                    },
+                  }}
+                >
+                  Подробнее
+                </Button>
+              )}
             </>
           )}
         </Grid>
