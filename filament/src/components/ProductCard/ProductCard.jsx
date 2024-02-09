@@ -20,6 +20,7 @@ const ProductCard = ({
   cart,
   quantity,
   updateCart,
+  cartId,
 }) => {
   // Modal change
   const [open, setOpen] = React.useState(false);
@@ -83,7 +84,7 @@ const ProductCard = ({
   }
 
   const { mutate: DeleteProduct } = useDeleteProduct();
-  const {mutate: DeleteProductCart} = useDeleteProductCart()
+  const { mutate: DeleteProductCart } = useDeleteProductCart();
   return (
     <Grid
       sx={{
@@ -389,7 +390,7 @@ const ProductCard = ({
               </Grid>
               {cart ? (
                 <Button
-                  onClick={()=>DeleteProductCart(id)}
+                  onClick={() => DeleteProductCart(cartId)}
                   sx={{
                     background: "linear-gradient( #6847F5, #A95BF3)",
                     color: "#f2f2f2",

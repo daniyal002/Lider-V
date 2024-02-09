@@ -1,15 +1,26 @@
 import { Alert, Button, Grid, Input, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
-import React from "react";
+import React, { useState } from "react";
 import { useAddCategories } from "../../hook/useAddCategories";
 
 const AddCategories = () => {
   const { register, handleSubmit } = useForm();
   const { mutate, error } = useAddCategories();
 
+  const [uploadedFile, setUploadedFile] = useState("");
+  const [uploadedFileName, setUploadedFileName] = useState(null);
+
+  const handleFileChange = async (event) => {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      // Здесь вы можете выполнить необходимые действия с выбранным файлом, например, сохранить его в состоянии
+      setUploadedFileName(selectedFile.name);
+      setUploadedFile(selectedFile);
+    }
+  };
+
   const handleAddProduct = (body) => {
-    mutate(body);
-    console.log(body);
+    mutate({ categoryName: body.categoryName, categoryImage: uploadedFile });
   };
   return (
     <form onSubmit={handleSubmit(handleAddProduct)}>
@@ -21,6 +32,21 @@ const AddCategories = () => {
           alignItems: "center",
         }}
       >
+        <Button variant="contained" component="label">
+          Загрузить фото
+          <input type="file" hidden onChange={handleFileChange} />
+        </Button>
+        {uploadedFileName && (
+          <Typography
+            sx={{
+              color: "#fff",
+              fontSize: "16px",
+              maxWidth: "250px",
+            }}
+          >
+            Выбрана фотография: {uploadedFileName}
+          </Typography>
+        )}
         <Typography
           sx={{
             color: "#fff",

@@ -11,11 +11,11 @@ export const useAuthToken = () => {
     setToken(newToken);
   };
 
-  const getAuthToken = () => {
-    return token;
-  };
+  const getAuthToken = () => token;
 
-  return { setAuthToken, getAuthToken };
+  const deleteAuthToken = () => Cookies.remove("authToken");
+
+  return { setAuthToken, getAuthToken, deleteAuthToken };
 };
 
 export const baseApi = () => {

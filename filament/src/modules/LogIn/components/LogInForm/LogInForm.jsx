@@ -10,10 +10,12 @@ import {
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useLogin } from "../../hook/useLogin";
+import { useAuth } from "../../../../components/AuthProvider/AuthProvider";
 
 const LogInForm = () => {
   const { mutate, error } = useLogin();
   const { register, handleSubmit } = useForm();
+  const { login } = useAuth();
   const auth = (body) => {
     let newBody;
     if (body.loginNameEmail.includes("@")) {
@@ -30,6 +32,7 @@ const LogInForm = () => {
       };
     }
     mutate(newBody);
+    login();
   };
   return (
     <Grid>

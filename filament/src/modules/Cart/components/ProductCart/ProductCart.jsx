@@ -55,6 +55,7 @@ const ProductCart = () => {
             <ProductCard
               {...productCart.product}
               key={productCart.product.id}
+              cartId = {productCart.id}
               quantity={productCart.quantity}
               cart
               updateCart={updateCart}

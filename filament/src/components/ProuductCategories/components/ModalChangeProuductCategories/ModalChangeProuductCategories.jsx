@@ -1,12 +1,14 @@
 import { Alert, Button, Grid, Input, Modal, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import React from "react";
+import { useChangeCategory } from "../../../../modules/AdminPanel/hook/useChangeCategory";
 
 const ModalChangeProuductCategories = ({ open, handleClose, id }) => {
   const { register, handleSubmit } = useForm();
 
+  const { mutate } = useChangeCategory();
   const handleAddProduct = (body) => {
-    console.log(body);
+    mutate({ id: id, categoryName: body.categoryName });
   };
   return (
     <Modal
