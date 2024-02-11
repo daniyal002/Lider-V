@@ -7,6 +7,20 @@ import { useGetProduct } from '../../components/ProductCard/hook/useGetProduct';
 import { useLocation } from 'react-router-dom';
 
 const Products = () => {
+  const prd = [
+    {
+      productName: 'Test 1',
+      productPrice: '1000',
+      productSize: '10х10',
+      productDescription: 'Описание товара',
+    },
+    {
+      productName: 'Test 1',
+      productPrice: '1000',
+      productSize: '10х10',
+      productDescription: 'Описание товара',
+    },
+  ];
   const { data, error, isLoading } = useGetProduct();
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -19,8 +33,8 @@ const Products = () => {
 
   // Фильтрация по категории
   const filteredByCategory = selectedCategory
-    ? data?.filter((product) => product.categoryId === selectedCategory)
-    : data;
+    ? prd?.filter((product) => product.categoryId === selectedCategory)
+    : prd;
 
   // Фильтрация по поисковому запросу
   const filteredBySearch = searchTerm
@@ -71,7 +85,8 @@ const Products = () => {
         sx={{
           display: 'flex',
           flexWrap: 'wrap',
-          columnGap: '20px',
+          columnGap: '30px',
+          rowGap: '40px',
           justifyContent: 'center',
         }}
       >
