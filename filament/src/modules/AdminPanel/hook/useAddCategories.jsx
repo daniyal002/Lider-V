@@ -14,7 +14,7 @@ export const useAddCategories = () => {
       formData.append("categoryImage", body.categoryImage);
 
       return api
-        .post("CategoryAPI", formData, {
+        .post("CategoryAPI/AddCategory", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

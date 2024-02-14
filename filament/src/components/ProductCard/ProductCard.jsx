@@ -1,12 +1,12 @@
-import { Button, Grid, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { useProductFavoriteToggle } from './hook/useProductFavoriteToggle';
-import ModalChangeProductCard from './components/ModalChangeProductCard/ModalChangeProductCard';
-import ModalProductCardMore from './components/ModalProductCardMore/ModalProductCardMore';
-import { useGetProductFavorite } from '../../hook/useGetProductFavorite';
-import { useAddProductCart } from './hook/useAddProductCart';
-import { useDeleteProduct } from '../../modules/AdminPanel/hook/useDeleteProduct';
-import { useDeleteProductCart } from './hook/useDeleteProductCart';
+import { Button, Grid, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useProductFavoriteToggle } from "./hook/useProductFavoriteToggle";
+import ModalChangeProductCard from "./components/ModalChangeProductCard/ModalChangeProductCard";
+import ModalProductCardMore from "./components/ModalProductCardMore/ModalProductCardMore";
+import { useGetProductFavorite } from "../../hook/useGetProductFavorite";
+import { useAddProductCart } from "./hook/useAddProductCart";
+import { useDeleteProduct } from "../../modules/AdminPanel/hook/useDeleteProduct";
+import { useDeleteProductCart } from "./hook/useDeleteProductCart";
 
 const ProductCard = ({
   id,
@@ -19,8 +19,9 @@ const ProductCard = ({
   admin,
   cart,
   quantity,
-  updateCart,
   cartId,
+  setCartData,
+  cartData,
 }) => {
   // Modal change
   const [open, setOpen] = React.useState(false);
@@ -77,22 +78,65 @@ const ProductCard = ({
       quantity: countProduct,
     });
   };
+  const [total, setTotal] = useState(quantity * productPrice);
+
   if (cart) {
     useEffect(() => {
-      updateCart(id, countProduct);
-    }, [countProduct]);
+      console.log("countProduct:", countProduct);
+      console.log("total:", total);
+
+      // Вычисляем новое значение total
+      // Обновляем total
+      setTotal((prevTotal) => (prevTotal = countProduct * productPrice));
+
+      const newCartItem = {
+        cartId,
+        total: total,
+        countProduct,
+        productPrice,
+        productName,
+        productImage,
+      };
+
+      // Создаем новый объект cartData с обновленным значением для productId
+      setCartData((prevCartData) => {
+        // Проверяем, существует ли элемент с таким cartId
+        const existingCartItem = prevCartData.find(
+          (item) => item.cartId === cartId
+        );
+
+        if (existingCartItem) {
+          // Обновляем существующий элемент в массиве
+          return prevCartData.map((item) => {
+            if (item.cartId === cartId) {
+              return newCartItem; // Обновляем элемент с новыми данными
+            }
+            return item; // Оставляем все остальные элементы без изменений
+          });
+        } else {
+          // Добавляем новый элемент в массив
+          return [...prevCartData, newCartItem];
+        }
+      });
+    }, [countProduct, total]);
   }
 
   const { mutate: DeleteProduct } = useDeleteProduct();
   const { mutate: DeleteProductCart } = useDeleteProductCart();
+  const FunDeleteProductCart = (id) => {
+    const updatedCartData = cartData.filter((item) => item.cartId !== id);
+    setCartData(updatedCartData);
+    DeleteProductCart(id);
+  };
+
   return (
     <Grid
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        maxWidth: '406px',
-        width: '100%',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        maxWidth: "406px",
+        width: "100%",
       }}
     >
       <ModalChangeProductCard open={open} handleClose={handleClose} id={id} />
@@ -103,37 +147,37 @@ const ProductCard = ({
       />
       <Grid
         sx={{
-          position: 'relative',
+          position: "relative",
         }}
       >
         <img
           src={
-            './img/collection-item2.jpg'
+            "./img/collection-item2.jpg"
 
             // import.meta.env.VITE_BASE_URL_FROM_IMAGE + productImage ??
           }
           alt=""
           style={{
-            borderRadius: '20px 20px 0px 0px',
-            maxWidth: '560px',
-            maxHeight: '700px',
-            width: '100%',
-            height: '100%',
+            borderRadius: "20px 20px 0px 0px",
+            maxWidth: "560px",
+            maxHeight: "700px",
+            width: "100%",
+            height: "100%",
           }}
         />
         {favorite ? (
           <Grid
             sx={{
-              position: 'absolute',
-              top: '10px',
-              right: '10px',
+              position: "absolute",
+              top: "10px",
+              right: "10px",
             }}
           >
             <img
               src="./icon/favorite_black_24dp.svg"
               width="50"
               style={{
-                cursor: 'pointer',
+                cursor: "pointer",
               }}
               onClick={() => FavoriteToggle(id, false)}
             />
@@ -141,16 +185,16 @@ const ProductCard = ({
         ) : (
           <Grid
             sx={{
-              position: 'absolute',
-              top: '10px',
-              right: '10px',
+              position: "absolute",
+              top: "10px",
+              right: "10px",
             }}
           >
             <img
               src="./icon/favorite_border_black_24dp.svg"
               width="50"
               style={{
-                cursor: 'pointer',
+                cursor: "pointer",
               }}
               onClick={() => FavoriteToggle(id, true)}
             />
@@ -160,45 +204,34 @@ const ProductCard = ({
 
       <Grid
         sx={{
-          backgroundColor: '#fff',
-          width: '100%',
-          // maxWidth: '370px',
-          padding: '20px',
-          borderRadius: '0px 0px 20px 20px',
-          display: 'flex',
-          flexDirection: 'column',
-          rowGap: '20px',
-          // opacity: "40%",
-          // transform: "translateY(-40%)",
-          // transition: "0.5s",
-          // "&:hover": {
-          //   transform: "translateY(-50%)",
-          //   opacity: "100%",
-          // },
-          // "@media(max-width:432px)": {
-          //   transform: "translateY(-10%)",
-          // },
+          backgroundColor: "#fff",
+          width: "100%",
+          padding: "20px",
+          borderRadius: "0px 0px 20px 20px",
+          display: "flex",
+          flexDirection: "column",
+          rowGap: "20px",
         }}
       >
         <Grid
           sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            columnGap: '20px',
-            '@media (max-width:400px)': {
-              flexWrap: 'wrap',
-              rowGap: '20px',
+            display: "flex",
+            justifyContent: "space-between",
+            columnGap: "20px",
+            "@media (max-width:400px)": {
+              flexWrap: "wrap",
+              rowGap: "20px",
             },
           }}
         >
           <Typography
             sx={{
-              maxWidth: '250px',
-              color: '#000',
-              fontSize: '22px',
-              fontWeight: '700',
-              '@media(max-width:387px)': {
-                fontSize: '18px',
+              maxWidth: "250px",
+              color: "#000",
+              fontSize: "22px",
+              fontWeight: "700",
+              "@media(max-width:387px)": {
+                fontSize: "18px",
               },
             }}
           >
@@ -206,11 +239,11 @@ const ProductCard = ({
           </Typography>
           <Typography
             sx={{
-              color: '#000',
-              fontSize: '22px',
-              fontWeight: '700',
-              '@media(max-width:387px)': {
-                fontSize: '18px',
+              color: "#000",
+              fontSize: "22px",
+              fontWeight: "700",
+              "@media(max-width:387px)": {
+                fontSize: "18px",
               },
             }}
           >
@@ -219,11 +252,11 @@ const ProductCard = ({
         </Grid>
         <Typography
           sx={{
-            color: '#000',
-            fontSize: '22px',
-            fontWeight: '700',
-            '@media(max-width:387px)': {
-              fontSize: '18px',
+            color: "#000",
+            fontSize: "22px",
+            fontWeight: "700",
+            "@media(max-width:387px)": {
+              fontSize: "18px",
             },
           }}
         >
@@ -232,11 +265,11 @@ const ProductCard = ({
         {admin && (
           <Typography
             sx={{
-              color: '#000',
-              fontSize: '22px',
-              fontWeight: '700',
-              '@media(max-width:387px)': {
-                fontSize: '18px',
+              color: "#000",
+              fontSize: "22px",
+              fontWeight: "700",
+              "@media(max-width:387px)": {
+                fontSize: "18px",
               },
             }}
           >
@@ -246,27 +279,27 @@ const ProductCard = ({
 
         <Grid
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            rowGap: '10px',
+            display: "flex",
+            flexDirection: "column",
+            rowGap: "10px",
           }}
         >
           {admin ? (
             <>
               <Button
                 sx={{
-                  background: 'linear-gradient( #6847F5, #A95BF3)',
-                  color: '#f2f2f2',
-                  border: 'none',
-                  padding: '10px 30px',
-                  fontSize: '19px',
-                  fontWeight: '500',
-                  transition: '0.5s',
-                  borderRadius: '5px',
-                  textDecoration: 'none',
-                  '&:hover': {
-                    transition: '0.5s',
-                    background: 'linear-gradient(#A95BF3,#6847F5)',
+                  background: "linear-gradient( #6847F5, #A95BF3)",
+                  color: "#f2f2f2",
+                  border: "none",
+                  padding: "10px 30px",
+                  fontSize: "19px",
+                  fontWeight: "500",
+                  transition: "0.5s",
+                  borderRadius: "5px",
+                  textDecoration: "none",
+                  "&:hover": {
+                    transition: "0.5s",
+                    background: "linear-gradient(#A95BF3,#6847F5)",
                   },
                 }}
                 onClick={handleOpen}
@@ -275,18 +308,18 @@ const ProductCard = ({
               </Button>
               <Button
                 sx={{
-                  background: 'linear-gradient( #6847F5, #A95BF3)',
-                  color: '#f2f2f2',
-                  border: 'none',
-                  padding: '10px 30px',
-                  fontSize: '19px',
-                  fontWeight: '500',
-                  transition: '0.5s',
-                  borderRadius: '5px',
-                  textDecoration: 'none',
-                  '&:hover': {
-                    transition: '0.5s',
-                    background: 'linear-gradient(#A95BF3,#6847F5)',
+                  background: "linear-gradient( #6847F5, #A95BF3)",
+                  color: "#f2f2f2",
+                  border: "none",
+                  padding: "10px 30px",
+                  fontSize: "19px",
+                  fontWeight: "500",
+                  transition: "0.5s",
+                  borderRadius: "5px",
+                  textDecoration: "none",
+                  "&:hover": {
+                    transition: "0.5s",
+                    background: "linear-gradient(#A95BF3,#6847F5)",
                   },
                 }}
                 onClick={() => DeleteProduct(id)}
@@ -296,18 +329,18 @@ const ProductCard = ({
               <Button
                 onClick={handleOpenMore}
                 sx={{
-                  background: 'linear-gradient( #6847F5, #A95BF3)',
-                  color: '#f2f2f2',
-                  border: 'none',
-                  padding: '10px 30px',
-                  fontSize: '19px',
-                  fontWeight: '500',
-                  transition: '0.5s',
-                  borderRadius: '5px',
-                  textDecoration: 'none',
-                  '&:hover': {
-                    transition: '0.5s',
-                    background: 'linear-gradient(#A95BF3,#6847F5)',
+                  background: "linear-gradient( #6847F5, #A95BF3)",
+                  color: "#f2f2f2",
+                  border: "none",
+                  padding: "10px 30px",
+                  fontSize: "19px",
+                  fontWeight: "500",
+                  transition: "0.5s",
+                  borderRadius: "5px",
+                  textDecoration: "none",
+                  "&:hover": {
+                    transition: "0.5s",
+                    background: "linear-gradient(#A95BF3,#6847F5)",
                   },
                 }}
               >
@@ -318,14 +351,14 @@ const ProductCard = ({
             <>
               <Grid
                 sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  flexDirection: 'row-reverse',
-                  justifyContent: 'space-between',
-                  '@media(max-width:442px)': {
-                    flexDirection: 'column-reverse',
-                    alignItems: 'stretch',
-                    rowGap: '10px',
+                  display: "flex",
+                  alignItems: "center",
+                  flexDirection: "row-reverse",
+                  justifyContent: "space-between",
+                  "@media(max-width:442px)": {
+                    flexDirection: "column-reverse",
+                    alignItems: "stretch",
+                    rowGap: "10px",
                   },
                 }}
               >
@@ -333,18 +366,18 @@ const ProductCard = ({
                   <Button
                     onClick={AddCart}
                     sx={{
-                      background: 'linear-gradient( #6847F5, #A95BF3)',
-                      color: '#f2f2f2',
-                      border: 'none',
-                      padding: '10px 15px',
-                      fontSize: '17px',
-                      fontWeight: '500',
-                      transition: '0.5s',
-                      borderRadius: '5px',
-                      textDecoration: 'none',
-                      '&:hover': {
-                        transition: '0.5s',
-                        background: 'linear-gradient(#A95BF3,#6847F5)',
+                      background: "linear-gradient( #6847F5, #A95BF3)",
+                      color: "#f2f2f2",
+                      border: "none",
+                      padding: "10px 15px",
+                      fontSize: "17px",
+                      fontWeight: "500",
+                      transition: "0.5s",
+                      borderRadius: "5px",
+                      textDecoration: "none",
+                      "&:hover": {
+                        transition: "0.5s",
+                        background: "linear-gradient(#A95BF3,#6847F5)",
                       },
                     }}
                   >
@@ -354,9 +387,9 @@ const ProductCard = ({
 
                 <Grid
                   sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                   }}
                 >
                   <Button onClick={handleIncrement}>
@@ -374,11 +407,11 @@ const ProductCard = ({
                     onChange={handleCountProduct}
                     value={countProduct}
                     style={{
-                      width: '40px',
-                      padding: '20px 5px',
-                      fontSize: '16px',
-                      border: '1px solid #A95BF3',
-                      borderRadius: '10px',
+                      width: "40px",
+                      padding: "20px 5px",
+                      fontSize: "16px",
+                      border: "1px solid #A95BF3",
+                      borderRadius: "10px",
                     }}
                   />
 
@@ -393,20 +426,20 @@ const ProductCard = ({
               </Grid>
               {cart ? (
                 <Button
-                  onClick={() => DeleteProductCart(cartId)}
+                  onClick={() => FunDeleteProductCart(cartId)}
                   sx={{
-                    background: 'linear-gradient( #6847F5, #A95BF3)',
-                    color: '#f2f2f2',
-                    border: 'none',
-                    padding: '10px 30px',
-                    fontSize: '19px',
-                    fontWeight: '500',
-                    transition: '0.5s',
-                    borderRadius: '5px',
-                    textDecoration: 'none',
-                    '&:hover': {
-                      transition: '0.5s',
-                      background: 'linear-gradient(#A95BF3,#6847F5)',
+                    background: "linear-gradient( #6847F5, #A95BF3)",
+                    color: "#f2f2f2",
+                    border: "none",
+                    padding: "10px 30px",
+                    fontSize: "19px",
+                    fontWeight: "500",
+                    transition: "0.5s",
+                    borderRadius: "5px",
+                    textDecoration: "none",
+                    "&:hover": {
+                      transition: "0.5s",
+                      background: "linear-gradient(#A95BF3,#6847F5)",
                     },
                   }}
                 >
@@ -416,18 +449,18 @@ const ProductCard = ({
                 <Button
                   onClick={handleOpenMore}
                   sx={{
-                    background: 'linear-gradient( #6847F5, #A95BF3)',
-                    color: '#f2f2f2',
-                    border: 'none',
-                    padding: '10px 30px',
-                    fontSize: '19px',
-                    fontWeight: '500',
-                    transition: '0.5s',
-                    borderRadius: '5px',
-                    textDecoration: 'none',
-                    '&:hover': {
-                      transition: '0.5s',
-                      background: 'linear-gradient(#A95BF3,#6847F5)',
+                    background: "linear-gradient( #6847F5, #A95BF3)",
+                    color: "#f2f2f2",
+                    border: "none",
+                    padding: "10px 30px",
+                    fontSize: "19px",
+                    fontWeight: "500",
+                    transition: "0.5s",
+                    borderRadius: "5px",
+                    textDecoration: "none",
+                    "&:hover": {
+                      transition: "0.5s",
+                      background: "linear-gradient(#A95BF3,#6847F5)",
                     },
                   }}
                 >

@@ -13,6 +13,7 @@ const AdminCategories = () => {
           admin
           id={categories.id}
           key={categories.id}
+          categoryImage={categories.categoryImage}
         />
       ))}
       

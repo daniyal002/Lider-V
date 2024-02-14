@@ -1,8 +1,11 @@
-import { Grid, Link, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import React from "react";
 import ProuductCategories from "../../../../components/ProuductCategories/ProuductCategories";
+import { useGetCategories } from "../../../../components/ProuductCategories/hook/useGetCategories";
+import { Link } from "react-router-dom";
 
 const ThirdHomeScreen = () => {
+  const {data, isLoading} = useGetCategories()
   return (
     <Grid
       sx={{
@@ -30,8 +33,8 @@ const ThirdHomeScreen = () => {
       </Typography>
 
       <Link
-        href="#"
-        sx={{
+        to="/categories"
+        style={{
           background: "linear-gradient( #6847F5, #A95BF3)",
           color: "#f2f2f2",
           border: "none",
@@ -41,10 +44,7 @@ const ThirdHomeScreen = () => {
           transition: "0.5s",
           textDecoration: "none",
           textAlign: " center",
-          "&:hover": {
-            transition: "0.5s",
-            background: "linear-gradient(#A95BF3,#6847F5)",
-          },
+         
         }}
       >
         Показать все категории
@@ -60,12 +60,14 @@ const ThirdHomeScreen = () => {
           },
         }}
       >
-        <ProuductCategories />
-        <ProuductCategories />
-        <ProuductCategories />
-        <ProuductCategories />
-        <ProuductCategories />
-        <ProuductCategories />
+        {data.map((categories) => (
+        <ProuductCategories
+          text={categories.categoryName}
+          id={categories.id}
+          key={categories.id}
+          categoryImage={categories.categoryImage}
+        />
+      ))}
       </Grid>
     </Grid>
   );

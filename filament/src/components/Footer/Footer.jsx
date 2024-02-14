@@ -159,7 +159,7 @@ const Footer = () => {
         </Grid>
       </Grid>
 
-      <Grid sx={{ width: "100vw", borderTop: "1px solid #A95BF3" }}>
+      <Grid sx={{ width: "100%", borderTop: "1px solid #A95BF3" }}>
         <Typography
           sx={{
             fontSize: "19px",

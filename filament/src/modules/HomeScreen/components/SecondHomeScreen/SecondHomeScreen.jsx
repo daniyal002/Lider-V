@@ -1,8 +1,12 @@
 import { Grid, Typography } from "@mui/material";
 import React from "react";
 import ProductCard from "../../../../components/ProductCard/ProductCard";
+import { useGetProduct } from "../../../../components/ProductCard/hook/useGetProduct";
+
 
 const SecondHomeScreen = () => {
+  const { data:Product, error, isLoading } = useGetProduct();
+
   return (
     <Grid
       sx={{
@@ -39,11 +43,27 @@ const SecondHomeScreen = () => {
           }
         }}
       >
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {isLoading ? (
+          <Grid
+            sx={{
+              animation: 'spin 2s linear infinite',
+              '@keyframes spin': {
+                '0%': {
+                  transform: 'rotate(360deg)',
+                },
+                '100%': {
+                  transform: 'rotate(0deg)',
+                },
+              },
+            }}
+          >
+            <img src="./icon/loop_black_48dp.svg" alt="" />
+          </Grid>
+        ) : (
+          Product?.map((product) => (
+            <ProductCard {...product} key={product.id} />
+          ))
+        )}
       </Grid>
     </Grid>
   );
