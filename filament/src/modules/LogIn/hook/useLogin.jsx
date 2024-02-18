@@ -16,7 +16,7 @@ export const useLogin = () => {
       // Вызывается после успешной мутации (успешного входа)
       if (data && data.result) {
         setAuthToken(data.result); // Сохраняем токен
-        navigate("/admin");
+        navigate("/");
         // Устанавливаем токен после успешного входа
       }
     },

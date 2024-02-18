@@ -1,11 +1,10 @@
 import { Grid, Typography } from "@mui/material";
 import React from "react";
-import ProductCard from "../../../../components/ProductCard/ProductCard";
 import { useGetProduct } from "../../../../components/ProductCard/hook/useGetProduct";
-
+import ProductSlider from "../../../../components/Slider/Slider";
 
 const SecondHomeScreen = () => {
-  const { data:Product, error, isLoading } = useGetProduct();
+  const { data: Product, error, isLoading } = useGetProduct();
 
   return (
     <Grid
@@ -13,7 +12,6 @@ const SecondHomeScreen = () => {
         maxWidth: "1320px",
         margin: "0 auto",
         padding: "0 20px",
-
       }}
     >
       <Typography
@@ -23,10 +21,9 @@ const SecondHomeScreen = () => {
           fontWeight: "900",
           textAlign: "center",
           marginBottom: "30px",
-          '@media(max-width:425px)':{
-          fontSize: "35px",
-
-          }
+          "@media(max-width:425px)": {
+            fontSize: "35px",
+          },
         }}
       >
         Популярные товары
@@ -36,23 +33,23 @@ const SecondHomeScreen = () => {
         sx={{
           display: "flex",
           justifyContent: "center",
-          columnGap:" 30px",
-          flexWrap: " wrap",
-          '@media(max-width:851px)':{
-            justifyContent: 'center'
-          }
+          gap: " 30px",
+          flexWrap: "wrap",
+          "@media(max-width:851px)": {
+            justifyContent: "center",
+          },
         }}
       >
         {isLoading ? (
           <Grid
             sx={{
-              animation: 'spin 2s linear infinite',
-              '@keyframes spin': {
-                '0%': {
-                  transform: 'rotate(360deg)',
+              animation: "spin 2s linear infinite",
+              "@keyframes spin": {
+                "0%": {
+                  transform: "rotate(360deg)",
                 },
-                '100%': {
-                  transform: 'rotate(0deg)',
+                "100%": {
+                  transform: "rotate(0deg)",
                 },
               },
             }}
@@ -60,9 +57,9 @@ const SecondHomeScreen = () => {
             <img src="./icon/loop_black_48dp.svg" alt="" />
           </Grid>
         ) : (
-          Product?.map((product) => (
-            <ProductCard {...product} key={product.id} />
-          ))
+          <Grid sx={{ width: "100%" }}>
+            <ProductSlider product={Product} />
+          </Grid>
         )}
       </Grid>
     </Grid>

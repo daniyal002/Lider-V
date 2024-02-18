@@ -2,7 +2,7 @@ import { Box, Button, Grid, Modal } from "@mui/material";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
-const ModalMenu = ({ open, handleClose, pages }) => {
+const ModalMenu = ({ open, handleClose, pages, logout, isLoggedIn }) => {
   const location = useLocation();
 
   return (
@@ -18,11 +18,18 @@ const ModalMenu = ({ open, handleClose, pages }) => {
           flexDirection: "column",
           alignItems: "flex-start",
           padding: "38px 24px",
-          backgroundColor: "rgba(169, 91, 243, 0.60)",
+          backgroundColor: "#04040c",
           maxWidth: "300px",
           height: "100%",
           rowGap: "20px",
           overflowY: "scroll",
+          "&::-webkit-scrollbar": {
+            width: "0px", // Скрыть ширину скроллбара
+            background: "transparent", // Сделать скроллбар прозрачным
+          },
+          "&::-webkit-scrollbar-thumb": {
+            background: "transparent", // Сделать панель скроллбара прозрачной
+          },
         }}
       >
         <Grid
@@ -44,10 +51,11 @@ const ModalMenu = ({ open, handleClose, pages }) => {
                 listStyle: "none",
               }}
             >
-              {pages.map((page,index) => (
+              {pages.map((page, index) => (
                 <li key={index}>
                   <Link
                     to={page.link}
+                    onClick={handleClose}
                     style={{
                       color: "#fff",
                       textDecoration: "none",
@@ -77,6 +85,7 @@ const ModalMenu = ({ open, handleClose, pages }) => {
           >
             <Link
               to="/favorites"
+              onClick={handleClose}
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -114,6 +123,7 @@ const ModalMenu = ({ open, handleClose, pages }) => {
           <Button sx={{}}>
             <Link
               to="/cart"
+              onClick={handleClose}
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -155,45 +165,70 @@ const ModalMenu = ({ open, handleClose, pages }) => {
             rowGap: "10px",
           }}
         >
-          <Link
-            to="/login"
-            style={{
-              background: "linear-gradient( #6847F5, #A95BF3)",
-              color: "#f2f2f2",
-              border: "none",
-              padding: "10px 30px",
-              fontSize: "19px",
-              fontWeight: "500",
-              transition: "0.5s",
-              borderRadius: "5px",
-              textDecoration: "none",
-            }}
-          >
-            Вход
-          </Link>
-          <Link
-            to="/register"
-            style={{
-              background: "linear-gradient( #6847F5, #A95BF3)",
-              color: "#f2f2f2",
-              border: "none",
-              padding: "10px 30px",
-              fontSize: "19px",
-              fontWeight: "500",
-              transition: "0.5s",
-              borderRadius: "5px",
-              textDecoration: "none",
-              "&:hover": {
+          {isLoggedIn ? (
+            <Link
+              onClick={() => {
+                logout();
+                handleClose();
+              }}
+              to="/login"
+              style={{
+                background: "linear-gradient( #6847F5, #A95BF3)",
+                color: "#f2f2f2",
+                border: "none",
+                padding: "10px 30px",
+                fontSize: "19px",
+                fontWeight: "500",
                 transition: "0.5s",
-                background: "linear-gradient(#A95BF3,#6847F5)",
-              },
-            }}
-          >
-            Регистрация
-          </Link>
+                borderRadius: "5px",
+                textDecoration: "none",
+              }}
+            >
+              Выход
+            </Link>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                onClick={handleClose}
+                style={{
+                  background: "linear-gradient( #6847F5, #A95BF3)",
+                  color: "#f2f2f2",
+                  border: "none",
+                  padding: "10px 30px",
+                  fontSize: "19px",
+                  fontWeight: "500",
+                  transition: "0.5s",
+                  borderRadius: "5px",
+                  textDecoration: "none",
+                }}
+              >
+                Вход
+              </Link>
+              <Link
+                to="/register"
+                onClick={handleClose}
+                style={{
+                  background: "linear-gradient( #6847F5, #A95BF3)",
+                  color: "#f2f2f2",
+                  border: "none",
+                  padding: "10px 30px",
+                  fontSize: "19px",
+                  fontWeight: "500",
+                  transition: "0.5s",
+                  borderRadius: "5px",
+                  textDecoration: "none",
+                  "&:hover": {
+                    transition: "0.5s",
+                    background: "linear-gradient(#A95BF3,#6847F5)",
+                  },
+                }}
+              >
+                Регистрация
+              </Link>
+            </>
+          )}
         </Grid>
-
-        
       </Box>
     </Modal>
   );
