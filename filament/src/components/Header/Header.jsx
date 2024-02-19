@@ -1,19 +1,19 @@
-import { Button, Grid } from "@mui/material";
-import { Link, useLocation } from "react-router-dom";
-import ModalMenu from "./ModalMenu/ModalMenu";
-import { useEffect, useState } from "react";
-import { useAuth } from "../AuthProvider/AuthProvider";
+import { Button, Grid } from '@mui/material';
+import { Link, useLocation } from 'react-router-dom';
+import ModalMenu from './ModalMenu/ModalMenu';
+import { useEffect, useState } from 'react';
+import { useAuth } from '../AuthProvider/AuthProvider';
 
 const Header = () => {
   const location = useLocation();
   const pages = [
-    { link: "/", text: "Главная" },
-    { link: "/products", text: "Продукты" },
-    { link: "/categories", text: "Категории" },
-    { link: "/shares", text: "Акции" },
-    { link: "/aboutcompany", text: "О компании" },
-    { link: "/contact", text: "Сотрудничество" },
-    { link: "/gallery", text: "Фотогаллерея" },
+    { link: '/', text: 'Главная' },
+    { link: '/products', text: 'Продукты' },
+    { link: '/categories', text: 'Категории' },
+    { link: '/shares', text: 'Акции' },
+    { link: '/aboutcompany', text: 'О компании' },
+    { link: '/contact', text: 'Сотрудничество' },
+    // { link: "/gallery", text: "Фотогаллерея" },
   ];
   const { isLoggedIn, logout } = useAuth();
 
@@ -32,10 +32,10 @@ const Header = () => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
   return (
@@ -51,18 +51,18 @@ const Header = () => {
         <Grid sx={showModalMenu ? styles.sticky : {}}>
           <Grid
             sx={{
-              maxWidth: "208px",
-              width: "100%",
-              transition: "0.5s", // Добавляем плавный переход
-              overflow: showModalMenu ? "hidden" : "auto", // Скрываем содержимое, если показывается модальное меню
-              maxHeight: showModalMenu ? "0" : "100%", // Устанавливаем максимальную высоту в 0, чтобы скрыть содержимое
+              maxWidth: '208px',
+              width: '100%',
+              transition: '0.5s', // Добавляем плавный переход
+              overflow: showModalMenu ? 'hidden' : 'auto', // Скрываем содержимое, если показывается модальное меню
+              maxHeight: showModalMenu ? '0' : '100%', // Устанавливаем максимальную высоту в 0, чтобы скрыть содержимое
             }}
           >
             <img
               src="./icon/logo.svg"
               alt="Logo"
               style={{
-                width: "100%",
+                width: '100%',
               }}
             />
           </Grid>
@@ -71,9 +71,9 @@ const Header = () => {
             <Button
               onClick={handleOpen}
               sx={{
-                transition: "max-height 0.5s", // Добавляем плавный переход
-                overflow: showModalMenu ? "hidden" : "auto", // Скрываем содержимое, если показывается модальное меню
-                maxHeight: showModalMenu ? "0" : "100%", // Устанавливаем максимальную высоту в 0, чтобы скрыть содержимое
+                transition: 'max-height 0.5s', // Добавляем плавный переход
+                overflow: showModalMenu ? 'hidden' : 'auto', // Скрываем содержимое, если показывается модальное меню
+                maxHeight: showModalMenu ? '0' : '100%', // Устанавливаем максимальную высоту в 0, чтобы скрыть содержимое
               }}
             >
               <img src="./icon/menu_white.svg" alt="" />
@@ -84,36 +84,36 @@ const Header = () => {
         <Grid sx={styles.header}>
           <Grid
             sx={{
-              maxWidth: "208px",
-              width: "100%",
+              maxWidth: '208px',
+              width: '100%',
             }}
           >
             <img
               src="./icon/logo.svg"
               alt="Logo"
               style={{
-                width: "100%",
+                width: '100%',
               }}
             />
           </Grid>
 
           <Grid
             sx={{
-              "@media(max-width:1200px)": {
-                display: "none",
+              '@media(max-width:1200px)': {
+                display: 'none',
               },
             }}
           >
             <nav>
               <ul
                 style={{
-                  marginTop: "20px",
-                  display: "flex",
-                  columnGap: "30px",
-                  rowGap: "15px",
-                  justifyContent: "center",
-                  flexWrap: "wrap",
-                  listStyle: "none",
+                  marginTop: '20px',
+                  display: 'flex',
+                  columnGap: '30px',
+                  rowGap: '15px',
+                  justifyContent: 'center',
+                  flexWrap: 'wrap',
+                  listStyle: 'none',
                 }}
               >
                 {pages.map((page, index) => (
@@ -121,9 +121,9 @@ const Header = () => {
                     <Link
                       to={page.link}
                       style={{
-                        color: "#fff",
-                        textDecoration: "none",
-                        fontSize: "19px",
+                        color: '#fff',
+                        textDecoration: 'none',
+                        fontSize: '19px',
                       }}
                     >
                       {page.text}
@@ -135,41 +135,41 @@ const Header = () => {
           </Grid>
           <Grid
             sx={{
-              display: "flex",
-              columnGap: "20px",
-              rowGap: "20px",
-              flexDirection: "column",
-              "@media(max-width:1200px)": {
-                display: "none",
+              display: 'flex',
+              columnGap: '20px',
+              rowGap: '20px',
+              flexDirection: 'column',
+              '@media(max-width:1200px)': {
+                display: 'none',
               },
             }}
           >
-            <Grid sx={{ display: "flex", columnGap: "20px" }}>
+            <Grid sx={{ display: 'flex', columnGap: '20px' }}>
               {isLoggedIn ? (
                 <>
                   <Button
                     onClick={logout}
                     sx={{
-                      background: "linear-gradient( #6847F5, #A95BF3)",
-                      padding: "0",
-                      fontSize: "19px",
-                      fontWeight: "500",
-                      transition: "0.5s",
-                      border: "1px solid #04040c",
+                      background: 'linear-gradient( #6847F5, #A95BF3)',
+                      padding: '0',
+                      fontSize: '19px',
+                      fontWeight: '500',
+                      transition: '0.5s',
+                      border: '1px solid #04040c',
 
-                      "&:hover": {
-                        border: "1px solid #A95BF3",
+                      '&:hover': {
+                        border: '1px solid #A95BF3',
 
-                        background: "#04040c",
+                        background: '#04040c',
                       },
                     }}
                   >
                     <Link
                       to="/login"
                       style={{
-                        textDecoration: "none",
-                        padding: "17px 50px",
-                        color: "#f2f2f2",
+                        textDecoration: 'none',
+                        padding: '17px 50px',
+                        color: '#f2f2f2',
                       }}
                     >
                       Выход
@@ -180,26 +180,26 @@ const Header = () => {
                 <>
                   <Button
                     sx={{
-                      background: "linear-gradient( #6847F5, #A95BF3)",
-                      padding: "0",
-                      fontSize: "19px",
-                      fontWeight: "500",
-                      transition: "0.5s",
-                      border: "1px solid #04040c",
+                      background: 'linear-gradient( #6847F5, #A95BF3)',
+                      padding: '0',
+                      fontSize: '19px',
+                      fontWeight: '500',
+                      transition: '0.5s',
+                      border: '1px solid #04040c',
 
-                      "&:hover": {
-                        border: "1px solid #A95BF3",
+                      '&:hover': {
+                        border: '1px solid #A95BF3',
 
-                        background: "#04040c",
+                        background: '#04040c',
                       },
                     }}
                   >
                     <Link
                       to="/login"
                       style={{
-                        textDecoration: "none",
-                        padding: "17px 50px",
-                        color: "#f2f2f2",
+                        textDecoration: 'none',
+                        padding: '17px 50px',
+                        color: '#f2f2f2',
                       }}
                     >
                       Вход
@@ -208,23 +208,23 @@ const Header = () => {
 
                   <Button
                     sx={{
-                      border: "1px solid #A95BF3",
-                      fontSize: "19px",
-                      fontWeight: "500",
-                      transition: "0.5s",
-                      padding: "0",
+                      border: '1px solid #A95BF3',
+                      fontSize: '19px',
+                      fontWeight: '500',
+                      transition: '0.5s',
+                      padding: '0',
 
-                      "&:hover": {
-                        background: "#A95BF3",
+                      '&:hover': {
+                        background: '#A95BF3',
                       },
                     }}
                   >
                     <Link
                       to="/register"
                       style={{
-                        padding: "17px 50px",
-                        color: "#f2f2f2",
-                        textDecoration: "none",
+                        padding: '17px 50px',
+                        color: '#f2f2f2',
+                        textDecoration: 'none',
                       }}
                     >
                       Регистрация
@@ -236,31 +236,31 @@ const Header = () => {
 
             <Grid
               sx={{
-                display: "flex",
-                columnGap: "20px",
-                justifyContent: "flex-end",
+                display: 'flex',
+                columnGap: '20px',
+                justifyContent: 'flex-end',
               }}
             >
               <Button sx={{}}>
                 <Link
                   to="/favorites"
                   style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    color: "#FFF",
-                    fontSize: "19px",
-                    textDecoration: "none",
-                    textTransform: "none",
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    color: '#FFF',
+                    fontSize: '19px',
+                    textDecoration: 'none',
+                    textTransform: 'none',
                   }}
                 >
-                  {location.pathname == "/favorites" ? (
+                  {location.pathname == '/favorites' ? (
                     <img
                       src="./icon/favorite_black_24dp.svg"
                       alt="favorite"
                       width="50"
                       style={{
-                        cursor: "pointer",
+                        cursor: 'pointer',
                       }}
                     />
                   ) : (
@@ -269,7 +269,7 @@ const Header = () => {
                       alt="favorite"
                       width="50"
                       style={{
-                        cursor: "pointer",
+                        cursor: 'pointer',
                       }}
                     />
                   )}
@@ -281,22 +281,22 @@ const Header = () => {
                 <Link
                   to="/cart"
                   style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    color: "#FFF",
-                    fontSize: "19px",
-                    textDecoration: "none",
-                    textTransform: "none",
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    color: '#FFF',
+                    fontSize: '19px',
+                    textDecoration: 'none',
+                    textTransform: 'none',
                   }}
                 >
-                  {location.pathname == "/cart" ? (
+                  {location.pathname == '/cart' ? (
                     <img
                       src="./icon/shopping_cart_white_24dp.svg"
                       alt="favorite"
                       width="50"
                       style={{
-                        cursor: "pointer",
+                        cursor: 'pointer',
                       }}
                     />
                   ) : (
@@ -305,7 +305,7 @@ const Header = () => {
                       alt="favorite"
                       width="50"
                       style={{
-                        cursor: "pointer",
+                        cursor: 'pointer',
                       }}
                     />
                   )}
@@ -316,8 +316,8 @@ const Header = () => {
           </Grid>
           <Grid
             sx={{
-              "@media(min-width:1200px)": {
-                display: "none",
+              '@media(min-width:1200px)': {
+                display: 'none',
               },
             }}
           >
@@ -333,27 +333,27 @@ const Header = () => {
 
 const styles = {
   sticky: {
-    position: "fixed",
-    top: "0",
-    left: "0",
-    zIndex: "1000",
-    background: "#04040c",
-    width: "100%",
-    display: "flex",
-    alignItems: "flex-start",
-    justifyContent: "space-between",
-    columnGap: "20px",
-    padding: "18px 24px",
-    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-    transition: "background-color 0.5s ease-out",
+    position: 'fixed',
+    top: '0',
+    left: '0',
+    zIndex: '1000',
+    background: '#04040c',
+    width: '100%',
+    display: 'flex',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    columnGap: '20px',
+    padding: '18px 24px',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+    transition: 'background-color 0.5s ease-out',
   },
   header: {
-    width: "100%",
-    display: "flex",
-    alignItems: "flex-start",
-    justifyContent: "space-between",
-    columnGap: "20px",
-    padding: "38px 24px",
+    width: '100%',
+    display: 'flex',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    columnGap: '20px',
+    padding: '38px 24px',
   },
 };
 

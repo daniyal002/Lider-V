@@ -1,20 +1,23 @@
-# Используем базовый образ Node.js с Alpine Linux
-FROM node:20-alpine
+# Используем официальный образ Node.js в качестве базового образа
+FROM node:latest
 
-# Устанавливаем рабочую директорию в контейнере
+# Устанавливаем рабочую директорию внутри контейнера
 WORKDIR /app
 
-# Копируем зависимости и файлы package.json/yarn.lock
-COPY package*.json yarn.lock ./
+# Копируем файлы package.json и package-lock.json
+COPY package*.json ./
+
+# Удаляем package-lock.json и node_modules
+RUN rm -rf package-lock.json node_modules
 
 # Устанавливаем зависимости
-RUN yarn install
+RUN npm install
 
-# Копируем все остальные файлы проекта в контейнер
+# Копируем все файлы из текущего каталога (кроме тех, которые указаны в .dockerignore) в рабочую директорию контейнера
 COPY . .
 
 # Собираем проект с помощью Vite
-RUN yarn build
+RUN npm run build
 
-# Запускаем сервер Vite в режиме production
-CMD ["yarn", "dev"]
+# Определяем команду для запуска приложения
+CMD ["npm","run","start"]
