@@ -17,7 +17,9 @@ export const useAddProduct = () => {
       formData.append("productPrice", body.productPrice);
       formData.append("productQuantity", body.productQuantity);
       formData.append("productSize", body.productSize);
-      formData.append("productImage", body.productImage); // Здесь предполагается, что uploadedFile уже определен
+      formData.append("productImage", body.productImage);
+      formData.append("productIsFavorite", body.productIsFavorite);
+       // Здесь предполагается, что uploadedFile уже определен
       // Отправка formData на сервер и получение ответа
       return api
         .post("ProductAPI", formData, {

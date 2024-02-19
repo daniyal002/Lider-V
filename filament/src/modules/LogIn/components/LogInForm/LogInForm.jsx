@@ -115,26 +115,7 @@ const LogInForm = () => {
             columnGap: "25px",
           }}
         >
-          <Grid sx={{ display: "flex", alignItems: "center" }}>
-            <Checkbox
-              sx={{
-                color: "#A95BF3",
-              }}
-            />
-            <Typography
-              sx={{
-                color: "#fff",
-                "@media(max-width:425px)": {
-                  fontSize: "14px",
-                },
-                "@media(max-width:393px)": {
-                  fontSize: "12px",
-                },
-              }}
-            >
-              Запомнить меня
-            </Typography>
-          </Grid>
+          
           <Grid>
             <Link
               sx={{
