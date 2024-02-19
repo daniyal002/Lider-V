@@ -17,4 +17,4 @@ COPY . .
 RUN yarn build
 
 # Запускаем сервер Vite в режиме production
-CMD ["yarn", "start"]
+CMD ["yarn", "dev"]
