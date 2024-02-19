@@ -12,7 +12,6 @@ export const useRegister = () => {
       navigate("/login");
     },
   });
-  console.log(error);
 
   return { mutate, error };
 };
