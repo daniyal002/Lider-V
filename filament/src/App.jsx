@@ -2,7 +2,7 @@ import AboutCompany from './modules/AboutCompany/AboutCompany';
 import HomeScreen from './modules/HomeScreen/HomeScreen';
 import { createTheme, ThemeProvider } from '@mui/material';
 import Shares from './modules/Shares/Shares';
-import Сooperation from './modules/Сooperation/Сooperation';
+import Сooperation from './modules/Cooperation/Cooperation';
 import Contact from './modules/Contact/Contact';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LogIn from './modules/LogIn/LogIn';
