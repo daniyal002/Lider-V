@@ -60,7 +60,7 @@ const ThirdHomeScreen = () => {
           },
         }}
       >
-        {data.map((categories) => (
+        {data?.map((categories) => (
         <ProuductCategories
           text={categories.categoryName}
           id={categories.id}

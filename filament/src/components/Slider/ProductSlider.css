@@ -1,0 +1,20 @@
+.slick-dots {
+  bottom: -60px; /* Расположение точек */
+}
+
+.custom-dot {
+  width: 10px; /* Размер точек */
+  height: 10px;
+  background-color: #ffffff; /* Цвет неактивных точек */
+  border-radius: 50%; /* Круглая форма */
+}
+
+.slick-dots li.slick-active .custom-dot {
+  background-color: #a95bf3; /* Цвет активной точки */
+}
+
+.slick-prev.slick-arrow::before,
+.slick-next.slick-arrow::before {
+  content: "";
+  display: none;
+}
