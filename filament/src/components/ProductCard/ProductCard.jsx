@@ -152,9 +152,8 @@ const ProductCard = ({
       >
         <img
           src={
-            "./img/collection-item2.jpg"
-
-            // import.meta.env.VITE_BASE_URL_FROM_IMAGE + productImage ??
+            // "./img/collection-item2.jpg"
+            import.meta.env.VITE_BASE_URL_FROM_IMAGE + productImage 
           }
           alt=""
           style={{

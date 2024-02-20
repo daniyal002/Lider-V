@@ -7,17 +7,16 @@ WORKDIR /app
 # Копируем файлы package.json и package-lock.json
 COPY package*.json ./
 
-# Удаляем package-lock.json и node_modules
-RUN rm -rf package-lock.json node_modules
-
-# Устанавливаем зависимости
+# Устанавливаем зависимости с учетом кэша
 RUN npm install
 
-# Копируем все файлы из текущего каталога (кроме тех, которые указаны в .dockerignore) в рабочую директорию контейнера
+# Копируем только необходимые файлы
 COPY . .
 
 # Собираем проект с помощью Vite
 RUN npm run build
 
+EXPOSE 80
+
 # Определяем команду для запуска приложения
-CMD ["npm","run","start"]
+CMD ["npm", "run", "start"]
