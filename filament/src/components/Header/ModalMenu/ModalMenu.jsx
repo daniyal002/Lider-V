@@ -1,6 +1,6 @@
-import { Box, Button, Grid, Modal } from "@mui/material";
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Box, Button, Grid, Modal } from '@mui/material';
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const ModalMenu = ({ open, handleClose, pages, logout, isLoggedIn }) => {
   const location = useLocation();
@@ -14,26 +14,26 @@ const ModalMenu = ({ open, handleClose, pages, logout, isLoggedIn }) => {
     >
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          padding: "38px 24px",
-          backgroundColor: "#04040c",
-          maxWidth: "300px",
-          height: "100%",
-          rowGap: "20px",
-          overflowY: "scroll",
-          "&::-webkit-scrollbar": {
-            width: "0px", // Скрыть ширину скроллбара
-            background: "transparent", // Сделать скроллбар прозрачным
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          padding: '38px 24px',
+          backgroundColor: '#04040c',
+          maxWidth: '300px',
+          height: '100%',
+          rowGap: '20px',
+          overflowY: 'scroll',
+          '&::-webkit-scrollbar': {
+            width: '0px', // Скрыть ширину скроллбара
+            background: 'transparent', // Сделать скроллбар прозрачным
           },
-          "&::-webkit-scrollbar-thumb": {
-            background: "transparent", // Сделать панель скроллбара прозрачной
+          '&::-webkit-scrollbar-thumb': {
+            background: 'transparent', // Сделать панель скроллбара прозрачной
           },
         }}
       >
         <Grid
-          sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}
+          sx={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}
         >
           <Button onClick={handleClose}>
             <img src="./icon/close_black.svg" alt="close" />
@@ -43,12 +43,12 @@ const ModalMenu = ({ open, handleClose, pages, logout, isLoggedIn }) => {
           <nav>
             <ul
               style={{
-                display: "flex",
-                flexDirection: "column",
-                rowGap: "15px",
-                justifyContent: "center",
-                flexWrap: "wrap",
-                listStyle: "none",
+                display: 'flex',
+                flexDirection: 'column',
+                rowGap: '15px',
+                justifyContent: 'center',
+                flexWrap: 'wrap',
+                listStyle: 'none',
               }}
             >
               {pages.map((page, index) => (
@@ -57,9 +57,10 @@ const ModalMenu = ({ open, handleClose, pages, logout, isLoggedIn }) => {
                     to={page.link}
                     onClick={handleClose}
                     style={{
-                      color: "#fff",
-                      textDecoration: "none",
-                      fontSize: "19px",
+                      color:
+                        location.pathname === page.link ? '#A95BF3' : '#fff',
+                      textDecoration: 'none',
+                      fontSize: '19px',
                     }}
                   >
                     {page.text}
@@ -72,39 +73,39 @@ const ModalMenu = ({ open, handleClose, pages, logout, isLoggedIn }) => {
 
         <Grid
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            columnGap: "20px",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            columnGap: '20px',
           }}
         >
           <Button
             sx={{
-              fontSize: "19px",
+              fontSize: '19px',
             }}
           >
             <Link
               to="/favorites"
               onClick={handleClose}
               style={{
-                display: "flex",
-                alignItems: "center",
-                columnGap: "5px",
+                display: 'flex',
+                alignItems: 'center',
+                columnGap: '5px',
 
-                color: "#fff",
-                fontSize: "19px",
-                textDecoration: "none",
-                textTransform: "none",
+                color: '#fff',
+                fontSize: '19px',
+                textDecoration: 'none',
+                textTransform: 'none',
               }}
             >
               Избранное
-              {location.pathname == "/favorites" ? (
+              {location.pathname == '/favorites' ? (
                 <img
                   src="./icon/favorite_black_24dp.svg"
                   alt="favorite"
                   width="50"
                   style={{
-                    cursor: "pointer",
+                    cursor: 'pointer',
                   }}
                 />
               ) : (
@@ -113,7 +114,7 @@ const ModalMenu = ({ open, handleClose, pages, logout, isLoggedIn }) => {
                   alt="favorite"
                   width="50"
                   style={{
-                    cursor: "pointer",
+                    cursor: 'pointer',
                   }}
                 />
               )}
@@ -125,23 +126,23 @@ const ModalMenu = ({ open, handleClose, pages, logout, isLoggedIn }) => {
               to="/cart"
               onClick={handleClose}
               style={{
-                display: "flex",
-                alignItems: "center",
-                columnGap: "30px",
-                color: "#fff",
-                fontSize: "19px",
-                textDecoration: "none",
-                textTransform: "none",
+                display: 'flex',
+                alignItems: 'center',
+                columnGap: '30px',
+                color: '#fff',
+                fontSize: '19px',
+                textDecoration: 'none',
+                textTransform: 'none',
               }}
             >
               Корзина
-              {location.pathname == "/favorites" ? (
+              {location.pathname == '/favorites' ? (
                 <img
                   src="./icon/shopping_cart_white_24dp.svg"
                   alt="favorite"
                   width="50"
                   style={{
-                    cursor: "pointer",
+                    cursor: 'pointer',
                   }}
                 />
               ) : (
@@ -150,7 +151,7 @@ const ModalMenu = ({ open, handleClose, pages, logout, isLoggedIn }) => {
                   alt="favorite"
                   width="50"
                   style={{
-                    cursor: "pointer",
+                    cursor: 'pointer',
                   }}
                 />
               )}
@@ -160,9 +161,9 @@ const ModalMenu = ({ open, handleClose, pages, logout, isLoggedIn }) => {
 
         <Grid
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            rowGap: "10px",
+            display: 'flex',
+            flexDirection: 'column',
+            rowGap: '10px',
           }}
         >
           {isLoggedIn ? (
@@ -173,15 +174,15 @@ const ModalMenu = ({ open, handleClose, pages, logout, isLoggedIn }) => {
               }}
               to="/login"
               style={{
-                background: "linear-gradient( #6847F5, #A95BF3)",
-                color: "#f2f2f2",
-                border: "none",
-                padding: "10px 30px",
-                fontSize: "19px",
-                fontWeight: "500",
-                transition: "0.5s",
-                borderRadius: "5px",
-                textDecoration: "none",
+                background: 'linear-gradient( #6847F5, #A95BF3)',
+                color: '#f2f2f2',
+                border: 'none',
+                padding: '10px 30px',
+                fontSize: '19px',
+                fontWeight: '500',
+                transition: '0.5s',
+                borderRadius: '5px',
+                textDecoration: 'none',
               }}
             >
               Выход
@@ -192,15 +193,15 @@ const ModalMenu = ({ open, handleClose, pages, logout, isLoggedIn }) => {
                 to="/login"
                 onClick={handleClose}
                 style={{
-                  background: "linear-gradient( #6847F5, #A95BF3)",
-                  color: "#f2f2f2",
-                  border: "none",
-                  padding: "10px 30px",
-                  fontSize: "19px",
-                  fontWeight: "500",
-                  transition: "0.5s",
-                  borderRadius: "5px",
-                  textDecoration: "none",
+                  background: 'linear-gradient( #6847F5, #A95BF3)',
+                  color: '#f2f2f2',
+                  border: 'none',
+                  padding: '10px 30px',
+                  fontSize: '19px',
+                  fontWeight: '500',
+                  transition: '0.5s',
+                  borderRadius: '5px',
+                  textDecoration: 'none',
                 }}
               >
                 Вход
@@ -209,18 +210,18 @@ const ModalMenu = ({ open, handleClose, pages, logout, isLoggedIn }) => {
                 to="/register"
                 onClick={handleClose}
                 style={{
-                  background: "linear-gradient( #6847F5, #A95BF3)",
-                  color: "#f2f2f2",
-                  border: "none",
-                  padding: "10px 30px",
-                  fontSize: "19px",
-                  fontWeight: "500",
-                  transition: "0.5s",
-                  borderRadius: "5px",
-                  textDecoration: "none",
-                  "&:hover": {
-                    transition: "0.5s",
-                    background: "linear-gradient(#A95BF3,#6847F5)",
+                  background: 'linear-gradient( #6847F5, #A95BF3)',
+                  color: '#f2f2f2',
+                  border: 'none',
+                  padding: '10px 30px',
+                  fontSize: '19px',
+                  fontWeight: '500',
+                  transition: '0.5s',
+                  borderRadius: '5px',
+                  textDecoration: 'none',
+                  '&:hover': {
+                    transition: '0.5s',
+                    background: 'linear-gradient(#A95BF3,#6847F5)',
                   },
                 }}
               >
