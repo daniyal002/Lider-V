@@ -7,7 +7,7 @@ export const useLogin = () => {
   const { setAuthToken } = useAuthToken();
   const api = baseApi();
 
-  const { mutate, error } = useMutation({
+  const { mutate, error,isSuccess } = useMutation({
     mutationFn: async (body) =>
       api.post("AccountAPI/Login", body).then((response) => {
         return response.data;
@@ -22,5 +22,5 @@ export const useLogin = () => {
     },
   });
 
-  return { mutate, error };
+  return { mutate, error,isSuccess };
 };

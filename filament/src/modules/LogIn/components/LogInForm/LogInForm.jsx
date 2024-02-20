@@ -7,13 +7,13 @@ import {
   Link,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useLogin } from "../../hook/useLogin";
 import { useAuth } from "../../../../components/AuthProvider/AuthProvider";
 
 const LogInForm = () => {
-  const { mutate, error } = useLogin();
+  const { mutate, error, isSuccess } = useLogin();
   const { register, handleSubmit } = useForm();
   const { login } = useAuth();
   const auth = (body) => {
@@ -32,8 +32,13 @@ const LogInForm = () => {
       };
     }
     mutate(newBody);
-    login();
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      login();
+    }
+  }, [isSuccess]);
   return (
     <Grid>
       <form
@@ -115,7 +120,6 @@ const LogInForm = () => {
             columnGap: "25px",
           }}
         >
-          
           <Grid>
             <Link
               sx={{
@@ -168,7 +172,7 @@ const LogInForm = () => {
               border: "1px solid #ff2400",
             }}
           >
-            {error.response.data.result}
+            {error.response.data?.result}
           </Alert>
         )}
       </form>

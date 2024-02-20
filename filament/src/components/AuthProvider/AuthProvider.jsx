@@ -9,9 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(!!getAuthToken());
 
   const login = () => {
-    if (getAuthToken()) {
-      setIsLoggedIn(true);
-    }
+    setIsLoggedIn(true);
   };
 
   const logout = () => {
