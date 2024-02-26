@@ -1,16 +1,16 @@
 // AuthContext.js
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { useAuthToken } from '../../helper/baseApi';
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { useAuthToken } from "../../helper/baseApi";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const { getAuthToken, deleteAuthToken } = useAuthToken();
+  const { getAuthToken, deleteAuthToken, setToken } = useAuthToken();
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Изначально пользователь не авторизован
 
   useEffect(() => {
     // Проверяем токен при монтировании компонента
-    if (getAuthToken() !== '') {
+    if (getAuthToken() !== "") {
       setIsLoggedIn(true);
     }
   }, [getAuthToken]); // Зависимость от функции getAuthToken
@@ -19,11 +19,13 @@ export const AuthProvider = ({ children }) => {
     // Функция login больше не проверяет токен, так как это делается в useEffect
     // Она просто устанавливает флаг isLoggedIn в true
     setIsLoggedIn(true);
+    setToken(getAuthToken());
   };
 
   const logout = () => {
     deleteAuthToken();
     setIsLoggedIn(false);
+    setToken("");
   };
 
   return (

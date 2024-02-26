@@ -15,7 +15,7 @@ export const useAuthToken = () => {
 
   const deleteAuthToken = () => Cookies.remove("authToken");
 
-  return { setAuthToken, getAuthToken, deleteAuthToken };
+  return { setAuthToken, getAuthToken, deleteAuthToken, setToken };
 };
 
 export const baseApi = () => {
