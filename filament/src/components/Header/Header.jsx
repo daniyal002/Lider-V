@@ -178,6 +178,34 @@ const Header = () => {
                     Выход
                   </Link>
                 </Button>
+
+                <Button
+                  sx={{
+                    background: 'linear-gradient( #6847F5, #A95BF3)',
+                    padding: '0',
+                    fontSize: '19px',
+                    fontWeight: '500',
+                    transition: '0.5s',
+                    border: '1px solid #04040c',
+
+                    '&:hover': {
+                      border: '1px solid #A95BF3',
+
+                      background: '#04040c',
+                    },
+                  }}
+                >
+                  <Link
+                    to="/profile"
+                    style={{
+                      textDecoration: 'none',
+                      padding: '17px 50px',
+                      color: '#f2f2f2',
+                    }}
+                  >
+                    Профиль
+                  </Link>
+                </Button>
               </>
             ) : (
               <>

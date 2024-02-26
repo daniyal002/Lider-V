@@ -16,6 +16,7 @@ import Cart from './modules/Cart/Cart';
 import Categories from './modules/Categories/Categories';
 import { AuthProvider } from './components/AuthProvider/AuthProvider';
 import Order from './modules/Order/Order';
+import Profile from './modules/Profile/Profile';
 
 const App = () => {
   const theme = createTheme({
@@ -43,6 +44,7 @@ const App = () => {
               <Route path="/favorites" element={<Favourites />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/order" element={<Order />} />
+              <Route path="/profile" element={<Profile/>} />
             </Routes>
           </main>
           <Footer />
