@@ -1,13 +1,12 @@
 import { Button, Grid, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { useResetPassword } from "../../hook/useResetPassword";
 
 const ProfileDetail = ({ userFirstName, userLastName, email, userName }) => {
   const { mutate } = useResetPassword();
-
-  const resetPassword = () =>{
-    mutate({ email: email })
-  }
+  const resetPassword = () => {
+    mutate({ email: email });
+  };
 
   return (
     <Grid

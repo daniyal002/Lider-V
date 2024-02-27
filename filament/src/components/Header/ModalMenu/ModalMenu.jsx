@@ -167,6 +167,7 @@ const ModalMenu = ({ open, handleClose, pages, logout, isLoggedIn }) => {
           }}
         >
           {isLoggedIn ? (
+            <>
             <Link
               onClick={() => {
                 logout();
@@ -187,6 +188,27 @@ const ModalMenu = ({ open, handleClose, pages, logout, isLoggedIn }) => {
             >
               Выход
             </Link>
+            <Link
+            onClick={() => {
+              
+              handleClose();
+            }}
+            to="/profile"
+            style={{
+              background: 'linear-gradient( #6847F5, #A95BF3)',
+              color: '#f2f2f2',
+              border: 'none',
+              padding: '10px 30px',
+              fontSize: '19px',
+              fontWeight: '500',
+              transition: '0.5s',
+              borderRadius: '5px',
+              textDecoration: 'none',
+            }}
+          >
+            Профиль
+          </Link>
+          </>
           ) : (
             <>
               <Link
