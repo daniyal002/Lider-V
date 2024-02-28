@@ -1,8 +1,18 @@
 import { Button, Grid, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useResetPassword } from "../../hook/useResetPassword";
+import ModalProfileLoginUpdate from "../ProfileLoginUpdate/ModalProfileLoginUpdate";
+import ModalProfileNameUpdate from "../ProfileNameUpdate/ModalProfileNameUpdate";
 
 const ProfileDetail = ({ userFirstName, userLastName, email, userName }) => {
+  const [openChangeLogin, setOpenChangeLogin] = useState(false);
+  const handleOpenChangeLogin = () => setOpenChangeLogin(true);
+  const handleCloseChangeLogin = () => setOpenChangeLogin(false);
+
+  const [openChangeName, setOpenChangeName] = useState(false);
+  const handleOpenChangeName = () => setOpenChangeName(true);
+  const handleCloseChangeName = () => setOpenChangeName(false);
+
   const { mutate } = useResetPassword();
   const resetPassword = () => {
     mutate({ email: email });
@@ -12,6 +22,16 @@ const ProfileDetail = ({ userFirstName, userLastName, email, userName }) => {
     <Grid
       sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
+      <ModalProfileLoginUpdate
+        handleClose={handleCloseChangeLogin}
+        open={openChangeLogin}
+      />
+
+      <ModalProfileNameUpdate
+        handleClose={handleCloseChangeName}
+        open={openChangeName}
+      />
+
       <Grid sx={{ maxWidth: "140px" }}>
         <img
           src="./img/clients-item-lg1.jpg"
@@ -71,7 +91,46 @@ const ProfileDetail = ({ userFirstName, userLastName, email, userName }) => {
           }}
         >
           <Button
-            data-name="Редактировать"
+            data-name="Сменить логин"
+            onClick={handleOpenChangeLogin}
+            sx={{
+              background: "rgba(134, 155, 223, 0.14) !important",
+              border: "2px solid rgba(83, 84, 136, 0.4)",
+              borderRadius: "50%",
+              transition: "0.5s",
+              "&:hover": {
+                boxShadow: "0px 4px 30px 0px rgba(255, 255, 255, 0.08)",
+              },
+            }}
+          >
+            <img
+              src="./icon/face_5_white_36dp.svg"
+              alt="edit"
+              title="Редактировать"
+              width="50"
+            />
+          </Button>
+          <Typography
+            sx={{
+              color: "#fff",
+              fontSize: "14px",
+            }}
+          >
+            Сменить логин
+          </Typography>
+        </Grid>
+
+        <Grid
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            rowGap: "10px",
+          }}
+        >
+          <Button
+            onClick={handleOpenChangeName}
+            data-name="Сменить имя"
             sx={{
               background: "rgba(134, 155, 223, 0.14) !important",
               border: "2px solid rgba(83, 84, 136, 0.4)",
@@ -95,9 +154,10 @@ const ProfileDetail = ({ userFirstName, userLastName, email, userName }) => {
               fontSize: "14px",
             }}
           >
-            Редактировать
+            Сменить имя
           </Typography>
         </Grid>
+
         <Grid
           sx={{
             display: "flex",
