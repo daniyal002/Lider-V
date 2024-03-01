@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { baseApi, useAuthToken } from "../../../helper/baseApi";
 import { useNavigate } from "react-router-dom";
 
-export const useLogin = () => {
+export const useLogin = (login) => {
   const navigate = useNavigate();
   const { setAuthToken } = useAuthToken();
   const api = baseApi();
@@ -17,6 +17,7 @@ export const useLogin = () => {
       if (data && data.result) {
         setAuthToken(data.result); // Сохраняем токен
         navigate("/");
+        login();
         // Устанавливаем токен после успешного входа
       }
     },

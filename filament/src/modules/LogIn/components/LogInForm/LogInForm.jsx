@@ -5,9 +5,9 @@ import { useAuth } from "../../../../components/AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
 
 const LogInForm = () => {
-  const { mutate, error, isSuccess } = useLogin();
-  const { register, handleSubmit } = useForm();
   const { login } = useAuth();
+  const { mutate, error, isSuccess } = useLogin(login);
+  const { register, handleSubmit } = useForm();
   const auth = (body) => {
     let newBody;
     if (body.loginNameEmail.includes("@")) {
@@ -129,7 +129,7 @@ const LogInForm = () => {
 
         <Grid>
           <Button
-            onClick={() => login()}
+            // onClick={() => login()}
             type="submit"
             sx={{
               background: "linear-gradient( #6847F5, #A95BF3)",
