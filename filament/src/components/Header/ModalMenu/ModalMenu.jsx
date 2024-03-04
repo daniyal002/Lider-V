@@ -1,6 +1,11 @@
 import { Box, Button, Grid, Modal } from '@mui/material';
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import favoriteBorderIcon from "../../../assets/favorite_border_black_24dp.svg";
+import favoriteIcon from "../../../assets/favorite_black_24dp.svg";
+import shoppingCartIcon from "../../../assets/shopping_cart_white_24dp.svg";
+import shoppingCartBorderIcon from "../../../assets/shopping_cart_border_white_24dp.svg"
+import closeIcon from "../../../assets/close_black.svg"
 
 const ModalMenu = ({ open, handleClose, pages, logout, isLoggedIn }) => {
   const location = useLocation();
@@ -36,7 +41,7 @@ const ModalMenu = ({ open, handleClose, pages, logout, isLoggedIn }) => {
           sx={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}
         >
           <Button onClick={handleClose}>
-            <img src="./icon/close_black.svg" alt="close" />
+            <img src={closeIcon} alt="close" />
           </Button>
         </Grid>
         <Grid>
@@ -101,7 +106,7 @@ const ModalMenu = ({ open, handleClose, pages, logout, isLoggedIn }) => {
               Избранное
               {location.pathname == '/favorites' ? (
                 <img
-                  src="./icon/favorite_black_24dp.svg"
+                  src={favoriteIcon}
                   alt="favorite"
                   width="50"
                   style={{
@@ -110,7 +115,7 @@ const ModalMenu = ({ open, handleClose, pages, logout, isLoggedIn }) => {
                 />
               ) : (
                 <img
-                  src="./icon/favorite_border_black_24dp.svg"
+                  src={favoriteBorderIcon}
                   alt="favorite"
                   width="50"
                   style={{
@@ -138,7 +143,7 @@ const ModalMenu = ({ open, handleClose, pages, logout, isLoggedIn }) => {
               Корзина
               {location.pathname == '/favorites' ? (
                 <img
-                  src="./icon/shopping_cart_white_24dp.svg"
+                  src={shoppingCartIcon}
                   alt="favorite"
                   width="50"
                   style={{
@@ -147,7 +152,7 @@ const ModalMenu = ({ open, handleClose, pages, logout, isLoggedIn }) => {
                 />
               ) : (
                 <img
-                  src="./icon/shopping_cart_border_white_24dp.svg"
+                  src={shoppingCartBorderIcon}
                   alt="favorite"
                   width="50"
                   style={{

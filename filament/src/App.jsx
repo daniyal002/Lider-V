@@ -19,6 +19,9 @@ import Order from "./modules/Order/Order";
 import Profile from "./modules/Profile/Profile";
 import ResetPassword from "./modules/ResetPassword/ResetPassword";
 import ForgotYourPassword from "./modules/ForgotYourPassword/ForgotYourPassword";
+import PaymentInfo from "./modules/PaymentInfo/PaymentInfo";
+import OrderDescription from "./modules/PaymentInfo/components/OrderDescription/OrderDescription";
+import ReturnDescription from "./modules/PaymentInfo/components/ReturnDescription/ReturnDescription";
 
 const App = () => {
   const theme = createTheme({
@@ -52,6 +55,13 @@ const App = () => {
                 path="/forgotyourpassword"
                 element={<ForgotYourPassword />}
               />
+              <Route path="/paymentinfo/" element={<PaymentInfo />}>
+                <Route path="orderdescription" element={<OrderDescription />} />
+                <Route
+                  path="returndescription"
+                  element={<ReturnDescription />}
+                />
+              </Route>
             </Routes>
           </main>
           <Footer />

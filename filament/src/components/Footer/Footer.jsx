@@ -1,6 +1,7 @@
 import { Grid, Typography } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../../assets/logo.svg";
 
 const Footer = () => {
   return (
@@ -26,7 +27,7 @@ const Footer = () => {
         }}
       >
         <img
-          src="./icon/logo.svg"
+          src={logo}
           alt="Logo"
           style={{
             width: "100%",
@@ -122,6 +123,19 @@ const Footer = () => {
               Сотрудничество
             </Link>
           </Typography>
+
+          <Typography>
+            <Link
+              to="/paymentinfo"
+              style={{
+                color: "#fff",
+                textDecoration: "none",
+                fontSize: "19px",
+              }}
+            >
+              Информация об оплате
+            </Link>
+          </Typography>
         </Grid>
 
         <Grid sx={{ display: "flex", flexDirection: "column", rowGap: "5px" }}>
@@ -169,7 +183,7 @@ const Footer = () => {
             paddingBottom: "5px",
           }}
         >
-          © 2023 Copyright TemplatesJungle. All rights reserved
+          © 2024 Copyright Лидер-В
         </Typography>
       </Grid>
     </Grid>
