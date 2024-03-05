@@ -2,6 +2,7 @@ import { Grid, Typography } from "@mui/material";
 import React from "react";
 import ContactBlock from "./components/ContactBlock/ContactBlock";
 import ContactForm from "./components/ContactForm/ContactForm";
+import PhoneIcon from "../../assets/phone.svg";
 
 const Contact = () => {
   return (
@@ -38,7 +39,11 @@ const Contact = () => {
             justifyContent: "center",
           }}
         >
-          <ContactBlock />
+          <ContactBlock
+            img={PhoneIcon}
+            headerText="Телефон для звонков"
+            text="+7 (964) 004-48-53"
+          />
           <ContactBlock />
           <ContactBlock />
         </Grid>

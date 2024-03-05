@@ -1,7 +1,7 @@
 import { Grid, Typography } from "@mui/material";
 import React from "react";
 
-const ContactBlock = () => {
+const ContactBlock = ({ img, headerText, text }) => {
   return (
     <Grid
       sx={{
@@ -18,16 +18,17 @@ const ContactBlock = () => {
           width: "40%",
         },
         "@media(max-width:650px)": {
-            width: "50%",
-          },"@media(max-width:530px)": {
-            width: "70%",
-          },"@media(max-width:386px)": {
-            width: "100%",
-          },
-          
+          width: "50%",
+        },
+        "@media(max-width:530px)": {
+          width: "70%",
+        },
+        "@media(max-width:386px)": {
+          width: "100%",
+        },
       }}
     >
-      <img src="./icon/phone.svg" alt="phone" width="100" />
+      <img src={img} alt="phone" width="100" />
       <Typography
         sx={{
           fontSize: "22px",
@@ -37,7 +38,7 @@ const ContactBlock = () => {
           },
         }}
       >
-        Phone number
+        {headerText}
       </Typography>
       <Typography
         sx={{
@@ -48,18 +49,7 @@ const ContactBlock = () => {
           },
         }}
       >
-        +123 123 123 123
-      </Typography>
-      <Typography
-        sx={{
-          fontSize: "19px",
-          color: "#fff",
-          "@media(max-width:722px)": {
-            fontSize: "16px",
-          },
-        }}
-      >
-        +123 123 123 123
+        {text}
       </Typography>
     </Grid>
   );
