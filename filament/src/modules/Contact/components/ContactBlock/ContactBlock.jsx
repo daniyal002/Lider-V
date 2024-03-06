@@ -33,6 +33,7 @@ const ContactBlock = ({ img, headerText, text }) => {
         sx={{
           fontSize: "22px",
           color: "#fff",
+          textAlign: "center",
           "@media(max-width:722px)": {
             fontSize: "18px",
           },
@@ -44,6 +45,7 @@ const ContactBlock = ({ img, headerText, text }) => {
         sx={{
           fontSize: "19px",
           color: "#fff",
+          textAlign: "center",
           "@media(max-width:722px)": {
             fontSize: "16px",
           },

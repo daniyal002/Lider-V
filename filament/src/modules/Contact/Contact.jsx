@@ -3,6 +3,8 @@ import React from "react";
 import ContactBlock from "./components/ContactBlock/ContactBlock";
 import ContactForm from "./components/ContactForm/ContactForm";
 import PhoneIcon from "../../assets/phone.svg";
+import EmailIcon from "../../assets/email_white_36dp.svg";
+import AdressIcon from "../../assets/home_white_36dp.svg";
 
 const Contact = () => {
   return (
@@ -44,8 +46,16 @@ const Contact = () => {
             headerText="Телефон для звонков"
             text="+7 (964) 004-48-53"
           />
-          <ContactBlock />
-          <ContactBlock />
+          <ContactBlock
+            img={EmailIcon}
+            headerText="Почта для связи"
+            text="vagid08@mail.ru"
+          />
+          <ContactBlock
+            img={AdressIcon}
+            headerText="Адрес"
+            text="Город Махачкала, пр-кт Насрутдинова 107А"
+          />
         </Grid>
       </Grid>
 
