@@ -22,6 +22,9 @@ import ForgotYourPassword from "./modules/ForgotYourPassword/ForgotYourPassword"
 import PaymentInfo from "./modules/PaymentInfo/PaymentInfo";
 import OrderDescription from "./modules/PaymentInfo/components/OrderDescription/OrderDescription";
 import ReturnDescription from "./modules/PaymentInfo/components/ReturnDescription/ReturnDescription";
+import PaymentMethod from "./modules/PaymentMethod/PaymentMethod";
+import PaymentMethodIndividual from "./modules/PaymentMethod/components/PaymentMethodIndividual/PaymentMethodIndividual";
+import PaymentMethodBusiness from "./modules/PaymentMethod/components/PaymentMethodBusiness/PaymentMethodBusiness";
 
 const App = () => {
   const theme = createTheme({
@@ -61,6 +64,14 @@ const App = () => {
                   path="returndescription"
                   element={<ReturnDescription />}
                 />
+              </Route>
+
+              <Route path="/paymentmethod/" element={<PaymentMethod />}>
+                <Route
+                  path="individual"
+                  element={<PaymentMethodIndividual />}
+                />
+                <Route path="business" element={<PaymentMethodBusiness />} />
               </Route>
             </Routes>
           </main>

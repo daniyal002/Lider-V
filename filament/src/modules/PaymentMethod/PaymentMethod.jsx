@@ -2,7 +2,7 @@ import { Button, Grid } from "@mui/material";
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 
-const PaymentInfo = () => {
+const PaymentMethod = () => {
   return (
     <Grid
       sx={{
@@ -23,14 +23,14 @@ const PaymentInfo = () => {
         }}
       >
         <Button sx={styles.linkButton}>
-          <Link style={styles.link} to="orderdescription">
-            Как сделать заказ ?
+          <Link style={styles.link} to="individual">
+            Для физических лиц Прозрачные и удобные платежи
           </Link>
         </Button>
 
         <Button sx={styles.linkButton}>
-          <Link style={styles.link} to="returndescription">
-            Возврат товара
+          <Link style={styles.link} to="business">
+            Для юридических лиц Безопасность и особые условия
           </Link>
         </Button>
       </Grid>
@@ -59,5 +59,4 @@ const styles = {
     textDecoration: "none",
   },
 };
-
-export default PaymentInfo;
+export default PaymentMethod;

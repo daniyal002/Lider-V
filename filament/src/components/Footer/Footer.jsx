@@ -136,6 +136,18 @@ const Footer = () => {
               Информация об оплате
             </Link>
           </Typography>
+          <Typography>
+            <Link
+              to="/paymentmethod"
+              style={{
+                color: "#fff",
+                textDecoration: "none",
+                fontSize: "19px",
+              }}
+            >
+              Методы оплаты
+            </Link>
+          </Typography>
         </Grid>
 
         <Grid sx={{ display: "flex", flexDirection: "column", rowGap: "5px" }}>
