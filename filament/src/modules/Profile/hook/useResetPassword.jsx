@@ -1,9 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { baseApi } from "../../../helper/baseApi";
-import Swal from "sweetalert2";
-import "sweetalert2/dist/sweetalert2.min.css";
 
-export const useResetPassword = () => {
+export const useResetPassword = (handleOpenModalBasic) => {
   const api = baseApi();
   const { mutate, error } = useMutation({
     mutationFn: (body) =>
@@ -11,11 +9,7 @@ export const useResetPassword = () => {
         .post("AccountAPI/ResetPassword", body)
         .then((response) => response.data),
     onSuccess: () => {
-      Swal.fire({
-        title: "На вашу почту отправленно сообщение для сброса пароля",
-        icon: "success",
-        confirmButtonText: "ОК",
-      });
+      handleOpenModalBasic();
     },
   });
 

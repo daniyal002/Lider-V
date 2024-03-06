@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useResetPasswordConfirm } from "./hook/useResetPasswordConfirm";
 import { isPasswordValid } from "../../helper/ValidatePassword";
+import SuccessIcon from "../../assets/info_white_36dp.svg";
+import BasicModal from "../../components/BasicModal/BasicModal";
 
 const ResetPassword = () => {
   const { register, handleSubmit } = useForm();
@@ -12,7 +14,11 @@ const ResetPassword = () => {
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
 
-  const { mutate, error } = useResetPasswordConfirm();
+  const [openModalBasic, setOpenModalBasic] = useState(false);
+  const handleOpenModalBasic = () => setOpenModalBasic(true);
+  const handleCloseModalBasic = () => setOpenModalBasic(false);
+
+  const { mutate, error } = useResetPasswordConfirm(handleOpenModalBasic);
 
   useEffect(() => {
     if (password !== confirmPassword) {
@@ -48,6 +54,12 @@ const ResetPassword = () => {
   };
   return (
     <Grid sx={{ maxWidth: "900px", margin: "0 auto", padding: "133px 20px" }}>
+      <BasicModal
+        open={openModalBasic}
+        handleClose={handleCloseModalBasic}
+        textHeader="Ваш пароль успешно сменен"
+        IconModal={SuccessIcon}
+      />
       <form
         onSubmit={handleSubmit(resetPassword)}
         style={{ display: "flex", flexDirection: "column", rowGap: "20px" }}

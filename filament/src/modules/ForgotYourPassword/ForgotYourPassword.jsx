@@ -2,18 +2,30 @@ import { Alert, Button, Grid, Input, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useResetPassword } from "../Profile/hook/useResetPassword";
+import SuccessIcon from "../../assets/info_white_36dp.svg";
+import BasicModal from "../../components/BasicModal/BasicModal";
 
 const ForgotYourPassword = () => {
   const { register, handleSubmit } = useForm();
   const [email, setEmail] = useState("");
 
-  const { mutate, error } = useResetPassword();
+  const [openModalBasic, setOpenModalBasic] = useState(false);
+  const handleOpenModalBasic = () => setOpenModalBasic(true);
+  const handleCloseModalBasic = () => setOpenModalBasic(false);
+
+  const { mutate, error } = useResetPassword(handleOpenModalBasic);
 
   const forgotPassword = (body) => {
     mutate({ email: body.email });
   };
   return (
     <Grid sx={{ maxWidth: "600px", margin: "0 auto", padding: "133px 20px" }}>
+      <BasicModal
+        open={openModalBasic}
+        handleClose={handleCloseModalBasic}
+        textHeader="На вашу почту отправленно сообщение для сброса пароля"
+        IconModal={SuccessIcon}
+      />
       <Typography color="#fff">
         Ваша почта, которому привязан аккаунт{" "}
       </Typography>

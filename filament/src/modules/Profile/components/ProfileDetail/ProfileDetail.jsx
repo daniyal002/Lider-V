@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useResetPassword } from "../../hook/useResetPassword";
 import ModalProfileLoginUpdate from "../ProfileLoginUpdate/ModalProfileLoginUpdate";
 import ModalProfileNameUpdate from "../ProfileNameUpdate/ModalProfileNameUpdate";
+import BasicModal from "../../../../components/BasicModal/BasicModal";
+import SuccessIcon from "../../../../assets/info_white_36dp.svg";
 
 const ProfileDetail = ({ userFirstName, userLastName, email, userName }) => {
   const [openChangeLogin, setOpenChangeLogin] = useState(false);
@@ -13,7 +15,12 @@ const ProfileDetail = ({ userFirstName, userLastName, email, userName }) => {
   const handleOpenChangeName = () => setOpenChangeName(true);
   const handleCloseChangeName = () => setOpenChangeName(false);
 
-  const { mutate } = useResetPassword();
+  const [openModalBasic, setOpenModalBasic] = useState(false);
+  const handleOpenModalBasic = () => setOpenModalBasic(true);
+  const handleCloseModalBasic = () => setOpenModalBasic(false);
+
+  const { mutate } = useResetPassword(handleOpenModalBasic);
+
   const resetPassword = () => {
     mutate({ email: email });
   };
@@ -26,12 +33,17 @@ const ProfileDetail = ({ userFirstName, userLastName, email, userName }) => {
         handleClose={handleCloseChangeLogin}
         open={openChangeLogin}
       />
-
       <ModalProfileNameUpdate
         handleClose={handleCloseChangeName}
         open={openChangeName}
       />
-
+      <BasicModal
+        open={openModalBasic}
+        handleClose={handleCloseModalBasic}
+        textHeader="На вашу почту отправленно сообщение для сброса пароля"
+        IconModal={SuccessIcon}
+      />
+      ;
       <Grid sx={{ maxWidth: "140px" }}>
         <img
           src="./img/clients-item-lg1.jpg"

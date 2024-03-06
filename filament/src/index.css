@@ -16,4 +16,6 @@ a:hover {
   color: #a95bf3;
 }
 
-
+body {
+  padding-right: 0;
+}
