@@ -11,8 +11,8 @@ export const useResetPasswordConfirm = (handleOpenModalBasic) => {
         .post("AccountAPI/ResetPasswordConfirm", body)
         .then((response) => response.data),
     onSuccess: () => {
-      handleOpenModalBasic();
       navigate("/profile");
+      handleOpenModalBasic();
     },
   });
 
