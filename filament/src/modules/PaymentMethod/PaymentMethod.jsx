@@ -8,7 +8,7 @@ const PaymentMethod = () => {
       sx={{
         maxWidth: "1320px",
         margin: "0 auto",
-        padding: "100px 20px",
+        padding: "50px 20px",
         "@media(max-width:768px)": {
           padding: "50px 20px",
         },
@@ -24,13 +24,19 @@ const PaymentMethod = () => {
       >
         <Button sx={styles.linkButton}>
           <Link style={styles.link} to="individual">
-            Для физических лиц Прозрачные и удобные платежи
+            Для физических лиц <br />
+            <span style={{ fontSize: "12px" }}>
+              Прозрачные и удобные платежи
+            </span>
           </Link>
         </Button>
 
         <Button sx={styles.linkButton}>
           <Link style={styles.link} to="business">
-            Для юридических лиц Безопасность и особые условия
+            Для юридических лиц <br />{" "}
+            <span style={{ fontSize: "12px" }}>
+              Безопасность и особые условия
+            </span>
           </Link>
         </Button>
       </Grid>
@@ -45,8 +51,8 @@ const PaymentMethod = () => {
 const styles = {
   linkButton: {
     border: "1px solid #A95BF3",
-    padding: "10px",
     borderRadius: "10px",
+    padding: "0px",
     color: "#fff",
     "&:hover": {
       color: "#A95BF3",
@@ -57,6 +63,8 @@ const styles = {
     color: "#fff",
     lineStyle: "none",
     textDecoration: "none",
+    padding: "10px",
+    fontSize: "16px",
   },
 };
 export default PaymentMethod;
