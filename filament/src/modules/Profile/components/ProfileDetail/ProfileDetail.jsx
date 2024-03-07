@@ -5,6 +5,7 @@ import ModalProfileLoginUpdate from "../ProfileLoginUpdate/ModalProfileLoginUpda
 import ModalProfileNameUpdate from "../ProfileNameUpdate/ModalProfileNameUpdate";
 import BasicModal from "../../../../components/BasicModal/BasicModal";
 import SuccessIcon from "../../../../assets/info_white_36dp.svg";
+import ModalProfileEmailUpdate from "../ProfileEmailUpdate/ModalProfileEmailUpdate";
 
 const ProfileDetail = ({ userFirstName, userLastName, email, userName }) => {
   const [openChangeLogin, setOpenChangeLogin] = useState(false);
@@ -14,6 +15,10 @@ const ProfileDetail = ({ userFirstName, userLastName, email, userName }) => {
   const [openChangeName, setOpenChangeName] = useState(false);
   const handleOpenChangeName = () => setOpenChangeName(true);
   const handleCloseChangeName = () => setOpenChangeName(false);
+
+  const [openChangeEmail, setOpenChangeEmail] = useState(false);
+  const handleOpenChangeEmail = () => setOpenChangeEmail(true);
+  const handleCloseChangeEmail = () => setOpenChangeEmail(false);
 
   const [openModalBasic, setOpenModalBasic] = useState(false);
   const handleOpenModalBasic = () => setOpenModalBasic(true);
@@ -36,6 +41,10 @@ const ProfileDetail = ({ userFirstName, userLastName, email, userName }) => {
       <ModalProfileNameUpdate
         handleClose={handleCloseChangeName}
         open={openChangeName}
+      />
+      <ModalProfileEmailUpdate
+        handleClose={handleCloseChangeEmail}
+        open={openChangeEmail}
       />
       <BasicModal
         open={openModalBasic}
@@ -215,6 +224,7 @@ const ProfileDetail = ({ userFirstName, userLastName, email, userName }) => {
           }}
         >
           <Button
+            onClick={handleOpenChangeEmail}
             sx={{
               background: "rgba(134, 155, 223, 0.14) !important",
               border: "2px solid rgba(83, 84, 136, 0.4)",
