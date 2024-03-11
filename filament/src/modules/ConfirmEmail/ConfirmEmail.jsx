@@ -22,7 +22,7 @@ const ConfirmEmail = () => {
     const urlParams = new URLSearchParams(currentUrl);
 
     // Получаем значение параметра 'code' из URL
-    setEmail(urlParams.get("userEmail"));
+    setEmail(urlParams.get("newEmail"));
 
     setCode(urlParams.get("code"));
 
