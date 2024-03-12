@@ -7,7 +7,7 @@ export const useChangeEmail = (handleClose) => {
     queryClient.invalidateQueries("useGetUser");
   };
   const api = baseApi();
-  const { mutate, error } = useMutation({
+  const { mutate, error, isSuccess } = useMutation({
     mutationFn: async (body) => {
       return api
         .post(`AccountAPI/ChangeUserEmail?newEmail=${body.newEmail}`)
@@ -15,8 +15,10 @@ export const useChangeEmail = (handleClose) => {
     },
     onSuccess: () => {
       refreshData();
-      handleClose();
+      setTimeout(() => {
+        handleClose();
+      }, 3000);
     },
   });
-  return { mutate, error };
+  return { mutate, error, isSuccess };
 };

@@ -6,7 +6,7 @@ import { useChangeEmail } from "../../hook/useChangeEmail";
 const ModalProfileEmailUpdate = ({ open, handleClose }) => {
   const { register, handleSubmit } = useForm();
 
-  const { mutate, error } = useChangeEmail(handleClose);
+  const { mutate, error, isSuccess } = useChangeEmail(handleClose);
   const handleLoginUpdate = (body) => {
     mutate(body);
   };
@@ -51,7 +51,8 @@ const ModalProfileEmailUpdate = ({ open, handleClose }) => {
               flexDirection: "column",
               gap: "30px",
               justifyContent: "center",
-              alignItems: "strech",
+              alignItems: "center",
+              padding: "20px",
             }}
           >
             <Input
@@ -101,19 +102,34 @@ const ModalProfileEmailUpdate = ({ open, handleClose }) => {
             >
               Изменить почту
             </Button>
+            {isSuccess && (
+              <Alert
+                severity="success"
+                sx={{
+                  backgroundColor: "rgba(134, 155, 223, 0.14)",
+                  color: "#1eef28",
+                  border: "1px solid #1eef28",
+                  width: "90%",
+                }}
+              >
+                На вашу почту отправленно сообщение
+              </Alert>
+            )}
+
+            {error && (
+              <Alert
+                severity="error"
+                sx={{
+                  backgroundColor: "rgba(134, 155, 223, 0.14)",
+                  color: "#ff2400",
+                  border: "1px solid #ff2400",
+                  width: "90%",
+                }}
+              >
+                {error.response.data.result}
+              </Alert>
+            )}
           </Grid>
-          {error && (
-            <Alert
-              severity="error"
-              sx={{
-                backgroundColor: "rgba(134, 155, 223, 0.14)",
-                color: "#ff2400",
-                border: "1px solid #ff2400",
-              }}
-            >
-              {error.response.data.result}
-            </Alert>
-          )}
         </Grid>
       </form>
     </Modal>

@@ -42,7 +42,7 @@ const ConfirmEmail = () => {
         textHeader="Ваша почта успешно изменена"
         IconModal={SuccessIcon}
       />
-      <Typography variant="h1" color="#fff">
+      <Typography variant="h1" color="#fff" fontSize="30px">
         Страница потверждения пароля, подождите пожалуйста пока вас не перекинет
         на страницу профиля
       </Typography>
