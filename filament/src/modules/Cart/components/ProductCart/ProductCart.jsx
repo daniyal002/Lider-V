@@ -39,7 +39,6 @@ const ProductCart = () => {
           borderRadius: "10px",
           padding: "15px",
           rowGap: "10px",
-  
         }}
       >
         <Typography color="#000" variant="h5">

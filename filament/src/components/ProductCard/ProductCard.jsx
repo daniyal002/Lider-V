@@ -7,6 +7,7 @@ import { useGetProductFavorite } from "../../hook/useGetProductFavorite";
 import { useAddProductCart } from "./hook/useAddProductCart";
 import { useDeleteProduct } from "../../modules/AdminPanel/hook/useDeleteProduct";
 import { useDeleteProductCart } from "./hook/useDeleteProductCart";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({
   id,
@@ -153,7 +154,7 @@ const ProductCard = ({
         <img
           src={
             // "./img/collection-item2.jpg"
-            import.meta.env.VITE_BASE_URL_FROM_IMAGE + productImage 
+            import.meta.env.VITE_BASE_URL_FROM_IMAGE + productImage
           }
           alt=""
           style={{
@@ -446,24 +447,33 @@ const ProductCard = ({
                 </Button>
               ) : (
                 <Button
-                  onClick={handleOpenMore}
                   sx={{
                     background: "linear-gradient( #6847F5, #A95BF3)",
-                    color: "#f2f2f2",
-                    border: "none",
-                    padding: "10px 30px",
-                    fontSize: "19px",
-                    fontWeight: "500",
+
                     transition: "0.5s",
                     borderRadius: "5px",
-                    textDecoration: "none",
+                    padding: "0",
                     "&:hover": {
                       transition: "0.5s",
                       background: "linear-gradient(#A95BF3,#6847F5)",
                     },
                   }}
                 >
-                  Подробнее
+                  <Link
+                    to={`/product/${id}`}
+                    style={{
+                      color: "#f2f2f2",
+                      border: "none",
+                      fontSize: "19px",
+                      fontWeight: "500",
+                      width: "100%",
+                      listStyle: "none",
+                      padding: "10px 30px",
+                      textDecoration: "none",
+                    }}
+                  >
+                    Подробнее
+                  </Link>
                 </Button>
               )}
             </>

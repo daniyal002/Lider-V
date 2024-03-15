@@ -26,6 +26,7 @@ import PaymentMethod from "./modules/PaymentMethod/PaymentMethod";
 import PaymentMethodIndividual from "./modules/PaymentMethod/components/PaymentMethodIndividual/PaymentMethodIndividual";
 import PaymentMethodBusiness from "./modules/PaymentMethod/components/PaymentMethodBusiness/PaymentMethodBusiness";
 import ConfirmEmail from "./modules/ConfirmEmail/ConfirmEmail";
+import ProductItems from "./modules/ProductItems/ProductItems";
 
 const App = () => {
   const theme = createTheme({
@@ -56,6 +57,7 @@ const App = () => {
               <Route path="/profile" element={<Profile />} />
               <Route path="/resetpassword" element={<ResetPassword />} />
               <Route path="/confirmemail" element={<ConfirmEmail />} />
+              <Route path="/product/:id" element={<ProductItems />} />
 
               <Route
                 path="/forgotyourpassword"
