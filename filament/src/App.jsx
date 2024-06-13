@@ -14,7 +14,6 @@ import Footer from "./components/Footer/Footer";
 import Favourites from "./modules/Favourites/Favourites";
 import Cart from "./modules/Cart/Cart";
 import Categories from "./modules/Categories/Categories";
-import { AuthProvider } from "./components/AuthProvider/AuthProvider";
 import Order from "./modules/Order/Order";
 import Profile from "./modules/Profile/Profile";
 import ResetPassword from "./modules/ResetPassword/ResetPassword";
@@ -37,7 +36,6 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <AuthProvider>
           <Header />
           <main style={{ flex: 1 }}>
             <Routes>
@@ -81,7 +79,6 @@ const App = () => {
             </Routes>
           </main>
           <Footer />
-        </AuthProvider>
       </BrowserRouter>
     </ThemeProvider>
   );

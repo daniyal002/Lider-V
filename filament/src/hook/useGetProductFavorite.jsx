@@ -1,12 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { baseApi } from "../helper/baseApi";
+import { axiosWidthAuth } from "../helper/baseApi";
 
 export const useGetProductFavorite = () => {
-  const api = baseApi();
   const { data, error, isLoading } = useQuery({
     queryKey: ["GetProductFavorite"],
     queryFn: async () =>
-      api
+      axiosWidthAuth
         .get("ProductAPI/favorites")
         .then((response) => response.data.result.$values),
   });

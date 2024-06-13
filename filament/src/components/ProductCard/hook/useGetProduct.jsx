@@ -1,12 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { baseApi } from "../../../helper/baseApi";
+import { axiosClassic } from "../../../helper/baseApi";
 
 export const useGetProduct = () => {
-  const api = baseApi();
   const { data, error,isLoading } = useQuery({
     queryKey: ["GetProduct"],
     queryFn: async () =>
-      api.get("ProductAPI").then((response) => response.data.result.$values),
+      axiosClassic.get("ProductAPI").then((response) => response.data.result.$values),
   });
   return { data, error, isLoading };
 };

@@ -6,8 +6,9 @@ import favoriteIcon from "../../../assets/favorite_black_24dp.svg";
 import shoppingCartIcon from "../../../assets/shopping_cart_white_24dp.svg";
 import shoppingCartBorderIcon from "../../../assets/shopping_cart_border_white_24dp.svg"
 import closeIcon from "../../../assets/close_black.svg"
+import { getAccessToken } from '../../../helper/auth-token.service';
 
-const ModalMenu = ({ open, handleClose, pages, logout, isLoggedIn }) => {
+const ModalMenu = ({ open, handleClose, pages }) => {
   const location = useLocation();
 
   return (
@@ -171,11 +172,11 @@ const ModalMenu = ({ open, handleClose, pages, logout, isLoggedIn }) => {
             rowGap: '10px',
           }}
         >
-          {isLoggedIn ? (
+          {getAccessToken() !== null  ? (
             <>
             <Link
               onClick={() => {
-                logout();
+                removeAccessTokenFromStorage();
                 handleClose();
               }}
               to="/login"

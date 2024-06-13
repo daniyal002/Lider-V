@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { baseApi } from "../../../helper/baseApi";
+import { axiosWidthAuth } from "../../../helper/baseApi";
 
 export const useDeleteProductCart = () => {
   const queryClient = useQueryClient();
@@ -7,10 +7,9 @@ export const useDeleteProductCart = () => {
     queryClient.invalidateQueries("GetProductCart");
   };
 
-  const api = baseApi();
   const { mutate, error } = useMutation({
     mutationFn: async (body) =>
-      api
+      axiosWidthAuth
         .delete(`CartAPI?cartItemId=${body}`)
         .then((response) => response.data),
     onSuccess: () => {

@@ -1,25 +1,22 @@
 import { useMutation } from "@tanstack/react-query";
-import { baseApi, useAuthToken } from "../../../helper/baseApi";
+import { axiosClassic } from "../../../helper/baseApi";
 import { useNavigate } from "react-router-dom";
+import { saveAccessToken } from "../../../helper/auth-token.service";
 
-export const useLogin = (login) => {
+export const useLogin = () => {
   const navigate = useNavigate();
-  const { setAuthToken } = useAuthToken();
-  const api = baseApi();
 
   const { mutate, error,isSuccess } = useMutation({
     mutationFn: async (body) =>
-      api.post("AccountAPI/Login", body).then((response) => {
+      axiosClassic.post("AccountAPI/Login", body).then((response) => {
+        if(response.data.result){
+          saveAccessToken(response.data.result)
+      }
         return response.data;
       }),
-    onSuccess: (data) => {
+    onSuccess: () => {
       // Вызывается после успешной мутации (успешного входа)
-      if (data && data.result) {
-        setAuthToken(data.result); // Сохраняем токен
         navigate("/");
-        login();
-        // Устанавливаем токен после успешного входа
-      }
     },
   });
 

@@ -2,13 +2,13 @@ import { Button, Grid } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import ModalMenu from "./ModalMenu/ModalMenu";
 import { useEffect, useState } from "react";
-import { useAuth } from "../AuthProvider/AuthProvider";
 import logo from "../../assets/logo.svg";
 import favoriteBorderIcon from "../../assets/favorite_border_black_24dp.svg";
 import favoriteIcon from "../../assets/favorite_black_24dp.svg";
 import shoppingCartIcon from "../../assets/shopping_cart_white_24dp.svg";
 import shoppingCartBorderIcon from "../../assets/shopping_cart_border_white_24dp.svg";
 import menuIcon from "../../assets/menu_white.svg";
+import { getAccessToken, removeAccessTokenFromStorage } from "../../helper/auth-token.service";
 
 const Header = () => {
   const location = useLocation();
@@ -23,7 +23,6 @@ const Header = () => {
 
     // { link: "/gallery", text: "Фотогаллерея" },
   ];
-  const { isLoggedIn, logout } = useAuth();
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -52,9 +51,6 @@ const Header = () => {
         open={open}
         handleClose={handleClose}
         pages={pages}
-        logout={logout}
-        isLoggedIn={isLoggedIn}
-
       />
       {showModalMenu && (
         <Grid sx={showModalMenu ? styles.sticky : {}}>
@@ -155,10 +151,10 @@ const Header = () => {
           }}
         >
           <Grid sx={{ display: "flex", columnGap: "20px" }}>
-            {isLoggedIn ? (
+            {getAccessToken() !== null ? (
               <>
                 <Button
-                  onClick={logout}
+                  onClick={() => removeAccessTokenFromStorage()}
                   sx={{
                     background: "linear-gradient( #6847F5, #A95BF3)",
                     padding: "0",

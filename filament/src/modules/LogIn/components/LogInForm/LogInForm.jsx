@@ -1,12 +1,10 @@
 import { Alert, Button, Grid, Input } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useLogin } from "../../hook/useLogin";
-import { useAuth } from "../../../../components/AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
 
 const LogInForm = () => {
-  const { login } = useAuth();
-  const { mutate, error, isSuccess } = useLogin(login);
+  const { mutate, error, isSuccess } = useLogin();
   const { register, handleSubmit } = useForm();
   const auth = (body) => {
     let newBody;
